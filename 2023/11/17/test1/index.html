@@ -55,6 +55,10 @@
         content="CSTZZY">
       
         
+          <meta 
+            property="og:article:tag" 
+            content="haha">
+        
       
     
   
@@ -183,7 +187,7 @@
           src="https://pic.imgdb.cn/item/65571aabc458853aefbb0c4f.png" 
           alt="blog logo">
       
-      <span class="navbar-logo-dsc">CSTZZY的个人主页</span>
+      <span class="navbar-logo-dsc">CSTZZY</span>
       </a>
   </div>
   <div class="navbar-menu">
@@ -305,7 +309,7 @@
   <a 
     class="author-tags-count" 
     href="/tags">
-    <span>0</span>
+    <span>1</span>
     <span>标签</span>
   </a>
 </div>
@@ -351,6 +355,12 @@
   </div>
   <div class="tags-list">
     
+      <a 
+        href="/tags/haha/" 
+        title="haha">
+        <div class="tags-list-item">haha</div>
+      </a>
+    
   </div>
 </div>
   </article>
@@ -380,6 +390,25 @@
       <span>2 字</span>
     
   </div>
+  
+    <div 
+      class="post-meta post-show-meta" 
+      style="margin-top: -10px;">
+      <div style="display: flex; align-items: center;">
+        <i 
+          class="iconfont icon-biaoqian" 
+          style="margin-right: 2px; font-size: 1.15rem;">
+        </i>
+        
+          
+          <a 
+            href="/tags/haha/" 
+            class="post-meta-link">
+            haha
+          </a>
+        
+      </div>
+    </div>
   
   </header>
   <div 
@@ -507,40 +536,27 @@
         <a 
           href="/" 
           class="footer-link">
-          CSTZZY的个人主页
+          CSTZZY
         </a>
       </div>
     </div>
 
     
+    
+    
+    
       <div class="footer-dsc">
         
-          Powered by
-          <a 
-            href="https://hexo.io/" 
-            class="footer-link" 
-            target="_blank" 
-            rel="nofollow noopener noreferrer">
-            &nbsp;Hexo
-          </a>
+          本站总访问量<span id="busuanzi_value_site_pv"></span>次
         
         
           <span>&nbsp;|&nbsp;</span>
         
         
-          Theme -
-          <a 
-            href="https://github.com/theme-kaze" 
-            class="footer-link" 
-            target="_blank"
-            rel="nofollow noopener noreferrer">
-            &nbsp;Kaze
-          </a>
+          本站总访客数<span id="busuanzi_value_site_uv"></span>次
         
       </div>
-    
-    
-    
+      
     
 </footer>
  
@@ -616,6 +632,10 @@
      
      
     <script src="/js/main.js"></script> 
+    
+      <script> 
+        loadScript('/js/lib/busuanzi.min.js') 
+      </script>
      
     
       <script>
