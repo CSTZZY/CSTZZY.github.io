@@ -126,7 +126,7 @@ hexo d
       </tags>
   </entry>
   <entry>
-    <title>搭建个人hexo博客（2）</title>
+    <title>搭建个人 hexo 博客（2）</title>
     <url>/2023/11/18/2%EF%BC%9Ahexo%E7%9A%84%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE%E3%80%81%E6%9B%B4%E6%8D%A2%E4%B8%BB%E9%A2%98/</url>
     <content><![CDATA[<p>将 hexo 部署到 github 后就要进入下一步部分了：hexo 配置与主题个性化。</p>
 <h2 id="1：hexo-基本配置"><a href="#1：hexo-基本配置" class="headerlink" title="1：hexo 基本配置"></a><strong>1：hexo 基本配置</strong></h2><p>在文件根目录下的<code>_config.yml</code>，就是整个 hexo 框架的配置文件了。可以在里面修改大部分的配置。详细可参考<a href="https://link.zhihu.com/?target=https://hexo.io/zh-cn/docs/configuration">官方的配置</a>描述。</p>
@@ -141,50 +141,43 @@ hexo d
 <p><strong>参数结果：</strong><code>year/:month/:day/:title/</code>2013&#x2F;07&#x2F;14&#x2F;hello-world<code>:year-:month-:day-:title.html</code>2013-07-14-hello-world.html<code>:category/:title</code>foo&#x2F;bar&#x2F;hello-world</p>
 <p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://pic.imgdb.cn/item/655892b3c458853aef9370aa.jpg" class="lozad post-image"src="https://pic.imgdb.cn/item/655892b3c458853aef9370aa.jpg"></p>
 <p>再往下翻，中间这些都默认就好了。</p>
-<pre class="highlight"><span class="line">theme: landscape</span><br><span class="line">​</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Deployment</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="comment"># Docs: https://hexo.io/docs/deployment.html</span></span></span><br><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: &lt;repository url&gt;</span><br><span class="line">  branch: [branch]</span><br><span class="line">​</span><br></pre>
+<pre class="highlight"><span class="line">theme: landscape</span><br><span class="line">​</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Deployment</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="comment"># Docs: https://hexo.io/docs/deployment.html</span></span></span><br><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: &lt;repository url&gt;</span><br><span class="line">  branch: [branch]</span><br></pre>
 
 <p><code>theme</code>就是选择什么主题，也就是在<code>theme</code>这个文件夹下，在官网上有很多个主题，默认给你安装的是<a href="https://www.zhihu.com/search?q=lanscape&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra=%7B%22sourceType%22:%22answer%22,%22sourceId%22:489125915%7D">lanscape</a>这个主题。当你需要更换主题时，在官网上下载，把主题的文件放在<code>theme</code>文件夹下，再修改这个参数就可以了。</p>
 <p>接下来这个<code>deploy</code>就是网站的部署的，<code>repo</code>就是仓库(<code>Repository</code>)的简写。<code>branch</code>选择仓库的哪个分支。这个在之前进行 github page 部署的时候已经修改过了，不再赘述。而这个在后面进行双平台部署的时候会再次用到。</p>
 <p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://pic.imgdb.cn/item/655892e7c458853aef940e75.jpg" class="lozad post-image"src="https://pic.imgdb.cn/item/655892e7c458853aef940e75.jpg"></p>
 <h3 id="Front-matter"><a href="#Front-matter" class="headerlink" title="Front-matter"></a><strong>Front-matter</strong></h3><p>Front-matter 是 md 文件最上方以 <code>---</code> 分隔的区域，用于指定个别文件的变量，举例来说：</p>
-<pre><code>---
-title: Hello World
-date: 2013/7/13 20:46:25
----
-</code></pre>
+<pre class="highlight"><span class="line">---</span><br><span class="line">title: Hello World</span><br><span class="line">date: 2013/7/13 20:46:25</span><br><span class="line">---</span><br></pre>
+
 <p>下是预先定义的参数，您可在模板中使用这些参数值并加以利用。</p>
 <p><strong>参数描述：</strong><code>layout</code>布局<code>title</code>标题<code>date</code>建立日期<code>updated</code>更新日期<code>comments</code>开启文章的评论功能<code>tags</code>标签（不适用于分页）<code>categories</code>分类（不适用于分页）<code>permalink</code>覆盖文章网址</p>
 <p>其中，分类和标签需要区别一下，分类具有顺序性和层次性，也就是说 <code>Foo, Bar</code> 不等于 <code>Bar, Foo</code>；而标签没有顺序和层次。</p>
-<pre><code>categories:
-- Diary
-tags:
-- PS3
-- Games
-</code></pre>
+<pre class="highlight"><span class="line">categories:</span><br><span class="line">- Diary</span><br><span class="line">tags:</span><br><span class="line">- PS3</span><br><span class="line">- Games</span><br></pre>
+
 <h3 id="layout（布局）"><a href="#layout（布局）" class="headerlink" title="layout（布局）"></a><strong>layout（布局）</strong></h3><p>当你每一次使用代码：</p>
-<pre><code>hexo new paper
-</code></pre>
+<pre class="highlight"><span class="line">hexo new paper</span><br></pre>
+
 <p>它其实默认使用的是<code>post</code>这个布局，也就是在<code>source</code>文件夹下的<code>_post</code>里面。</p>
 <p>Hexo 有三种默认布局：<code>post</code>、<code>page</code> 和 <code>draft</code>，它们分别对应不同的路径，而您自定义的其他布局和 <code>post</code> 相同，都将储存到 <code>source/_posts</code> 文件夹。</p>
 <p><strong>布局路径</strong><code>postsource/_postspagesourcedraftsource/_drafts</code></p>
 <p>而 new 这个命令其实是：</p>
-<pre><code>hexo new [layout] &lt;title&gt;
-</code></pre>
+<pre class="highlight"><span class="line">hexo new [layout] &lt;title&gt;</span><br></pre>
+
 <p>只不过这个 layout 默认是 post 罢了。</p>
 <h4 id="page"><a href="#page" class="headerlink" title="page"></a><strong>page</strong></h4><p>如果你想另起一页，那么可以使用</p>
-<pre><code>hexo new page board
-</code></pre>
+<pre class="highlight"><span class="line">hexo new page board</span><br></pre>
+
 <p>系统会自动给你在 source 文件夹下创建一个 board 文件夹，以及 board 文件夹中的 index.md，这样你访问的 board 对应的链接就是<code>http://xxx.xxx/board</code></p>
 <h4 id="draft"><a href="#draft" class="headerlink" title="draft"></a><strong>draft</strong></h4><p>draft 是草稿的意思，也就是你如果想写文章，又不希望被看到，那么可以</p>
-<pre><code>hexo new draft newpage
-</code></pre>
+<pre class="highlight"><span class="line">hexo new draft newpage</span><br></pre>
+
 <p>这样会在 source&#x2F;_draft 中新建一个 newpage.md 文件，如果你的草稿文件写的过程中，想要预览一下，那么可以使用</p>
-<pre><code>hexo server --draft
-</code></pre>
+<pre class="highlight"><span class="line">hexo server --draft</span><br></pre>
+
 <p>在本地端口中开启服务预览。</p>
 <p>如果你的草稿文件写完了，想要发表到 post 中，</p>
-<pre><code>hexo publish draft newpage
-</code></pre>
+<pre class="highlight"><span class="line">hexo publish draft newpage</span><br></pre>
+
 <p>就会自动把 newpage.md 发送到 post 中。</p>
 <h2 id="2：更换主题"><a href="#2：更换主题" class="headerlink" title="2：更换主题"></a><strong>2：更换主题</strong></h2><p><a href="https://hexo.io/themes/">官网的主题中</a>，选择喜欢的主题进行修改，我选的是<a href="https://github.com/theme-kaze/hexo-theme-Kaze">Kaze </a>。</p>
 <p>去 github 上下载主题：</p>
@@ -194,17 +187,17 @@ tags:
 <p>kaze 文件中也有一个<code>_config.yml</code>文件，这个文件用于配制主题，比如：</p>
 <h3 id="menu（菜单栏）"><a href="#menu（菜单栏）" class="headerlink" title="menu（菜单栏）"></a><strong>menu（菜单栏）</strong></h3><p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://picx.zhimg.com/80/v2-f7759c435dcc46d877312b0b2c8b8e7d_1440w.webp?source=2c26e567" class="lozad post-image"src="https://picx.zhimg.com/80/v2-f7759c435dcc46d877312b0b2c8b8e7d_1440w.webp?source=2c26e567"></p>
 <p>其中，About 这个是找不到网页的，因为文章中没有 about 这个东西。如果想要的话，可以执行命令</p>
-<pre><code>hexo new page about
-</code></pre>
+<pre class="highlight"><span class="line">hexo new page about</span><br></pre>
+
 <p>它就会在根目录下<code>source</code>文件夹中新建了一个<code>about</code>文件夹，以及 index.md，在 index.md 中写上想要写的东西，就可以在网站上展示出来了。</p>
 <p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://pic.imgdb.cn/item/6558addbc458853aefff7ef0.jpg" class="lozad post-image"src="https://pic.imgdb.cn/item/6558addbc458853aefff7ef0.jpg"></p>
 <p>如果想要自己再自定义一个菜单栏的选项，那么就</p>
-<pre><code>hexo new page yourdiy
-</code></pre>
+<pre class="highlight"><span class="line">hexo new page yourdiy</span><br></pre>
+
 <p>然后在主题配置文件的 menu 菜单栏添加一个 <code>Yourdiy : /yourdiy</code>，注意冒号后面要有空格，以及前面的空格要和 menu 中默认的保持整齐。然后在<code>languages</code>文件夹中，找到<code>zh-CN.yml</code>，在 index 中添加<code>yourdiy: &#39;中文意思&#39;</code>就可以显示中文了。</p>
 ]]></content>
       <categories>
-        <category>搭建个人hexo博客</category>
+        <category>搭建个人 hexo 博客</category>
       </categories>
       <tags>
         <tag>hexo</tag>
@@ -220,21 +213,12 @@ tags:
 <pre class="highlight"><span class="line">npm i hexo-generator-feed</span><br></pre>
 
 <p>而后在你整个项目的<code>_config.yml</code>中找到 Extensions，添加：</p>
-<pre><code># Extensions
-## Plugins: https://hexo.io/plugins/
-#RSS订阅
-plugin:
-- hexo-generator-feed
-#Feed Atom
-feed:
-  type: atom
-  path: atom.xml
-  limit: 20
-</code></pre>
+<pre class="highlight"><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Extensions</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="comment"># Plugins: https://hexo.io/plugins/</span></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">RSS订阅</span></span><br><span class="line">plugin:</span><br><span class="line">- hexo-generator-feed</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">Feed Atom</span></span><br><span class="line">feed:</span><br><span class="line">  type: atom</span><br><span class="line">  path: atom.xml</span><br><span class="line">  limit: 20</span><br></pre>
+
 <p>这个时候你的 RSS 链接就是 域名<code>/atom.xml</code>了。</p>
 <p>所以，在主题配置文件中的这个<code>social links</code>，开启 RSS 的页面功能，这样你网站上就有那个像 wifi 一样符号的 RSS logo 了，注意空格。</p>
-<pre><code>rss: /atom.xml
-</code></pre>
+<pre class="highlight"><span class="line">rss: /atom.xml</span><br></pre>
+
 <h2 id="4：如何关注-RSS？"><a href="#4：如何关注-RSS？" class="headerlink" title="4：如何关注 RSS？"></a><strong>4：如何关注 RSS？</strong></h2><p>首先，你需要一个 RSS 阅读器，在这里我推荐<code>inoreader</code>，宇宙第一 RSS 阅读器，而且中文支持的挺好。不过它没有 PC 端的程序，只有网页版，chrome 上有插件。在官网上用 google 账号或者自己注册账号登录，就可以开始你的关注之旅了。</p>
 <p>每次需要关注某个博主时，就点开他的 RSS 链接，把链接复制到<code>inoreader</code>上，就能关注了，当然，如果是比较大众化的很厉害的博主，你直接搜名字也可以的，比如每个人都非常佩服的阮一峰大师，直接在阅读器上搜索<code>阮一峰</code>，应该就能出来了。</p>
 <p>在安卓端，inoreader 也有下载，不过因为国内 google 是登录不了的，你需要在 inoreader 官网上把你的密码修改了，然后就可以用账户名和密码登录了。</p>
