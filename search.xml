@@ -211,7 +211,7 @@ tags:
       </tags>
   </entry>
   <entry>
-    <title>搭建个人hexo博客（2）</title>
+    <title>搭建个人hexo博客（3）</title>
     <url>/2023/11/18/3%EF%BC%9A%E7%BB%99%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0RSS/</url>
     <content><![CDATA[<h2 id="1：什么是-RSS？"><a href="#1：什么是-RSS？" class="headerlink" title="1：什么是 RSS？"></a><strong>1：什么是 RSS？</strong></h2><p>RSS 也就是订阅功能，你可以理解为类似与订阅公众号的功能，来订阅各种博客，杂志等等。</p>
 <h2 id="2：为什么要用-RSS？"><a href="#2：为什么要用-RSS？" class="headerlink" title="2：为什么要用 RSS？"></a><strong>2：为什么要用 RSS？</strong></h2><p>就如同订阅公众号一样，你对某个公众号感兴趣，你总不可能一直时不时搜索这个公众号来看它的文章吧。博客也是一样，如果你喜欢某个博主，或者某个平台的内容，你可以通过 RSS 订阅它们，然后在 RSS 阅读器上可以实时推送这些消息。现在网上的垃圾消息太多了，如果你每一天都在看这些消息中度过，漫无目的的浏览，只会让你的时间一点一点的流逝，太不值得了。如果你关注的博主每次都发的消息都是精华，而且不是每一天十几条几十条的轰炸你，那么这个博主就值得你的关注，你就可以通过 RSS 订阅他。</p>
