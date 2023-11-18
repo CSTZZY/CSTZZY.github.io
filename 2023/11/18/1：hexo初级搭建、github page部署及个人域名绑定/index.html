@@ -322,7 +322,7 @@
     style="padding-right: 2px;">
   </i>目录
 </div>
-<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Hexo-%E6%90%AD%E5%BB%BA%E6%AD%A5%E9%AA%A4"><span class="toc-text">Hexo 搭建步骤</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1%EF%BC%9A%E5%AE%89%E8%A3%85-Git-x20"><span class="toc-text">1：安装 Git </span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%EF%BC%9A%E5%AE%89%E8%A3%85-nodejs"><span class="toc-text">2：安装 nodejs</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3%EF%BC%9A%E5%AE%89%E8%A3%85-hexo"><span class="toc-text">3：安装 hexo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4%EF%BC%9A%E5%88%9B%E5%BB%BA-GitHub-%E4%B8%AA%E4%BA%BA%E4%BB%93%E5%BA%93"><span class="toc-text">4：创建 GitHub 个人仓库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5%EF%BC%9A%E7%94%9F%E6%88%90%E6%B7%BB%E5%8A%A0%E5%88%B0-GitHub"><span class="toc-text">5：生成添加到 GitHub</span></a></li></ol>
+<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Hexo-%E6%90%AD%E5%BB%BA%E6%AD%A5%E9%AA%A4"><span class="toc-text">Hexo 搭建步骤</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1%EF%BC%9A%E5%AE%89%E8%A3%85-Git-x20"><span class="toc-text">1：安装 Git </span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%EF%BC%9A%E5%AE%89%E8%A3%85-nodejs"><span class="toc-text">2：安装 nodejs</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3%EF%BC%9A%E5%AE%89%E8%A3%85-hexo"><span class="toc-text">3：安装 hexo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4%EF%BC%9A%E5%88%9B%E5%BB%BA-GitHub-%E4%B8%AA%E4%BA%BA%E4%BB%93%E5%BA%93"><span class="toc-text">4：创建 GitHub 个人仓库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5%EF%BC%9A%E7%94%9F%E6%88%90%E6%B7%BB%E5%8A%A0%E5%88%B0-GitHub"><span class="toc-text">5：生成添加到 GitHub</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6%EF%BC%9A%E5%B0%86-hexo-%E9%83%A8%E7%BD%B2%E5%88%B0-GitHub"><span class="toc-text">6：将 hexo 部署到 GitHub</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7%EF%BC%9A%E8%AE%BE%E7%BD%AE%E4%B8%AA%E4%BA%BA%E5%9F%9F%E5%90%8D"><span class="toc-text">7：设置个人域名</span></a></li></ol>
       </div>
     </article>
   
@@ -390,7 +390,7 @@
     
     
       <span class="dot"></span>
-      <span>498 字</span>
+      <span>954 字</span>
     
   </div>
   
@@ -458,16 +458,45 @@
 </li>
 </ul>
 <p>生成相关文件并打开 hexo 服务：</p>
-<pre><code>hexo g
-hexo server
-</code></pre>
+<pre class="highlight"><span class="line">hexo g</span><br><span class="line">hexo server</span><br></pre>
+
 <p>在浏览器输入 localhost:4000 就可以看到生成的博客了（自己的操作没截图）</p>
 <p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://picx.zhimg.com/80/v2-d301dfbac9165b21ab1ee0a860f44de4_1440w.webp?source=2c26e567" class="lozad post-image"src="https://picx.zhimg.com/80/v2-d301dfbac9165b21ab1ee0a860f44de4_1440w.webp?source=2c26e567"></p>
 <h2 id="4：创建-GitHub-个人仓库"><a href="#4：创建-GitHub-个人仓库" class="headerlink" title="4：创建 GitHub 个人仓库"></a><strong>4：创建 GitHub 个人仓库</strong></h2><p>新建仓库：</p>
 <p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://picx.zhimg.com/80/v2-4387cb776ccc72189bc06fd511c1e19e_1440w.webp?source=2c26e567" class="lozad post-image"src="https://picx.zhimg.com/80/v2-4387cb776ccc72189bc06fd511c1e19e_1440w.webp?source=2c26e567"></p>
-<p>创建一个和用户名相同的仓库，后面加.<a href="https://link.zhihu.com/?target=http://github.io">github.io</a>，只有这样，将来要部署到 GitHub page 的时候，才会被识别，也就是<a href="https://link.zhihu.com/?target=http://xxxx.github.io">http://xxxx.github.io</a>，其中 xxx 就是 GitHub 的用户名。</p>
+<p>创建一个和用户名相同的仓库，后面加.github.io，只有这样，将来要部署到 GitHub page 的时候，才会被识别，也就是 http:&#x2F;&#x2F;xxxx.github.io，其中 xxx 就是 GitHub 的用户名。</p>
 <p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://pic.imgdb.cn/item/6558857dc458853aef6715d9.jpg" class="lozad post-image"src="https://pic.imgdb.cn/item/6558857dc458853aef6715d9.jpg"></p>
-<h2 id="5：生成添加到-GitHub"><a href="#5：生成添加到-GitHub" class="headerlink" title="5：生成添加到 GitHub"></a><strong>5：生成添加到 GitHub</strong></h2>
+<h2 id="5：生成添加到-GitHub"><a href="#5：生成添加到-GitHub" class="headerlink" title="5：生成添加到 GitHub"></a><strong>5：生成添加到 GitHub</strong></h2><p>首先将 git 的用户名和邮箱与 github 绑定：</p>
+<pre class="highlight"><span class="line">git config --global user.name &quot;yourname&quot;</span><br><span class="line">git config --global user.email &quot;youremail&quot;</span><br></pre>
+
+<p>yourname：GitHub 用户名，youremail：GitHub 绑定的邮箱。这样 Git 才能知道你是不是对应它的账户。</p>
+<p>可以用以下两条，检查一下有没有输对：</p>
+<pre class="highlight"><span class="line">git config user.name</span><br><span class="line">git config user.email</span><br></pre>
+
+<p>然后设置 token：</p>
+<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://pic.imgdb.cn/item/6558874cc458853aef6d049a.jpg" class="lozad post-image"src="https://pic.imgdb.cn/item/6558874cc458853aef6d049a.jpg"></p>
+<p>进入创建 Token 界面，下面的选项建议全部勾选：</p>
+<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://pic.imgdb.cn/item/65588876c458853aef712675.jpg" class="lozad post-image"src="https://pic.imgdb.cn/item/65588876c458853aef712675.jpg"></p>
+<p>关于 Token 的使用，最简单直接的方法就是当进行 git 操作时，直接将其做为密码进行使用。但需要注意：生成 token 后需要保存，因为之后 github 界面不会再显示已经 token。</p>
+<h2 id="6：将-hexo-部署到-GitHub"><a href="#6：将-hexo-部署到-GitHub" class="headerlink" title="6：将 hexo 部署到 GitHub"></a><strong>6：将 hexo 部署到 GitHub</strong></h2><p>现在就可以将 hexo 和 GitHub 关联起来，也就是将 hexo 生成的文章部署到 GitHub page 上，打开站点配置文件 <code>_config.yml</code>，翻到最后，修改为 YourgithubName 就是你的 GitHub 账户</p>
+<pre class="highlight"><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: https://github.com/YourgithubName/YourgithubName.github.io.git</span><br><span class="line">  branch: master</span><br></pre>
+
+<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://pic.imgdb.cn/item/655889fbc458853aef760fcf.jpg" class="lozad post-image"src="https://pic.imgdb.cn/item/655889fbc458853aef760fcf.jpg"></p>
+<p>这个时候需要先安装 deploy-git，也就是部署的命令，这样才能用命令将 hexo 部署到 GitHub。</p>
+<pre class="highlight"><span class="line">npm install hexo-deployer-git --save</span><br></pre>
+
+<p>然后：</p>
+<pre class="highlight"><span class="line">hexo clean</span><br><span class="line">hexo generate</span><br><span class="line">hexo deploy</span><br></pre>
+
+<p>其中 hexo clean 清除了你之前生成的东西，也可以不加。 <code>hexo generate</code>：生成静态文章，缩写为<code>hexo g</code>。<code>hexo deploy</code>：部署文章，缩写为<code>hexo d</code>。</p>
+<p>注意 deploy 时可能要你输入 username 和 password，其中 password 输入前面生成的 token 就可以。</p>
+<p>等一会就可以通过 http:&#x2F;&#x2F;yourname.github.io 访问 hexo 博客了。</p>
+<h2 id="7：设置个人域名"><a href="#7：设置个人域名" class="headerlink" title="7：设置个人域名"></a><strong>7：设置个人域名</strong></h2><p>因为之前用过阿里云，所以在阿里云买了域名。购买后需要进行域名解析：</p>
+<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://pic.imgdb.cn/item/65588bb1c458853aef7b59f8.jpg" class="lozad post-image"src="https://pic.imgdb.cn/item/65588bb1c458853aef7b59f8.jpg"></p>
+<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/1%EF%BC%9Ahexo%E5%88%9D%E7%BA%A7%E6%90%AD%E5%BB%BA%E3%80%81github%20page%E9%83%A8%E7%BD%B2%E5%8F%8A%E4%B8%AA%E4%BA%BA%E5%9F%9F%E5%90%8D%E7%BB%91%E5%AE%9A_md_files/bcc8c810-85f9-11ee-a892-53a6ed2bbcfe.jpeg?v=1&type=image" class="lozad post-image"src="/1%EF%BC%9Ahexo%E5%88%9D%E7%BA%A7%E6%90%AD%E5%BB%BA%E3%80%81github%20page%E9%83%A8%E7%BD%B2%E5%8F%8A%E4%B8%AA%E4%BA%BA%E5%9F%9F%E5%90%8D%E7%BB%91%E5%AE%9A_md_files/bcc8c810-85f9-11ee-a892-53a6ed2bbcfe.jpeg?v=1&type=image"></p>
+<p>其中的 ip 地址是 github 服务器地址。</p>
+<p>登录 GitHub，进入之前创建的仓库，点击 settings，设置 Custom domain，输入购买的域名：</p>
+
   </div>
   <div>
     
@@ -523,7 +552,7 @@ hexo server
     style="padding-right: 2px;">
   </i>目录
 </div>
-<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Hexo-%E6%90%AD%E5%BB%BA%E6%AD%A5%E9%AA%A4"><span class="toc-text">Hexo 搭建步骤</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1%EF%BC%9A%E5%AE%89%E8%A3%85-Git-x20"><span class="toc-text">1：安装 Git </span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%EF%BC%9A%E5%AE%89%E8%A3%85-nodejs"><span class="toc-text">2：安装 nodejs</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3%EF%BC%9A%E5%AE%89%E8%A3%85-hexo"><span class="toc-text">3：安装 hexo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4%EF%BC%9A%E5%88%9B%E5%BB%BA-GitHub-%E4%B8%AA%E4%BA%BA%E4%BB%93%E5%BA%93"><span class="toc-text">4：创建 GitHub 个人仓库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5%EF%BC%9A%E7%94%9F%E6%88%90%E6%B7%BB%E5%8A%A0%E5%88%B0-GitHub"><span class="toc-text">5：生成添加到 GitHub</span></a></li></ol>
+<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Hexo-%E6%90%AD%E5%BB%BA%E6%AD%A5%E9%AA%A4"><span class="toc-text">Hexo 搭建步骤</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1%EF%BC%9A%E5%AE%89%E8%A3%85-Git-x20"><span class="toc-text">1：安装 Git </span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%EF%BC%9A%E5%AE%89%E8%A3%85-nodejs"><span class="toc-text">2：安装 nodejs</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3%EF%BC%9A%E5%AE%89%E8%A3%85-hexo"><span class="toc-text">3：安装 hexo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4%EF%BC%9A%E5%88%9B%E5%BB%BA-GitHub-%E4%B8%AA%E4%BA%BA%E4%BB%93%E5%BA%93"><span class="toc-text">4：创建 GitHub 个人仓库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5%EF%BC%9A%E7%94%9F%E6%88%90%E6%B7%BB%E5%8A%A0%E5%88%B0-GitHub"><span class="toc-text">5：生成添加到 GitHub</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6%EF%BC%9A%E5%B0%86-hexo-%E9%83%A8%E7%BD%B2%E5%88%B0-GitHub"><span class="toc-text">6：将 hexo 部署到 GitHub</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7%EF%BC%9A%E8%AE%BE%E7%BD%AE%E4%B8%AA%E4%BA%BA%E5%9F%9F%E5%90%8D"><span class="toc-text">7：设置个人域名</span></a></li></ol>
 </div>
             </main>
             <aside class="right-column">
@@ -537,7 +566,7 @@ hexo server
     style="padding-right: 2px;">
   </i>目录
 </div>
-<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Hexo-%E6%90%AD%E5%BB%BA%E6%AD%A5%E9%AA%A4"><span class="toc-text">Hexo 搭建步骤</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1%EF%BC%9A%E5%AE%89%E8%A3%85-Git-x20"><span class="toc-text">1：安装 Git </span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%EF%BC%9A%E5%AE%89%E8%A3%85-nodejs"><span class="toc-text">2：安装 nodejs</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3%EF%BC%9A%E5%AE%89%E8%A3%85-hexo"><span class="toc-text">3：安装 hexo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4%EF%BC%9A%E5%88%9B%E5%BB%BA-GitHub-%E4%B8%AA%E4%BA%BA%E4%BB%93%E5%BA%93"><span class="toc-text">4：创建 GitHub 个人仓库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5%EF%BC%9A%E7%94%9F%E6%88%90%E6%B7%BB%E5%8A%A0%E5%88%B0-GitHub"><span class="toc-text">5：生成添加到 GitHub</span></a></li></ol>
+<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Hexo-%E6%90%AD%E5%BB%BA%E6%AD%A5%E9%AA%A4"><span class="toc-text">Hexo 搭建步骤</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1%EF%BC%9A%E5%AE%89%E8%A3%85-Git-x20"><span class="toc-text">1：安装 Git </span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%EF%BC%9A%E5%AE%89%E8%A3%85-nodejs"><span class="toc-text">2：安装 nodejs</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3%EF%BC%9A%E5%AE%89%E8%A3%85-hexo"><span class="toc-text">3：安装 hexo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4%EF%BC%9A%E5%88%9B%E5%BB%BA-GitHub-%E4%B8%AA%E4%BA%BA%E4%BB%93%E5%BA%93"><span class="toc-text">4：创建 GitHub 个人仓库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5%EF%BC%9A%E7%94%9F%E6%88%90%E6%B7%BB%E5%8A%A0%E5%88%B0-GitHub"><span class="toc-text">5：生成添加到 GitHub</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6%EF%BC%9A%E5%B0%86-hexo-%E9%83%A8%E7%BD%B2%E5%88%B0-GitHub"><span class="toc-text">6：将 hexo 部署到 GitHub</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7%EF%BC%9A%E8%AE%BE%E7%BD%AE%E4%B8%AA%E4%BA%BA%E5%9F%9F%E5%90%8D"><span class="toc-text">7：设置个人域名</span></a></li></ol>
     </article>
   
   
