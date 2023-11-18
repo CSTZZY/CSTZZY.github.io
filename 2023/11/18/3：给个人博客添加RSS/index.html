@@ -301,13 +301,13 @@
   <a 
     class="author-posts-count" 
     href="/archives">
-    <span>3</span>
+    <span>4</span>
     <span>文章</span>
   </a>
   <a 
     class="author-categories-count" 
     href="/categories">
-    <span>2</span>
+    <span>1</span>
     <span>分类</span>
   </a>
   <a 
@@ -348,14 +348,7 @@
       <a href="/categories/%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BAhexo%E5%8D%9A%E5%AE%A2/">
         <div class="categories-list-item">
           搭建个人hexo博客
-          <span class="categories-list-item-badge">2</span>
-        </div>
-      </a>
-    
-      <a href="/categories/%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA-hexo-%E5%8D%9A%E5%AE%A2/">
-        <div class="categories-list-item">
-          搭建个人-hexo-博客
-          <span class="categories-list-item-badge">1</span>
+          <span class="categories-list-item-badge">4</span>
         </div>
       </a>
     
@@ -489,6 +482,20 @@
 </article>
 <div class="nav">
   
+    <div class="nav-item-prev">
+      <a 
+        href="/2023/11/18/4%EF%BC%9A%E7%BB%99%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F/" 
+        class="nav-link">
+        <i class="iconfont icon-left nav-prev-icon"></i>
+        <div>
+          <div class="nav-label">上一篇</div>
+          
+            <div class="nav-title">搭建个人 hexo 博客（4） </div>
+          
+        </div>
+      </a>
+    </div>
+  
   
     <div class="nav-item-next">
       <a 
@@ -511,6 +518,35 @@
     style="margin-top: 16px;">
     <div class="comment-card-title">评论</div>
     
+  <div id="vcomments"></div>
+  
+  <script>
+    loadScript("//unpkg.com/valine/dist/Valine.min.js");
+    var oldLoadVa = window.onload;
+    window.onload = function () {
+      oldLoadVa && oldLoadVa();
+      new Valine({
+        el: '#vcomments',
+        appId: 'k5SQut679NDTITKh7cWDLPA3-gzGzoHsz',
+        appKey: 'on3io9l2hCJI0dJQnRroGtyS',
+        placeholder: '欢迎交流',
+        path: window.location.pathname,
+        avatar: 'mp',
+        meta: ["nick","mail","link"],
+        pageSize: '10',
+        lang: '',
+        visitor: 'false',
+        highlight: true,
+        recordIP: false,
+        
+        
+        
+        enableQQ: 'false',
+        requiredFields: [],
+      });
+    };
+  </script>
+
   </div>
 
 <div 
@@ -549,6 +585,11 @@
     </i>最近文章
   </div>
   <div class="recent-posts-list">
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2023-11-18</div>
+        <a href="/2023/11/18/4%EF%BC%9A%E7%BB%99%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F/"><div class="recent-posts-item-content">搭建个人 hexo 博客（4）</div></a>
+      </div>
     
       <div class="recent-posts-item">
         <div class="recent-posts-item-title">2023-11-18</div>

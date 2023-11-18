@@ -194,7 +194,7 @@
 <p>然后在主题配置文件的 menu 菜单栏添加一个 <code>Yourdiy : /yourdiy</code>，注意冒号后面要有空格，以及前面的空格要和 menu 中默认的保持整齐。然后在<code>languages</code>文件夹中，找到<code>zh-CN.yml</code>，在 index 中添加<code>yourdiy: &#39;中文意思&#39;</code>就可以显示中文了。</p>
 ]]></content>
       <categories>
-        <category>搭建个人 hexo 博客</category>
+        <category>搭建个人hexo博客</category>
       </categories>
       <tags>
         <tag>hexo</tag>
@@ -221,6 +221,24 @@
 <p>在安卓端，inoreader 也有下载，不过因为国内 google 是登录不了的，你需要在 inoreader 官网上把你的密码修改了，然后就可以用账户名和密码登录了。</p>
 <p>在 IOS 端，没用过，好像是 reader 3 可以支持 inoreader 账户，还有个 readon 也不错，可以去试试。</p>
 <p>⚠️：按照上述步骤配置后网站打不开了，最后也没找到原因。</p>
+]]></content>
+      <categories>
+        <category>搭建个人hexo博客</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>搭建个人 hexo 博客（4）</title>
+    <url>/2023/11/18/4%EF%BC%9A%E7%BB%99%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F/</url>
+    <content><![CDATA[<h2 id="参考链接：https-zhuanlan-zhihu-com-p-350704151"><a href="#参考链接：https-zhuanlan-zhihu-com-p-350704151" class="headerlink" title="参考链接：https://zhuanlan.zhihu.com/p/350704151"></a>参考链接：<a href="https://zhuanlan.zhihu.com/p/350704151">https://zhuanlan.zhihu.com/p/350704151</a></h2><p>这里使用 valine 实现评论，官方网  <a href="https://link.zhihu.com/?target=https://leancloud.cn/">https://leancloud.cn/</a></p>
+<p>进入控制台后点击左下角创建应用</p>
+<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://pic1.zhimg.com/80/v2-495635ee224900cdbc25bb5c0e8b8d08_1440w.webp" class="lozad post-image"src="https://pic1.zhimg.com/80/v2-495635ee224900cdbc25bb5c0e8b8d08_1440w.webp"></p>
+<p>应用创建好以后，进入刚刚创建的应用，选择左下角的设置&gt;应用 Key，然后就能看到你的 APP ID 和 APP Key 了</p>
+<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://pic.imgdb.cn/item/6558bc6fc458853aef47afef.jpg" class="lozad post-image"src="https://pic.imgdb.cn/item/6558bc6fc458853aef47afef.jpg"></p>
+<p>开启评论功能  <code>kaze/_config.yml</code></p>
+<pre class="highlight"><span class="line">comment:</span><br><span class="line">  enable: true</span><br><span class="line">  type: valine # valine | gitalk | livere | disqus | we recommend valine</span><br><span class="line"><span class="meta prompt_">  # </span><span class="language-bash">gitalk config details can see <span class="keyword">in</span> https://github.com/gitalk/gitalk/blob/master/readme-cn.md</span></span><br><span class="line">  valine:</span><br><span class="line">    appId: 你的appId</span><br><span class="line">    appKey: 你的appKey</span><br></pre>
 ]]></content>
       <categories>
         <category>搭建个人hexo博客</category>
