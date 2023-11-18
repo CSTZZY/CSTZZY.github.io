@@ -211,7 +211,7 @@ tags:
       </tags>
   </entry>
   <entry>
-    <title></title>
+    <title>搭建个人hexo博客（2）</title>
     <url>/2023/11/18/3%EF%BC%9A%E7%BB%99%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0RSS/</url>
     <content><![CDATA[<h2 id="1：什么是-RSS？"><a href="#1：什么是-RSS？" class="headerlink" title="1：什么是 RSS？"></a><strong>1：什么是 RSS？</strong></h2><p>RSS 也就是订阅功能，你可以理解为类似与订阅公众号的功能，来订阅各种博客，杂志等等。</p>
 <h2 id="2：为什么要用-RSS？"><a href="#2：为什么要用-RSS？" class="headerlink" title="2：为什么要用 RSS？"></a><strong>2：为什么要用 RSS？</strong></h2><p>就如同订阅公众号一样，你对某个公众号感兴趣，你总不可能一直时不时搜索这个公众号来看它的文章吧。博客也是一样，如果你喜欢某个博主，或者某个平台的内容，你可以通过 RSS 订阅它们，然后在 RSS 阅读器上可以实时推送这些消息。现在网上的垃圾消息太多了，如果你每一天都在看这些消息中度过，漫无目的的浏览，只会让你的时间一点一点的流逝，太不值得了。如果你关注的博主每次都发的消息都是精华，而且不是每一天十几条几十条的轰炸你，那么这个博主就值得你的关注，你就可以通过 RSS 订阅他。</p>
@@ -239,6 +239,13 @@ feed:
 <p>每次需要关注某个博主时，就点开他的 RSS 链接，把链接复制到<code>inoreader</code>上，就能关注了，当然，如果是比较大众化的很厉害的博主，你直接搜名字也可以的，比如每个人都非常佩服的阮一峰大师，直接在阅读器上搜索<code>阮一峰</code>，应该就能出来了。</p>
 <p>在安卓端，inoreader 也有下载，不过因为国内 google 是登录不了的，你需要在 inoreader 官网上把你的密码修改了，然后就可以用账户名和密码登录了。</p>
 <p>在 IOS 端，没用过，好像是 reader 3 可以支持 inoreader 账户，还有个 readon 也不错，可以去试试。</p>
+<p>⚠️：按照上述步骤配置后网站打不开了，最后也没找到原因。</p>
 ]]></content>
+      <categories>
+        <category>搭建个人hexo博客</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
   </entry>
 </search>
