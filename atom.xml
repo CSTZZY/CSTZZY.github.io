@@ -45,7 +45,7 @@
     <link href="http://cstzzy.top/2023/11/18/5%EF%BC%9Ac++%E4%B8%AD%E7%9A%84int*,%20int%20*&amp;/"/>
     <id>http://cstzzy.top/2023/11/18/5%EF%BC%9Ac++%E4%B8%AD%E7%9A%84int*,%20int%20*&amp;/</id>
     <published>2023-11-18T13:27:00.000Z</published>
-    <updated>2023-11-21T13:51:26.791Z</updated>
+    <updated>2023-11-21T15:27:47.545Z</updated>
     
     <content type="html"><![CDATA[<p>突然想起来之前本科学 C++的时候老师讲过<code>int*</code> 和<code>int *&amp;</code> 的区别，但是已经很多年没接触过了，现在回忆一下。</p><p><strong>示例代码：</strong></p><blockquote><pre class="highlight"><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> a=<span class="number">10</span>;</span><br><span class="line">    <span class="type">int</span> &amp;b=a;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;a=&quot;</span>&lt;&lt;a&lt;&lt;endl;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;b=&quot;</span>&lt;&lt;b&lt;&lt;endl;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;&amp;a=&quot;</span>&lt;&lt;&amp;a&lt;&lt;endl;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;&amp;b=&quot;</span>&lt;&lt;&amp;b&lt;&lt;endl;</span><br><span class="line">    <span class="type">int</span> *p=&amp;a;</span><br><span class="line">    <span class="type">int</span> *&amp;pt=p;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;p=&quot;</span>&lt;&lt;p&lt;&lt;endl;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;*p=&quot;</span>&lt;&lt;*p&lt;&lt;endl;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;&amp;p=&quot;</span>&lt;&lt;&amp;p&lt;&lt;endl;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;*&amp;p=&quot;</span>&lt;&lt;*&amp;p&lt;&lt;endl;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;pt=&quot;</span>&lt;&lt;pt&lt;&lt;endl;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;&amp;pt=&quot;</span>&lt;&lt;&amp;pt&lt;&lt;endl;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;*&amp;pt=&quot;</span>&lt;&lt;*&amp;pt&lt;&lt;endl;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;*&amp;a=&quot;</span>&lt;&lt;*&amp;a&lt;&lt;endl;</span><br><span class="line">&#125;</span><br></pre></blockquote><ul><li><p><code>int &amp;b=a;</code> 表示 b 是 a 的引用，简单来说，b 是 a 的别名，b 和 a 是同一个人，改变 b 也会改变 a，反之亦然，</p></li><li><p><code>int *&amp;pt=p;</code> 表示 pt 是指针 p 的引用，pt 和 p 是同一个人。</p></li><li><p><code>*&amp;p=p，*&amp;a=a</code> 即：*&amp;XXX 相当于取 XXX 地址里存的东西，那自然是 XXX 本身了。</p></li></ul><p><strong>输出：</strong></p><p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://pic.imgdb.cn/item/655c41dfc458853aefc3dda7.jpg" class="lozad post-image"src="https://pic.imgdb.cn/item/655c41dfc458853aefc3dda7.jpg"></p>]]></content>
     
@@ -60,12 +60,41 @@
     
     
     
-    <category term="c++" scheme="http://cstzzy.top/categories/c/"/>
+    <category term="c++基础" scheme="http://cstzzy.top/categories/c-%E5%9F%BA%E7%A1%80/"/>
     
     
     <category term="c++" scheme="http://cstzzy.top/tags/c/"/>
     
     <category term="指针" scheme="http://cstzzy.top/tags/%E6%8C%87%E9%92%88/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>c++中的int*, int *&amp;</title>
+    <link href="http://cstzzy.top/2023/11/18/6%EF%BC%9A%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/"/>
+    <id>http://cstzzy.top/2023/11/18/6%EF%BC%9A%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/</id>
+    <published>2023-11-18T13:27:00.000Z</published>
+    <updated>2023-11-21T15:28:16.809Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="对常见的排序算法进行总结"><a href="#对常见的排序算法进行总结" class="headerlink" title="对常见的排序算法进行总结"></a>对常见的排序算法进行总结</h2><table><thead><tr><th align="center">名称</th><th align="center">时间复杂度</th><th align="center">算法核心思想</th><th align="center">优点</th><th align="center">缺点</th></tr></thead><tbody><tr><td align="center">桶排序（啊哈简化版）</td><td align="center">$O(m+n)$其中，m 为桶的个数，n 为待排序数的个数</td><td align="center">比如有范围为 0-10 的数需要排序，则需要 11 个桶，每个桶 i 保存数字 i 出现的次数，然后遍历桶，按照桶 i 中存放的 i 出现的次数 k 输出 k 次 i。</td><td align="center">1. 时间复杂度较小。</td><td align="center">1. 比如需要对（姓名，得分）进行排序，使用桶排序无法知道各个分数对应的姓名；</td></tr></tbody></table><ol start="2"><li>无法对小数进行排序。 |<br>| 冒泡排序 | $O(n^2)$其中 n 为待排序数的个数 | 每次比较相邻的两个元素，如果顺序错误则交换这两个元素的顺序，且每一趟仅将一个元素归位，因此如果有 n 个数进行排序，则需要进行 n-1 趟操作。 | —— | 1. 时间复杂度高。 |</li></ol>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;对常见的排序算法进行总结&quot;&gt;&lt;a href=&quot;#对常见的排序算法进行总结&quot; class=&quot;headerlink&quot; title=&quot;对常见的排序算法进行总结&quot;&gt;&lt;/a&gt;对常见的排序算法进行总结&lt;/h2&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th align=&quot;c</summary>
+      
+    
+    
+    
+    <category term="ah算法" scheme="http://cstzzy.top/categories/ah%E7%AE%97%E6%B3%95/"/>
+    
+    
+    <category term="c++" scheme="http://cstzzy.top/tags/c/"/>
+    
+    <category term="排序算法总结" scheme="http://cstzzy.top/tags/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/"/>
     
   </entry>
   
