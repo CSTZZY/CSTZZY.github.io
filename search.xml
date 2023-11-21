@@ -1,53 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>搭建个人hexo博客（3）</title>
-    <url>/2023/11/18/3%EF%BC%9A%E7%BB%99%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0RSS/</url>
-    <content><![CDATA[<h2 id="1：什么是-RSS？"><a href="#1：什么是-RSS？" class="headerlink" title="1：什么是 RSS？"></a><strong>1：什么是 RSS？</strong></h2><p>RSS 也就是订阅功能，你可以理解为类似与订阅公众号的功能，来订阅各种博客，杂志等等。</p>
-<h2 id="2：为什么要用-RSS？"><a href="#2：为什么要用-RSS？" class="headerlink" title="2：为什么要用 RSS？"></a><strong>2：为什么要用 RSS？</strong></h2><p>就如同订阅公众号一样，你对某个公众号感兴趣，你总不可能一直时不时搜索这个公众号来看它的文章吧。博客也是一样，如果你喜欢某个博主，或者某个平台的内容，你可以通过 RSS 订阅它们，然后在 RSS 阅读器上可以实时推送这些消息。现在网上的垃圾消息太多了，如果你每一天都在看这些消息中度过，漫无目的的浏览，只会让你的时间一点一点的流逝，太不值得了。如果你关注的博主每次都发的消息都是精华，而且不是每一天十几条几十条的轰炸你，那么这个博主就值得你的关注，你就可以通过 RSS 订阅他。</p>
-<p>在我的理解中，如果你不想每天都被那些没有质量的消息轰炸，只想安安静静的关注几个博主，每天看一些有质量的内容也不用太多，那么 RSS 订阅值得你的拥有。</p>
-<h2 id="3：添加-RSS-功能"><a href="#3：添加-RSS-功能" class="headerlink" title="3：添加 RSS 功能"></a><strong>3：添加 RSS 功能</strong></h2><p>先安装 RSS 插件</p>
-<pre class="highlight"><span class="line">npm i hexo-generator-feed</span><br></pre>
-
-<p>而后在你整个项目的<code>_config.yml</code>中找到 Extensions，添加：</p>
-<pre class="highlight"><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Extensions</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="comment"># Plugins: https://hexo.io/plugins/</span></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">RSS订阅</span></span><br><span class="line">plugin:</span><br><span class="line">- hexo-generator-feed</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">Feed Atom</span></span><br><span class="line">feed:</span><br><span class="line">  type: atom</span><br><span class="line">  path: atom.xml</span><br><span class="line">  limit: 20</span><br></pre>
-
-<p>这个时候你的 RSS 链接就是 域名<code>/atom.xml</code>了。</p>
-<p>所以，在主题配置文件中的这个<code>social links</code>，开启 RSS 的页面功能，这样你网站上就有那个像 wifi 一样符号的 RSS logo 了，注意空格。</p>
-<pre class="highlight"><span class="line">rss: /atom.xml</span><br></pre>
-
-<h2 id="4：如何关注-RSS？"><a href="#4：如何关注-RSS？" class="headerlink" title="4：如何关注 RSS？"></a><strong>4：如何关注 RSS？</strong></h2><p>首先，你需要一个 RSS 阅读器，在这里我推荐<code>inoreader</code>，宇宙第一 RSS 阅读器，而且中文支持的挺好。不过它没有 PC 端的程序，只有网页版，chrome 上有插件。在官网上用 google 账号或者自己注册账号登录，就可以开始你的关注之旅了。</p>
-<p>每次需要关注某个博主时，就点开他的 RSS 链接，把链接复制到<code>inoreader</code>上，就能关注了，当然，如果是比较大众化的很厉害的博主，你直接搜名字也可以的，比如每个人都非常佩服的阮一峰大师，直接在阅读器上搜索<code>阮一峰</code>，应该就能出来了。</p>
-<p>在安卓端，inoreader 也有下载，不过因为国内 google 是登录不了的，你需要在 inoreader 官网上把你的密码修改了，然后就可以用账户名和密码登录了。</p>
-<p>在 IOS 端，没用过，好像是 reader 3 可以支持 inoreader 账户，还有个 readon 也不错，可以去试试。</p>
-<p>⚠️：按照上述步骤配置后网站打不开了，最后也没找到原因。</p>
-]]></content>
-      <categories>
-        <category>搭建个人hexo博客</category>
-      </categories>
-      <tags>
-        <tag>hexo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>搭建个人 hexo 博客（4）</title>
-    <url>/2023/11/18/4%EF%BC%9A%E7%BB%99%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F/</url>
-    <content><![CDATA[<h2 id="参考链接：https-zhuanlan-zhihu-com-p-350704151"><a href="#参考链接：https-zhuanlan-zhihu-com-p-350704151" class="headerlink" title="参考链接：https://zhuanlan.zhihu.com/p/350704151"></a>参考链接：<a href="https://zhuanlan.zhihu.com/p/350704151">https://zhuanlan.zhihu.com/p/350704151</a></h2><p>这里使用 valine 实现评论，官方网  <a href="https://link.zhihu.com/?target=https://leancloud.cn/">https://leancloud.cn/</a></p>
-<p>进入控制台后点击左下角创建应用</p>
-<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://pic1.zhimg.com/80/v2-495635ee224900cdbc25bb5c0e8b8d08_1440w.webp" class="lozad post-image"src="https://pic1.zhimg.com/80/v2-495635ee224900cdbc25bb5c0e8b8d08_1440w.webp"></p>
-<p>应用创建好以后，进入刚刚创建的应用，选择左下角的设置&gt;应用 Key，然后就能看到你的 APP ID 和 APP Key 了</p>
-<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://pic.imgdb.cn/item/6558bc6fc458853aef47afef.jpg" class="lozad post-image"src="https://pic.imgdb.cn/item/6558bc6fc458853aef47afef.jpg"></p>
-<p>开启评论功能  <code>kaze/_config.yml</code></p>
-<pre class="highlight"><span class="line">comment:</span><br><span class="line">  enable: true</span><br><span class="line">  type: valine # valine | gitalk | livere | disqus | we recommend valine</span><br><span class="line"><span class="meta prompt_">  # </span><span class="language-bash">gitalk config details can see <span class="keyword">in</span> https://github.com/gitalk/gitalk/blob/master/readme-cn.md</span></span><br><span class="line">  valine:</span><br><span class="line">    appId: 你的appId</span><br><span class="line">    appKey: 你的appKey</span><br></pre>
-]]></content>
-      <categories>
-        <category>搭建个人hexo博客</category>
-      </categories>
-      <tags>
-        <tag>hexo</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>搭建个人 hexo 博客（2）</title>
     <url>/2023/11/18/2%EF%BC%9Ahexo%E7%9A%84%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE%E3%80%81%E6%9B%B4%E6%8D%A2%E4%B8%BB%E9%A2%98/</url>
     <content><![CDATA[<p>将 hexo 部署到 github 后就要进入下一步部分了：hexo 配置与主题个性化。</p>
@@ -117,6 +70,79 @@
 <pre class="highlight"><span class="line">hexo new page yourdiy</span><br></pre>
 
 <p>然后在主题配置文件的 menu 菜单栏添加一个 <code>Yourdiy : /yourdiy</code>，注意冒号后面要有空格，以及前面的空格要和 menu 中默认的保持整齐。然后在<code>languages</code>文件夹中，找到<code>zh-CN.yml</code>，在 index 中添加<code>yourdiy: &#39;中文意思&#39;</code>就可以显示中文了。</p>
+]]></content>
+      <categories>
+        <category>搭建个人hexo博客</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>搭建个人hexo博客（3）</title>
+    <url>/2023/11/18/3%EF%BC%9A%E7%BB%99%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0RSS/</url>
+    <content><![CDATA[<h2 id="1：什么是-RSS？"><a href="#1：什么是-RSS？" class="headerlink" title="1：什么是 RSS？"></a><strong>1：什么是 RSS？</strong></h2><p>RSS 也就是订阅功能，你可以理解为类似与订阅公众号的功能，来订阅各种博客，杂志等等。</p>
+<h2 id="2：为什么要用-RSS？"><a href="#2：为什么要用-RSS？" class="headerlink" title="2：为什么要用 RSS？"></a><strong>2：为什么要用 RSS？</strong></h2><p>就如同订阅公众号一样，你对某个公众号感兴趣，你总不可能一直时不时搜索这个公众号来看它的文章吧。博客也是一样，如果你喜欢某个博主，或者某个平台的内容，你可以通过 RSS 订阅它们，然后在 RSS 阅读器上可以实时推送这些消息。现在网上的垃圾消息太多了，如果你每一天都在看这些消息中度过，漫无目的的浏览，只会让你的时间一点一点的流逝，太不值得了。如果你关注的博主每次都发的消息都是精华，而且不是每一天十几条几十条的轰炸你，那么这个博主就值得你的关注，你就可以通过 RSS 订阅他。</p>
+<p>在我的理解中，如果你不想每天都被那些没有质量的消息轰炸，只想安安静静的关注几个博主，每天看一些有质量的内容也不用太多，那么 RSS 订阅值得你的拥有。</p>
+<h2 id="3：添加-RSS-功能"><a href="#3：添加-RSS-功能" class="headerlink" title="3：添加 RSS 功能"></a><strong>3：添加 RSS 功能</strong></h2><p>先安装 RSS 插件</p>
+<pre class="highlight"><span class="line">npm i hexo-generator-feed</span><br></pre>
+
+<p>而后在你整个项目的<code>_config.yml</code>中找到 Extensions，添加：</p>
+<pre class="highlight"><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Extensions</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="comment"># Plugins: https://hexo.io/plugins/</span></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">RSS订阅</span></span><br><span class="line">plugin:</span><br><span class="line">- hexo-generator-feed</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">Feed Atom</span></span><br><span class="line">feed:</span><br><span class="line">  type: atom</span><br><span class="line">  path: atom.xml</span><br><span class="line">  limit: 20</span><br></pre>
+
+<p>这个时候你的 RSS 链接就是 域名<code>/atom.xml</code>了。</p>
+<p>所以，在主题配置文件中的这个<code>social links</code>，开启 RSS 的页面功能，这样你网站上就有那个像 wifi 一样符号的 RSS logo 了，注意空格。</p>
+<pre class="highlight"><span class="line">rss: /atom.xml</span><br></pre>
+
+<h2 id="4：如何关注-RSS？"><a href="#4：如何关注-RSS？" class="headerlink" title="4：如何关注 RSS？"></a><strong>4：如何关注 RSS？</strong></h2><p>首先，你需要一个 RSS 阅读器，在这里我推荐<code>inoreader</code>，宇宙第一 RSS 阅读器，而且中文支持的挺好。不过它没有 PC 端的程序，只有网页版，chrome 上有插件。在官网上用 google 账号或者自己注册账号登录，就可以开始你的关注之旅了。</p>
+<p>每次需要关注某个博主时，就点开他的 RSS 链接，把链接复制到<code>inoreader</code>上，就能关注了，当然，如果是比较大众化的很厉害的博主，你直接搜名字也可以的，比如每个人都非常佩服的阮一峰大师，直接在阅读器上搜索<code>阮一峰</code>，应该就能出来了。</p>
+<p>在安卓端，inoreader 也有下载，不过因为国内 google 是登录不了的，你需要在 inoreader 官网上把你的密码修改了，然后就可以用账户名和密码登录了。</p>
+<p>在 IOS 端，没用过，好像是 reader 3 可以支持 inoreader 账户，还有个 readon 也不错，可以去试试。</p>
+<p>⚠️：按照上述步骤配置后网站打不开了，最后也没找到原因。</p>
+]]></content>
+      <categories>
+        <category>搭建个人hexo博客</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>c++中的int*, int *&amp;</title>
+    <url>/2023/11/18/5%EF%BC%9Ac++%E4%B8%AD%E7%9A%84int*,%20int%20*&amp;/</url>
+    <content><![CDATA[<p>突然想起来之前本科学 C++的时候老师讲过<code>int*</code> 和<code>int *&amp;</code> 的区别，但是已经很多年没接触过了，现在回忆一下。</p>
+<p><strong>示例代码：</strong></p>
+<blockquote>
+<pre class="highlight"><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> a=<span class="number">10</span>;</span><br><span class="line">    <span class="type">int</span> &amp;b=a;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;a=&quot;</span>&lt;&lt;a&lt;&lt;endl;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;b=&quot;</span>&lt;&lt;b&lt;&lt;endl;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;&amp;a=&quot;</span>&lt;&lt;&amp;a&lt;&lt;endl;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;&amp;b=&quot;</span>&lt;&lt;&amp;b&lt;&lt;endl;</span><br><span class="line">    <span class="type">int</span> *p=&amp;a;</span><br><span class="line">    <span class="type">int</span> *&amp;pt=p;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;p=&quot;</span>&lt;&lt;p&lt;&lt;endl;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;*p=&quot;</span>&lt;&lt;*p&lt;&lt;endl;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;&amp;p=&quot;</span>&lt;&lt;&amp;p&lt;&lt;endl;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;*&amp;p=&quot;</span>&lt;&lt;*&amp;p&lt;&lt;endl;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;pt=&quot;</span>&lt;&lt;pt&lt;&lt;endl;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;&amp;pt=&quot;</span>&lt;&lt;&amp;pt&lt;&lt;endl;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;*&amp;pt=&quot;</span>&lt;&lt;*&amp;pt&lt;&lt;endl;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;*&amp;a=&quot;</span>&lt;&lt;*&amp;a&lt;&lt;endl;</span><br><span class="line">&#125;</span><br></pre>
+</blockquote>
+<ul>
+<li><p><code>int &amp;b=a;</code> 表示 b 是 a 的引用，简单来说，b 是 a 的别名，b 和 a 是同一个人，改变 b 也会改变 a，反之亦然，</p>
+</li>
+<li><p><code>int *&amp;pt=p;</code> 表示 pt 是指针 p 的引用，pt 和 p 是同一个人。</p>
+</li>
+<li><p><code>*&amp;p=p，*&amp;a=a</code> 即：*&amp;XXX 相当于取 XXX 地址里存的东西，那自然是 XXX 本身了。</p>
+</li>
+</ul>
+<p><strong>输出：</strong></p>
+<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://pic.imgdb.cn/item/655c41dfc458853aefc3dda7.jpg" class="lozad post-image"src="https://pic.imgdb.cn/item/655c41dfc458853aefc3dda7.jpg"></p>
+]]></content>
+      <categories>
+        <category>c++</category>
+      </categories>
+      <tags>
+        <tag>c++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>搭建个人 hexo 博客（4）</title>
+    <url>/2023/11/18/4%EF%BC%9A%E7%BB%99%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F/</url>
+    <content><![CDATA[<h2 id="参考链接：https-zhuanlan-zhihu-com-p-350704151"><a href="#参考链接：https-zhuanlan-zhihu-com-p-350704151" class="headerlink" title="参考链接：https://zhuanlan.zhihu.com/p/350704151"></a>参考链接：<a href="https://zhuanlan.zhihu.com/p/350704151">https://zhuanlan.zhihu.com/p/350704151</a></h2><p>这里使用 valine 实现评论，官方网  <a href="https://link.zhihu.com/?target=https://leancloud.cn/">https://leancloud.cn/</a></p>
+<p>进入控制台后点击左下角创建应用</p>
+<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://pic1.zhimg.com/80/v2-495635ee224900cdbc25bb5c0e8b8d08_1440w.webp" class="lozad post-image"src="https://pic1.zhimg.com/80/v2-495635ee224900cdbc25bb5c0e8b8d08_1440w.webp"></p>
+<p>应用创建好以后，进入刚刚创建的应用，选择左下角的设置&gt;应用 Key，然后就能看到你的 APP ID 和 APP Key 了</p>
+<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://pic.imgdb.cn/item/6558bc6fc458853aef47afef.jpg" class="lozad post-image"src="https://pic.imgdb.cn/item/6558bc6fc458853aef47afef.jpg"></p>
+<p>开启评论功能  <code>kaze/_config.yml</code></p>
+<pre class="highlight"><span class="line">comment:</span><br><span class="line">  enable: true</span><br><span class="line">  type: valine # valine | gitalk | livere | disqus | we recommend valine</span><br><span class="line"><span class="meta prompt_">  # </span><span class="language-bash">gitalk config details can see <span class="keyword">in</span> https://github.com/gitalk/gitalk/blob/master/readme-cn.md</span></span><br><span class="line">  valine:</span><br><span class="line">    appId: 你的appId</span><br><span class="line">    appKey: 你的appKey</span><br></pre>
 ]]></content>
       <categories>
         <category>搭建个人hexo博客</category>
