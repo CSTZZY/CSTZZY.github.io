@@ -1,6 +1,191 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>搭建个人hexo博客（3）</title>
+    <url>/2023/11/18/3%EF%BC%9A%E7%BB%99%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0RSS/</url>
+    <content><![CDATA[<h2 id="1：什么是-RSS？"><a href="#1：什么是-RSS？" class="headerlink" title="1：什么是 RSS？"></a><strong>1：什么是 RSS？</strong></h2><p>RSS 也就是订阅功能，你可以理解为类似与订阅公众号的功能，来订阅各种博客，杂志等等。</p>
+<h2 id="2：为什么要用-RSS？"><a href="#2：为什么要用-RSS？" class="headerlink" title="2：为什么要用 RSS？"></a><strong>2：为什么要用 RSS？</strong></h2><p>就如同订阅公众号一样，你对某个公众号感兴趣，你总不可能一直时不时搜索这个公众号来看它的文章吧。博客也是一样，如果你喜欢某个博主，或者某个平台的内容，你可以通过 RSS 订阅它们，然后在 RSS 阅读器上可以实时推送这些消息。现在网上的垃圾消息太多了，如果你每一天都在看这些消息中度过，漫无目的的浏览，只会让你的时间一点一点的流逝，太不值得了。如果你关注的博主每次都发的消息都是精华，而且不是每一天十几条几十条的轰炸你，那么这个博主就值得你的关注，你就可以通过 RSS 订阅他。</p>
+<p>在我的理解中，如果你不想每天都被那些没有质量的消息轰炸，只想安安静静的关注几个博主，每天看一些有质量的内容也不用太多，那么 RSS 订阅值得你的拥有。</p>
+<h2 id="3：添加-RSS-功能"><a href="#3：添加-RSS-功能" class="headerlink" title="3：添加 RSS 功能"></a><strong>3：添加 RSS 功能</strong></h2><p>先安装 RSS 插件</p>
+<pre class="highlight"><span class="line">npm i hexo-generator-feed</span><br></pre>
+
+<p>而后在你整个项目的<code>_config.yml</code>中找到 Extensions，添加：</p>
+<pre class="highlight"><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Extensions</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="comment"># Plugins: https://hexo.io/plugins/</span></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">RSS订阅</span></span><br><span class="line">plugin:</span><br><span class="line">- hexo-generator-feed</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">Feed Atom</span></span><br><span class="line">feed:</span><br><span class="line">  type: atom</span><br><span class="line">  path: atom.xml</span><br><span class="line">  limit: 20</span><br></pre>
+
+<p>这个时候你的 RSS 链接就是 域名<code>/atom.xml</code>了。</p>
+<p>所以，在主题配置文件中的这个<code>social links</code>，开启 RSS 的页面功能，这样你网站上就有那个像 wifi 一样符号的 RSS logo 了，注意空格。</p>
+<pre class="highlight"><span class="line">rss: /atom.xml</span><br></pre>
+
+<h2 id="4：如何关注-RSS？"><a href="#4：如何关注-RSS？" class="headerlink" title="4：如何关注 RSS？"></a><strong>4：如何关注 RSS？</strong></h2><p>首先，你需要一个 RSS 阅读器，在这里我推荐<code>inoreader</code>，宇宙第一 RSS 阅读器，而且中文支持的挺好。不过它没有 PC 端的程序，只有网页版，chrome 上有插件。在官网上用 google 账号或者自己注册账号登录，就可以开始你的关注之旅了。</p>
+<p>每次需要关注某个博主时，就点开他的 RSS 链接，把链接复制到<code>inoreader</code>上，就能关注了，当然，如果是比较大众化的很厉害的博主，你直接搜名字也可以的，比如每个人都非常佩服的阮一峰大师，直接在阅读器上搜索<code>阮一峰</code>，应该就能出来了。</p>
+<p>在安卓端，inoreader 也有下载，不过因为国内 google 是登录不了的，你需要在 inoreader 官网上把你的密码修改了，然后就可以用账户名和密码登录了。</p>
+<p>在 IOS 端，没用过，好像是 reader 3 可以支持 inoreader 账户，还有个 readon 也不错，可以去试试。</p>
+<p>⚠️：按照上述步骤配置后网站打不开了，最后也没找到原因。</p>
+]]></content>
+      <categories>
+        <category>搭建个人hexo博客</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>排序算法总结</title>
+    <url>/2023/11/21/6%EF%BC%9A%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/</url>
+    <content><![CDATA[<h2 id="对常见的排序算法进行总结"><a href="#对常见的排序算法进行总结" class="headerlink" title="对常见的排序算法进行总结"></a>对常见的排序算法进行总结</h2><table>
+<thead>
+<tr>
+<th align="center">名称</th>
+<th align="center">时间复杂度</th>
+<th align="center">算法核心思想</th>
+<th align="center">优点</th>
+<th align="center">缺点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">桶排序（啊哈简化版）</td>
+<td align="center">$O(m+n)$其中，m 为桶的个数，n 为待排序数的个数</td>
+<td align="center">比如有范围为 0-10 的数需要排序，则需要 11 个桶，每个桶 i 保存数字 i 出现的次数，然后遍历桶，按照桶 i 中存放的 i 出现的次数 k 输出 k 次 i。</td>
+<td align="center">1. 时间复杂度较小。</td>
+<td align="center">1. 比如需要对（姓名，得分）进行排序，使用桶排序无法知道各个分数对应的姓名；</td>
+</tr>
+</tbody></table>
+<ol start="2">
+<li>无法对小数进行排序。 |<br>| 冒泡排序 | $O(n^2)$其中 n 为待排序数的个数 | 每次比较相邻的两个元素，如果顺序错误则交换这两个元素的顺序，且每一趟仅将一个元素归位，因此如果有 n 个数进行排序，则需要进行 n-1 趟操作。 | —— | 1. 时间复杂度高。 |</li>
+</ol>
+]]></content>
+      <categories>
+        <category>ah 算法</category>
+      </categories>
+      <tags>
+        <tag>c++</tag>
+        <tag>排序算法总结</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>搭建个人 hexo 博客（4）</title>
+    <url>/2023/11/18/4%EF%BC%9A%E7%BB%99%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F/</url>
+    <content><![CDATA[<h2 id="参考链接：https-zhuanlan-zhihu-com-p-350704151"><a href="#参考链接：https-zhuanlan-zhihu-com-p-350704151" class="headerlink" title="参考链接：https://zhuanlan.zhihu.com/p/350704151"></a>参考链接：<a href="https://zhuanlan.zhihu.com/p/350704151">https://zhuanlan.zhihu.com/p/350704151</a></h2><p>这里使用 valine 实现评论，官方网  <a href="https://link.zhihu.com/?target=https://leancloud.cn/">https://leancloud.cn/</a></p>
+<p>进入控制台后点击左下角创建应用</p>
+<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://pic1.zhimg.com/80/v2-495635ee224900cdbc25bb5c0e8b8d08_1440w.webp" class="lozad post-image"src="https://pic1.zhimg.com/80/v2-495635ee224900cdbc25bb5c0e8b8d08_1440w.webp"></p>
+<p>应用创建好以后，进入刚刚创建的应用，选择左下角的设置&gt;应用 Key，然后就能看到你的 APP ID 和 APP Key 了</p>
+<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://pic.imgdb.cn/item/6558bc6fc458853aef47afef.jpg" class="lozad post-image"src="https://pic.imgdb.cn/item/6558bc6fc458853aef47afef.jpg"></p>
+<p>开启评论功能  <code>kaze/_config.yml</code></p>
+<pre class="highlight"><span class="line">comment:</span><br><span class="line">  enable: true</span><br><span class="line">  type: valine # valine | gitalk | livere | disqus | we recommend valine</span><br><span class="line"><span class="meta prompt_">  # </span><span class="language-bash">gitalk config details can see <span class="keyword">in</span> https://github.com/gitalk/gitalk/blob/master/readme-cn.md</span></span><br><span class="line">  valine:</span><br><span class="line">    appId: 你的appId</span><br><span class="line">    appKey: 你的appKey</span><br></pre>
+]]></content>
+      <categories>
+        <category>搭建个人hexo博客</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>c++中的int*, int *&amp;</title>
+    <url>/2023/11/21/5%EF%BC%9Ac++%E4%B8%AD%E7%9A%84int*,%20int%20*&amp;/</url>
+    <content><![CDATA[<p>突然想起来之前本科学 C++的时候老师讲过<code>int*</code> 和<code>int *&amp;</code> 的区别，但是已经很多年没接触过了，现在回忆一下。</p>
+<p><strong>示例代码：</strong></p>
+<blockquote>
+<pre class="highlight"><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> a=<span class="number">10</span>;</span><br><span class="line">    <span class="type">int</span> &amp;b=a;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;a=&quot;</span>&lt;&lt;a&lt;&lt;endl;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;b=&quot;</span>&lt;&lt;b&lt;&lt;endl;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;&amp;a=&quot;</span>&lt;&lt;&amp;a&lt;&lt;endl;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;&amp;b=&quot;</span>&lt;&lt;&amp;b&lt;&lt;endl;</span><br><span class="line">    <span class="type">int</span> *p=&amp;a;</span><br><span class="line">    <span class="type">int</span> *&amp;pt=p;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;p=&quot;</span>&lt;&lt;p&lt;&lt;endl;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;*p=&quot;</span>&lt;&lt;*p&lt;&lt;endl;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;&amp;p=&quot;</span>&lt;&lt;&amp;p&lt;&lt;endl;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;*&amp;p=&quot;</span>&lt;&lt;*&amp;p&lt;&lt;endl;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;pt=&quot;</span>&lt;&lt;pt&lt;&lt;endl;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;&amp;pt=&quot;</span>&lt;&lt;&amp;pt&lt;&lt;endl;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;*&amp;pt=&quot;</span>&lt;&lt;*&amp;pt&lt;&lt;endl;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;*&amp;a=&quot;</span>&lt;&lt;*&amp;a&lt;&lt;endl;</span><br><span class="line">&#125;</span><br></pre>
+</blockquote>
+<ul>
+<li><p><code>int &amp;b=a;</code> 表示 b 是 a 的引用，简单来说，b 是 a 的别名，b 和 a 是同一个人，改变 b 也会改变 a，反之亦然，</p>
+</li>
+<li><p><code>int *&amp;pt=p;</code> 表示 pt 是指针 p 的引用，pt 和 p 是同一个人。</p>
+</li>
+<li><p><code>*&amp;p=p，*&amp;a=a</code> 即：*&amp;XXX 相当于取 XXX 地址里存的东西，那自然是 XXX 本身了。</p>
+</li>
+</ul>
+<p><strong>输出：</strong></p>
+<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://pic.imgdb.cn/item/655c41dfc458853aefc3dda7.jpg" class="lozad post-image"src="https://pic.imgdb.cn/item/655c41dfc458853aefc3dda7.jpg"></p>
+]]></content>
+      <categories>
+        <category>c++基础</category>
+      </categories>
+      <tags>
+        <tag>c++</tag>
+        <tag>指针</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>搭建个人 hexo 博客（2）</title>
+    <url>/2023/11/18/2%EF%BC%9Ahexo%E7%9A%84%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE%E3%80%81%E6%9B%B4%E6%8D%A2%E4%B8%BB%E9%A2%98/</url>
+    <content><![CDATA[<p>将 hexo 部署到 github 后就要进入下一步部分了：hexo 配置与主题个性化。</p>
+<h2 id="1：hexo-基本配置"><a href="#1：hexo-基本配置" class="headerlink" title="1：hexo 基本配置"></a><strong>1：hexo 基本配置</strong></h2><p>在文件根目录下的<code>_config.yml</code>，就是整个 hexo 框架的配置文件了。可以在里面修改大部分的配置。详细可参考<a href="https://link.zhihu.com/?target=https://hexo.io/zh-cn/docs/configuration">官方的配置</a>描述。</p>
+<h3 id="网站"><a href="#网站" class="headerlink" title="网站"></a><strong>网站</strong></h3><p><strong>参数描述：</strong><code>title</code>网站标题<code>subtitle</code>网站副标题<code>description</code>网站描述<code>author</code>您的名字<code>language</code>网站使用的语言<code>timezone</code>网站时区。Hexo 默认使用您电脑的时区。<a href="https://link.zhihu.com/?target=https://en.wikipedia.org/wiki/List_of_tz_database_time_zones">时区列表</a>。比如说：<code>America/New_York</code>, <code>Japan</code>, 和 <code>UTC</code> 。</p>
+<p>其中，<code>description</code>主要用于 SEO，告诉搜索引擎一个关于您站点的简单描述，通常建议在其中包含您网站的关键词。<code>author</code>参数用于主题显示文章的作者。</p>
+<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://pic.imgdb.cn/item/65589273c458853aef928c3a.jpg" class="lozad post-image"src="https://pic.imgdb.cn/item/65589273c458853aef928c3a.jpg"></p>
+<h3 id="网址"><a href="#网址" class="headerlink" title="网址"></a><strong>网址</strong></h3><p><strong>参数描：</strong><code>url</code>网址<code>root</code>网站根目录<code>permalink</code>文章的 <a href="https://hexo.io/zh-cn/docs/permalinks">永久链接</a> 格式<code>permalink_defaults</code>永久链接中各部分的默认值</p>
+<p>在这里，你需要把<code>url</code>改成你的网站域名。</p>
+<p>permalink，也就是你生成某个文章时的那个链接格式。</p>
+<p>比如我新建一个文章叫 temp.md，那么这个时候他自动生成的地址就是<code>http://yoursite.com/2018/09/05/temp</code>。</p>
+<p>以下是官方给出的示例，关于链接的变量还有很多，需要的可以去官网上查找 <a href="https://hexo.io/zh-cn/docs/permalinks">永久链接</a> 。</p>
+<p><strong>参数结果：</strong><code>year/:month/:day/:title/</code>2013&#x2F;07&#x2F;14&#x2F;hello-world<code>:year-:month-:day-:title.html</code>2013-07-14-hello-world.html<code>:category/:title</code>foo&#x2F;bar&#x2F;hello-world</p>
+<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://pic.imgdb.cn/item/655892b3c458853aef9370aa.jpg" class="lozad post-image"src="https://pic.imgdb.cn/item/655892b3c458853aef9370aa.jpg"></p>
+<p>再往下翻，中间这些都默认就好了。</p>
+<pre class="highlight"><span class="line">theme: landscape</span><br><span class="line">​</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Deployment</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="comment"># Docs: https://hexo.io/docs/deployment.html</span></span></span><br><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: &lt;repository url&gt;</span><br><span class="line">  branch: [branch]</span><br></pre>
+
+<p><code>theme</code>就是选择什么主题，也就是在<code>theme</code>这个文件夹下，在官网上有很多个主题，默认给你安装的是<a href="https://www.zhihu.com/search?q=lanscape&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra=%7B%22sourceType%22:%22answer%22,%22sourceId%22:489125915%7D">lanscape</a>这个主题。当你需要更换主题时，在官网上下载，把主题的文件放在<code>theme</code>文件夹下，再修改这个参数就可以了。</p>
+<p>接下来这个<code>deploy</code>就是网站的部署的，<code>repo</code>就是仓库(<code>Repository</code>)的简写。<code>branch</code>选择仓库的哪个分支。这个在之前进行 github page 部署的时候已经修改过了，不再赘述。而这个在后面进行双平台部署的时候会再次用到。</p>
+<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://pic.imgdb.cn/item/655892e7c458853aef940e75.jpg" class="lozad post-image"src="https://pic.imgdb.cn/item/655892e7c458853aef940e75.jpg"></p>
+<h3 id="Front-matter"><a href="#Front-matter" class="headerlink" title="Front-matter"></a><strong>Front-matter</strong></h3><p>Front-matter 是 md 文件最上方以 <code>---</code> 分隔的区域，用于指定个别文件的变量，举例来说：</p>
+<pre class="highlight"><span class="line">---</span><br><span class="line">title: Hello World</span><br><span class="line">date: 2013/7/13 20:46:25</span><br><span class="line">---</span><br></pre>
+
+<p>下是预先定义的参数，您可在模板中使用这些参数值并加以利用。</p>
+<p><strong>参数描述：</strong><code>layout</code>布局<code>title</code>标题<code>date</code>建立日期<code>updated</code>更新日期<code>comments</code>开启文章的评论功能<code>tags</code>标签（不适用于分页）<code>categories</code>分类（不适用于分页）<code>permalink</code>覆盖文章网址</p>
+<p>其中，分类和标签需要区别一下，分类具有顺序性和层次性，也就是说 <code>Foo, Bar</code> 不等于 <code>Bar, Foo</code>；而标签没有顺序和层次。</p>
+<pre class="highlight"><span class="line">categories:</span><br><span class="line">- Diary</span><br><span class="line">tags:</span><br><span class="line">- PS3</span><br><span class="line">- Games</span><br></pre>
+
+<h3 id="layout（布局）"><a href="#layout（布局）" class="headerlink" title="layout（布局）"></a><strong>layout（布局）</strong></h3><p>当你每一次使用代码：</p>
+<pre class="highlight"><span class="line">hexo new paper</span><br></pre>
+
+<p>它其实默认使用的是<code>post</code>这个布局，也就是在<code>source</code>文件夹下的<code>_post</code>里面。</p>
+<p>Hexo 有三种默认布局：<code>post</code>、<code>page</code> 和 <code>draft</code>，它们分别对应不同的路径，而您自定义的其他布局和 <code>post</code> 相同，都将储存到 <code>source/_posts</code> 文件夹。</p>
+<p><strong>布局路径</strong><code>postsource/_postspagesourcedraftsource/_drafts</code></p>
+<p>而 new 这个命令其实是：</p>
+<pre class="highlight"><span class="line">hexo new [layout] &lt;title&gt;</span><br></pre>
+
+<p>只不过这个 layout 默认是 post 罢了。</p>
+<h4 id="page"><a href="#page" class="headerlink" title="page"></a><strong>page</strong></h4><p>如果你想另起一页，那么可以使用</p>
+<pre class="highlight"><span class="line">hexo new page board</span><br></pre>
+
+<p>系统会自动给你在 source 文件夹下创建一个 board 文件夹，以及 board 文件夹中的 index.md，这样你访问的 board 对应的链接就是<code>http://xxx.xxx/board</code></p>
+<h4 id="draft"><a href="#draft" class="headerlink" title="draft"></a><strong>draft</strong></h4><p>draft 是草稿的意思，也就是你如果想写文章，又不希望被看到，那么可以</p>
+<pre class="highlight"><span class="line">hexo new draft newpage</span><br></pre>
+
+<p>这样会在 source&#x2F;_draft 中新建一个 newpage.md 文件，如果你的草稿文件写的过程中，想要预览一下，那么可以使用</p>
+<pre class="highlight"><span class="line">hexo server --draft</span><br></pre>
+
+<p>在本地端口中开启服务预览。</p>
+<p>如果你的草稿文件写完了，想要发表到 post 中，</p>
+<pre class="highlight"><span class="line">hexo publish draft newpage</span><br></pre>
+
+<p>就会自动把 newpage.md 发送到 post 中。</p>
+<h2 id="2：更换主题"><a href="#2：更换主题" class="headerlink" title="2：更换主题"></a><strong>2：更换主题</strong></h2><p><a href="https://hexo.io/themes/">官网的主题中</a>，选择喜欢的主题进行修改，我选的是<a href="https://github.com/theme-kaze/hexo-theme-Kaze">Kaze </a>。</p>
+<p>去 github 上下载主题：</p>
+<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://pic.imgdb.cn/item/6558acfec458853aeffb9dd0.jpg" class="lozad post-image"src="https://pic.imgdb.cn/item/6558acfec458853aeffb9dd0.jpg"></p>
+<p>然后把下载的文件解压后放到：</p>
+<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://pic.imgdb.cn/item/6558ad27c458853aeffc4e33.jpg" class="lozad post-image"src="https://pic.imgdb.cn/item/6558ad27c458853aeffc4e33.jpg"></p>
+<p>kaze 文件中也有一个<code>_config.yml</code>文件，这个文件用于配制主题，比如：</p>
+<h3 id="menu（菜单栏）"><a href="#menu（菜单栏）" class="headerlink" title="menu（菜单栏）"></a><strong>menu（菜单栏）</strong></h3><p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://picx.zhimg.com/80/v2-f7759c435dcc46d877312b0b2c8b8e7d_1440w.webp?source=2c26e567" class="lozad post-image"src="https://picx.zhimg.com/80/v2-f7759c435dcc46d877312b0b2c8b8e7d_1440w.webp?source=2c26e567"></p>
+<p>其中，About 这个是找不到网页的，因为文章中没有 about 这个东西。如果想要的话，可以执行命令</p>
+<pre class="highlight"><span class="line">hexo new page about</span><br></pre>
+
+<p>它就会在根目录下<code>source</code>文件夹中新建了一个<code>about</code>文件夹，以及 index.md，在 index.md 中写上想要写的东西，就可以在网站上展示出来了。</p>
+<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://pic.imgdb.cn/item/6558addbc458853aefff7ef0.jpg" class="lozad post-image"src="https://pic.imgdb.cn/item/6558addbc458853aefff7ef0.jpg"></p>
+<p>如果想要自己再自定义一个菜单栏的选项，那么就</p>
+<pre class="highlight"><span class="line">hexo new page yourdiy</span><br></pre>
+
+<p>然后在主题配置文件的 menu 菜单栏添加一个 <code>Yourdiy : /yourdiy</code>，注意冒号后面要有空格，以及前面的空格要和 menu 中默认的保持整齐。然后在<code>languages</code>文件夹中，找到<code>zh-CN.yml</code>，在 index 中添加<code>yourdiy: &#39;中文意思&#39;</code>就可以显示中文了。</p>
+]]></content>
+      <categories>
+        <category>搭建个人hexo博客</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>搭建个人hexo博客（1）</title>
     <url>/2023/11/18/1%EF%BC%9Ahexo%E5%88%9D%E7%BA%A7%E6%90%AD%E5%BB%BA%E3%80%81github%20page%E9%83%A8%E7%BD%B2%E5%8F%8A%E4%B8%AA%E4%BA%BA%E5%9F%9F%E5%90%8D%E7%BB%91%E5%AE%9A/</url>
     <content><![CDATA[<p>记录搭建 hexo 博客的相关步骤，以备后续再次使用。文章参考链接：</p>
@@ -114,158 +299,6 @@
 
 <p>然后在 source&#x2F;_post 中打开 markdown 文件，就可以开始编辑了。当写完的时候，再：</p>
 <pre class="highlight"><span class="line">hexo clean</span><br><span class="line">hexo g</span><br><span class="line">hexo d</span><br></pre>
-]]></content>
-      <categories>
-        <category>搭建个人hexo博客</category>
-      </categories>
-      <tags>
-        <tag>hexo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>搭建个人 hexo 博客（2）</title>
-    <url>/2023/11/18/2%EF%BC%9Ahexo%E7%9A%84%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE%E3%80%81%E6%9B%B4%E6%8D%A2%E4%B8%BB%E9%A2%98/</url>
-    <content><![CDATA[<p>将 hexo 部署到 github 后就要进入下一步部分了：hexo 配置与主题个性化。</p>
-<h2 id="1：hexo-基本配置"><a href="#1：hexo-基本配置" class="headerlink" title="1：hexo 基本配置"></a><strong>1：hexo 基本配置</strong></h2><p>在文件根目录下的<code>_config.yml</code>，就是整个 hexo 框架的配置文件了。可以在里面修改大部分的配置。详细可参考<a href="https://link.zhihu.com/?target=https://hexo.io/zh-cn/docs/configuration">官方的配置</a>描述。</p>
-<h3 id="网站"><a href="#网站" class="headerlink" title="网站"></a><strong>网站</strong></h3><p><strong>参数描述：</strong><code>title</code>网站标题<code>subtitle</code>网站副标题<code>description</code>网站描述<code>author</code>您的名字<code>language</code>网站使用的语言<code>timezone</code>网站时区。Hexo 默认使用您电脑的时区。<a href="https://link.zhihu.com/?target=https://en.wikipedia.org/wiki/List_of_tz_database_time_zones">时区列表</a>。比如说：<code>America/New_York</code>, <code>Japan</code>, 和 <code>UTC</code> 。</p>
-<p>其中，<code>description</code>主要用于 SEO，告诉搜索引擎一个关于您站点的简单描述，通常建议在其中包含您网站的关键词。<code>author</code>参数用于主题显示文章的作者。</p>
-<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://pic.imgdb.cn/item/65589273c458853aef928c3a.jpg" class="lozad post-image"src="https://pic.imgdb.cn/item/65589273c458853aef928c3a.jpg"></p>
-<h3 id="网址"><a href="#网址" class="headerlink" title="网址"></a><strong>网址</strong></h3><p><strong>参数描：</strong><code>url</code>网址<code>root</code>网站根目录<code>permalink</code>文章的 <a href="https://hexo.io/zh-cn/docs/permalinks">永久链接</a> 格式<code>permalink_defaults</code>永久链接中各部分的默认值</p>
-<p>在这里，你需要把<code>url</code>改成你的网站域名。</p>
-<p>permalink，也就是你生成某个文章时的那个链接格式。</p>
-<p>比如我新建一个文章叫 temp.md，那么这个时候他自动生成的地址就是<code>http://yoursite.com/2018/09/05/temp</code>。</p>
-<p>以下是官方给出的示例，关于链接的变量还有很多，需要的可以去官网上查找 <a href="https://hexo.io/zh-cn/docs/permalinks">永久链接</a> 。</p>
-<p><strong>参数结果：</strong><code>year/:month/:day/:title/</code>2013&#x2F;07&#x2F;14&#x2F;hello-world<code>:year-:month-:day-:title.html</code>2013-07-14-hello-world.html<code>:category/:title</code>foo&#x2F;bar&#x2F;hello-world</p>
-<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://pic.imgdb.cn/item/655892b3c458853aef9370aa.jpg" class="lozad post-image"src="https://pic.imgdb.cn/item/655892b3c458853aef9370aa.jpg"></p>
-<p>再往下翻，中间这些都默认就好了。</p>
-<pre class="highlight"><span class="line">theme: landscape</span><br><span class="line">​</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Deployment</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="comment"># Docs: https://hexo.io/docs/deployment.html</span></span></span><br><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: &lt;repository url&gt;</span><br><span class="line">  branch: [branch]</span><br></pre>
-
-<p><code>theme</code>就是选择什么主题，也就是在<code>theme</code>这个文件夹下，在官网上有很多个主题，默认给你安装的是<a href="https://www.zhihu.com/search?q=lanscape&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra=%7B%22sourceType%22:%22answer%22,%22sourceId%22:489125915%7D">lanscape</a>这个主题。当你需要更换主题时，在官网上下载，把主题的文件放在<code>theme</code>文件夹下，再修改这个参数就可以了。</p>
-<p>接下来这个<code>deploy</code>就是网站的部署的，<code>repo</code>就是仓库(<code>Repository</code>)的简写。<code>branch</code>选择仓库的哪个分支。这个在之前进行 github page 部署的时候已经修改过了，不再赘述。而这个在后面进行双平台部署的时候会再次用到。</p>
-<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://pic.imgdb.cn/item/655892e7c458853aef940e75.jpg" class="lozad post-image"src="https://pic.imgdb.cn/item/655892e7c458853aef940e75.jpg"></p>
-<h3 id="Front-matter"><a href="#Front-matter" class="headerlink" title="Front-matter"></a><strong>Front-matter</strong></h3><p>Front-matter 是 md 文件最上方以 <code>---</code> 分隔的区域，用于指定个别文件的变量，举例来说：</p>
-<pre class="highlight"><span class="line">---</span><br><span class="line">title: Hello World</span><br><span class="line">date: 2013/7/13 20:46:25</span><br><span class="line">---</span><br></pre>
-
-<p>下是预先定义的参数，您可在模板中使用这些参数值并加以利用。</p>
-<p><strong>参数描述：</strong><code>layout</code>布局<code>title</code>标题<code>date</code>建立日期<code>updated</code>更新日期<code>comments</code>开启文章的评论功能<code>tags</code>标签（不适用于分页）<code>categories</code>分类（不适用于分页）<code>permalink</code>覆盖文章网址</p>
-<p>其中，分类和标签需要区别一下，分类具有顺序性和层次性，也就是说 <code>Foo, Bar</code> 不等于 <code>Bar, Foo</code>；而标签没有顺序和层次。</p>
-<pre class="highlight"><span class="line">categories:</span><br><span class="line">- Diary</span><br><span class="line">tags:</span><br><span class="line">- PS3</span><br><span class="line">- Games</span><br></pre>
-
-<h3 id="layout（布局）"><a href="#layout（布局）" class="headerlink" title="layout（布局）"></a><strong>layout（布局）</strong></h3><p>当你每一次使用代码：</p>
-<pre class="highlight"><span class="line">hexo new paper</span><br></pre>
-
-<p>它其实默认使用的是<code>post</code>这个布局，也就是在<code>source</code>文件夹下的<code>_post</code>里面。</p>
-<p>Hexo 有三种默认布局：<code>post</code>、<code>page</code> 和 <code>draft</code>，它们分别对应不同的路径，而您自定义的其他布局和 <code>post</code> 相同，都将储存到 <code>source/_posts</code> 文件夹。</p>
-<p><strong>布局路径</strong><code>postsource/_postspagesourcedraftsource/_drafts</code></p>
-<p>而 new 这个命令其实是：</p>
-<pre class="highlight"><span class="line">hexo new [layout] &lt;title&gt;</span><br></pre>
-
-<p>只不过这个 layout 默认是 post 罢了。</p>
-<h4 id="page"><a href="#page" class="headerlink" title="page"></a><strong>page</strong></h4><p>如果你想另起一页，那么可以使用</p>
-<pre class="highlight"><span class="line">hexo new page board</span><br></pre>
-
-<p>系统会自动给你在 source 文件夹下创建一个 board 文件夹，以及 board 文件夹中的 index.md，这样你访问的 board 对应的链接就是<code>http://xxx.xxx/board</code></p>
-<h4 id="draft"><a href="#draft" class="headerlink" title="draft"></a><strong>draft</strong></h4><p>draft 是草稿的意思，也就是你如果想写文章，又不希望被看到，那么可以</p>
-<pre class="highlight"><span class="line">hexo new draft newpage</span><br></pre>
-
-<p>这样会在 source&#x2F;_draft 中新建一个 newpage.md 文件，如果你的草稿文件写的过程中，想要预览一下，那么可以使用</p>
-<pre class="highlight"><span class="line">hexo server --draft</span><br></pre>
-
-<p>在本地端口中开启服务预览。</p>
-<p>如果你的草稿文件写完了，想要发表到 post 中，</p>
-<pre class="highlight"><span class="line">hexo publish draft newpage</span><br></pre>
-
-<p>就会自动把 newpage.md 发送到 post 中。</p>
-<h2 id="2：更换主题"><a href="#2：更换主题" class="headerlink" title="2：更换主题"></a><strong>2：更换主题</strong></h2><p><a href="https://hexo.io/themes/">官网的主题中</a>，选择喜欢的主题进行修改，我选的是<a href="https://github.com/theme-kaze/hexo-theme-Kaze">Kaze </a>。</p>
-<p>去 github 上下载主题：</p>
-<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://pic.imgdb.cn/item/6558acfec458853aeffb9dd0.jpg" class="lozad post-image"src="https://pic.imgdb.cn/item/6558acfec458853aeffb9dd0.jpg"></p>
-<p>然后把下载的文件解压后放到：</p>
-<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://pic.imgdb.cn/item/6558ad27c458853aeffc4e33.jpg" class="lozad post-image"src="https://pic.imgdb.cn/item/6558ad27c458853aeffc4e33.jpg"></p>
-<p>kaze 文件中也有一个<code>_config.yml</code>文件，这个文件用于配制主题，比如：</p>
-<h3 id="menu（菜单栏）"><a href="#menu（菜单栏）" class="headerlink" title="menu（菜单栏）"></a><strong>menu（菜单栏）</strong></h3><p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://picx.zhimg.com/80/v2-f7759c435dcc46d877312b0b2c8b8e7d_1440w.webp?source=2c26e567" class="lozad post-image"src="https://picx.zhimg.com/80/v2-f7759c435dcc46d877312b0b2c8b8e7d_1440w.webp?source=2c26e567"></p>
-<p>其中，About 这个是找不到网页的，因为文章中没有 about 这个东西。如果想要的话，可以执行命令</p>
-<pre class="highlight"><span class="line">hexo new page about</span><br></pre>
-
-<p>它就会在根目录下<code>source</code>文件夹中新建了一个<code>about</code>文件夹，以及 index.md，在 index.md 中写上想要写的东西，就可以在网站上展示出来了。</p>
-<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://pic.imgdb.cn/item/6558addbc458853aefff7ef0.jpg" class="lozad post-image"src="https://pic.imgdb.cn/item/6558addbc458853aefff7ef0.jpg"></p>
-<p>如果想要自己再自定义一个菜单栏的选项，那么就</p>
-<pre class="highlight"><span class="line">hexo new page yourdiy</span><br></pre>
-
-<p>然后在主题配置文件的 menu 菜单栏添加一个 <code>Yourdiy : /yourdiy</code>，注意冒号后面要有空格，以及前面的空格要和 menu 中默认的保持整齐。然后在<code>languages</code>文件夹中，找到<code>zh-CN.yml</code>，在 index 中添加<code>yourdiy: &#39;中文意思&#39;</code>就可以显示中文了。</p>
-]]></content>
-      <categories>
-        <category>搭建个人hexo博客</category>
-      </categories>
-      <tags>
-        <tag>hexo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>搭建个人hexo博客（3）</title>
-    <url>/2023/11/18/3%EF%BC%9A%E7%BB%99%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0RSS/</url>
-    <content><![CDATA[<h2 id="1：什么是-RSS？"><a href="#1：什么是-RSS？" class="headerlink" title="1：什么是 RSS？"></a><strong>1：什么是 RSS？</strong></h2><p>RSS 也就是订阅功能，你可以理解为类似与订阅公众号的功能，来订阅各种博客，杂志等等。</p>
-<h2 id="2：为什么要用-RSS？"><a href="#2：为什么要用-RSS？" class="headerlink" title="2：为什么要用 RSS？"></a><strong>2：为什么要用 RSS？</strong></h2><p>就如同订阅公众号一样，你对某个公众号感兴趣，你总不可能一直时不时搜索这个公众号来看它的文章吧。博客也是一样，如果你喜欢某个博主，或者某个平台的内容，你可以通过 RSS 订阅它们，然后在 RSS 阅读器上可以实时推送这些消息。现在网上的垃圾消息太多了，如果你每一天都在看这些消息中度过，漫无目的的浏览，只会让你的时间一点一点的流逝，太不值得了。如果你关注的博主每次都发的消息都是精华，而且不是每一天十几条几十条的轰炸你，那么这个博主就值得你的关注，你就可以通过 RSS 订阅他。</p>
-<p>在我的理解中，如果你不想每天都被那些没有质量的消息轰炸，只想安安静静的关注几个博主，每天看一些有质量的内容也不用太多，那么 RSS 订阅值得你的拥有。</p>
-<h2 id="3：添加-RSS-功能"><a href="#3：添加-RSS-功能" class="headerlink" title="3：添加 RSS 功能"></a><strong>3：添加 RSS 功能</strong></h2><p>先安装 RSS 插件</p>
-<pre class="highlight"><span class="line">npm i hexo-generator-feed</span><br></pre>
-
-<p>而后在你整个项目的<code>_config.yml</code>中找到 Extensions，添加：</p>
-<pre class="highlight"><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Extensions</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="comment"># Plugins: https://hexo.io/plugins/</span></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">RSS订阅</span></span><br><span class="line">plugin:</span><br><span class="line">- hexo-generator-feed</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">Feed Atom</span></span><br><span class="line">feed:</span><br><span class="line">  type: atom</span><br><span class="line">  path: atom.xml</span><br><span class="line">  limit: 20</span><br></pre>
-
-<p>这个时候你的 RSS 链接就是 域名<code>/atom.xml</code>了。</p>
-<p>所以，在主题配置文件中的这个<code>social links</code>，开启 RSS 的页面功能，这样你网站上就有那个像 wifi 一样符号的 RSS logo 了，注意空格。</p>
-<pre class="highlight"><span class="line">rss: /atom.xml</span><br></pre>
-
-<h2 id="4：如何关注-RSS？"><a href="#4：如何关注-RSS？" class="headerlink" title="4：如何关注 RSS？"></a><strong>4：如何关注 RSS？</strong></h2><p>首先，你需要一个 RSS 阅读器，在这里我推荐<code>inoreader</code>，宇宙第一 RSS 阅读器，而且中文支持的挺好。不过它没有 PC 端的程序，只有网页版，chrome 上有插件。在官网上用 google 账号或者自己注册账号登录，就可以开始你的关注之旅了。</p>
-<p>每次需要关注某个博主时，就点开他的 RSS 链接，把链接复制到<code>inoreader</code>上，就能关注了，当然，如果是比较大众化的很厉害的博主，你直接搜名字也可以的，比如每个人都非常佩服的阮一峰大师，直接在阅读器上搜索<code>阮一峰</code>，应该就能出来了。</p>
-<p>在安卓端，inoreader 也有下载，不过因为国内 google 是登录不了的，你需要在 inoreader 官网上把你的密码修改了，然后就可以用账户名和密码登录了。</p>
-<p>在 IOS 端，没用过，好像是 reader 3 可以支持 inoreader 账户，还有个 readon 也不错，可以去试试。</p>
-<p>⚠️：按照上述步骤配置后网站打不开了，最后也没找到原因。</p>
-]]></content>
-      <categories>
-        <category>搭建个人hexo博客</category>
-      </categories>
-      <tags>
-        <tag>hexo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>c++中的int*, int *&amp;</title>
-    <url>/2023/11/21/5%EF%BC%9Ac++%E4%B8%AD%E7%9A%84int*,%20int%20*&amp;/</url>
-    <content><![CDATA[<p>突然想起来之前本科学 C++的时候老师讲过<code>int*</code> 和<code>int *&amp;</code> 的区别，但是已经很多年没接触过了，现在回忆一下。</p>
-<p><strong>示例代码：</strong></p>
-<blockquote>
-<pre class="highlight"><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> a=<span class="number">10</span>;</span><br><span class="line">    <span class="type">int</span> &amp;b=a;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;a=&quot;</span>&lt;&lt;a&lt;&lt;endl;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;b=&quot;</span>&lt;&lt;b&lt;&lt;endl;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;&amp;a=&quot;</span>&lt;&lt;&amp;a&lt;&lt;endl;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;&amp;b=&quot;</span>&lt;&lt;&amp;b&lt;&lt;endl;</span><br><span class="line">    <span class="type">int</span> *p=&amp;a;</span><br><span class="line">    <span class="type">int</span> *&amp;pt=p;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;p=&quot;</span>&lt;&lt;p&lt;&lt;endl;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;*p=&quot;</span>&lt;&lt;*p&lt;&lt;endl;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;&amp;p=&quot;</span>&lt;&lt;&amp;p&lt;&lt;endl;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;*&amp;p=&quot;</span>&lt;&lt;*&amp;p&lt;&lt;endl;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;pt=&quot;</span>&lt;&lt;pt&lt;&lt;endl;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;&amp;pt=&quot;</span>&lt;&lt;&amp;pt&lt;&lt;endl;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;*&amp;pt=&quot;</span>&lt;&lt;*&amp;pt&lt;&lt;endl;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;*&amp;a=&quot;</span>&lt;&lt;*&amp;a&lt;&lt;endl;</span><br><span class="line">&#125;</span><br></pre>
-</blockquote>
-<ul>
-<li><p><code>int &amp;b=a;</code> 表示 b 是 a 的引用，简单来说，b 是 a 的别名，b 和 a 是同一个人，改变 b 也会改变 a，反之亦然，</p>
-</li>
-<li><p><code>int *&amp;pt=p;</code> 表示 pt 是指针 p 的引用，pt 和 p 是同一个人。</p>
-</li>
-<li><p><code>*&amp;p=p，*&amp;a=a</code> 即：*&amp;XXX 相当于取 XXX 地址里存的东西，那自然是 XXX 本身了。</p>
-</li>
-</ul>
-<p><strong>输出：</strong></p>
-<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://pic.imgdb.cn/item/655c41dfc458853aefc3dda7.jpg" class="lozad post-image"src="https://pic.imgdb.cn/item/655c41dfc458853aefc3dda7.jpg"></p>
-]]></content>
-      <categories>
-        <category>c++基础</category>
-      </categories>
-      <tags>
-        <tag>c++</tag>
-        <tag>指针</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>搭建个人 hexo 博客（4）</title>
-    <url>/2023/11/18/4%EF%BC%9A%E7%BB%99%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F/</url>
-    <content><![CDATA[<h2 id="参考链接：https-zhuanlan-zhihu-com-p-350704151"><a href="#参考链接：https-zhuanlan-zhihu-com-p-350704151" class="headerlink" title="参考链接：https://zhuanlan.zhihu.com/p/350704151"></a>参考链接：<a href="https://zhuanlan.zhihu.com/p/350704151">https://zhuanlan.zhihu.com/p/350704151</a></h2><p>这里使用 valine 实现评论，官方网  <a href="https://link.zhihu.com/?target=https://leancloud.cn/">https://leancloud.cn/</a></p>
-<p>进入控制台后点击左下角创建应用</p>
-<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://pic1.zhimg.com/80/v2-495635ee224900cdbc25bb5c0e8b8d08_1440w.webp" class="lozad post-image"src="https://pic1.zhimg.com/80/v2-495635ee224900cdbc25bb5c0e8b8d08_1440w.webp"></p>
-<p>应用创建好以后，进入刚刚创建的应用，选择左下角的设置&gt;应用 Key，然后就能看到你的 APP ID 和 APP Key 了</p>
-<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://pic.imgdb.cn/item/6558bc6fc458853aef47afef.jpg" class="lozad post-image"src="https://pic.imgdb.cn/item/6558bc6fc458853aef47afef.jpg"></p>
-<p>开启评论功能  <code>kaze/_config.yml</code></p>
-<pre class="highlight"><span class="line">comment:</span><br><span class="line">  enable: true</span><br><span class="line">  type: valine # valine | gitalk | livere | disqus | we recommend valine</span><br><span class="line"><span class="meta prompt_">  # </span><span class="language-bash">gitalk config details can see <span class="keyword">in</span> https://github.com/gitalk/gitalk/blob/master/readme-cn.md</span></span><br><span class="line">  valine:</span><br><span class="line">    appId: 你的appId</span><br><span class="line">    appKey: 你的appKey</span><br></pre>
 ]]></content>
       <categories>
         <category>搭建个人hexo博客</category>
