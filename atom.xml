@@ -6,7 +6,7 @@
   <link href="http://cstzzy.top/atom.xml" rel="self"/>
   
   <link href="http://cstzzy.top/"/>
-  <updated>2023-11-18T13:30:54.919Z</updated>
+  <updated>2023-11-21T15:30:55.484Z</updated>
   <id>http://cstzzy.top/</id>
   
   <author>
@@ -17,35 +17,40 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>搭建个人 hexo 博客（4）</title>
-    <link href="http://cstzzy.top/2023/11/18/4%EF%BC%9A%E7%BB%99%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F/"/>
-    <id>http://cstzzy.top/2023/11/18/4%EF%BC%9A%E7%BB%99%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F/</id>
-    <published>2023-11-18T13:27:00.000Z</published>
-    <updated>2023-11-18T13:30:54.919Z</updated>
+    <title>c++中的int*, int *&amp;</title>
+    <link href="http://cstzzy.top/2023/11/21/6%EF%BC%9A%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/"/>
+    <id>http://cstzzy.top/2023/11/21/6%EF%BC%9A%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/</id>
+    <published>2023-11-21T14:21:00.000Z</published>
+    <updated>2023-11-21T15:30:55.484Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="参考链接：https-zhuanlan-zhihu-com-p-350704151"><a href="#参考链接：https-zhuanlan-zhihu-com-p-350704151" class="headerlink" title="参考链接：https://zhuanlan.zhihu.com/p/350704151"></a>参考链接：<a href="https://zhuanlan.zhihu.com/p/350704151">https://zhuanlan.zhihu.com/p/350704151</a></h2><p>这里使用 valine 实现评论，官方网  <a href="https://link.zhihu.com/?target=https://leancloud.cn/">https://leancloud.cn/</a></p><p>进入控制台后点击左下角创建应用</p><p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://pic1.zhimg.com/80/v2-495635ee224900cdbc25bb5c0e8b8d08_1440w.webp" class="lozad post-image"src="https://pic1.zhimg.com/80/v2-495635ee224900cdbc25bb5c0e8b8d08_1440w.webp"></p><p>应用创建好以后，进入刚刚创建的应用，选择左下角的设置&gt;应用 Key，然后就能看到你的 APP ID 和 APP Key 了</p><p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://pic.imgdb.cn/item/6558bc6fc458853aef47afef.jpg" class="lozad post-image"src="https://pic.imgdb.cn/item/6558bc6fc458853aef47afef.jpg"></p><p>开启评论功能  <code>kaze/_config.yml</code></p><pre class="highlight"><span class="line">comment:</span><br><span class="line">  enable: true</span><br><span class="line">  type: valine # valine | gitalk | livere | disqus | we recommend valine</span><br><span class="line"><span class="meta prompt_">  # </span><span class="language-bash">gitalk config details can see <span class="keyword">in</span> https://github.com/gitalk/gitalk/blob/master/readme-cn.md</span></span><br><span class="line">  valine:</span><br><span class="line">    appId: 你的appId</span><br><span class="line">    appKey: 你的appKey</span><br></pre>]]></content>
+    <content type="html"><![CDATA[<h2 id="对常见的排序算法进行总结"><a href="#对常见的排序算法进行总结" class="headerlink" title="对常见的排序算法进行总结"></a>对常见的排序算法进行总结</h2><table><thead><tr><th align="center">名称</th><th align="center">时间复杂度</th><th align="center">算法核心思想</th><th align="center">优点</th><th align="center">缺点</th></tr></thead><tbody><tr><td align="center">桶排序（啊哈简化版）</td><td align="center">$O(m+n)$其中，m 为桶的个数，n 为待排序数的个数</td><td align="center">比如有范围为 0-10 的数需要排序，则需要 11 个桶，每个桶 i 保存数字 i 出现的次数，然后遍历桶，按照桶 i 中存放的 i 出现的次数 k 输出 k 次 i。</td><td align="center">1. 时间复杂度较小。</td><td align="center">1. 比如需要对（姓名，得分）进行排序，使用桶排序无法知道各个分数对应的姓名；</td></tr></tbody></table><ol start="2"><li>无法对小数进行排序。 |<br>| 冒泡排序 | $O(n^2)$其中 n 为待排序数的个数 | 每次比较相邻的两个元素，如果顺序错误则交换这两个元素的顺序，且每一趟仅将一个元素归位，因此如果有 n 个数进行排序，则需要进行 n-1 趟操作。 | —— | 1. 时间复杂度高。 |</li></ol>]]></content>
     
     
       
       
-    <summary type="html">&lt;h2 id=&quot;参考链接：https-zhuanlan-zhihu-com-p-350704151&quot;&gt;&lt;a href=&quot;#参考链接：https-zhuanlan-zhihu-com-p-350704151&quot; class=&quot;headerlink&quot; title=&quot;参考链接：https</summary>
+    <summary type="html">&lt;h2 id=&quot;对常见的排序算法进行总结&quot;&gt;&lt;a href=&quot;#对常见的排序算法进行总结&quot; class=&quot;headerlink&quot; title=&quot;对常见的排序算法进行总结&quot;&gt;&lt;/a&gt;对常见的排序算法进行总结&lt;/h2&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th align=&quot;c</summary>
       
     
     
     
-    <category term="搭建个人hexo博客" scheme="http://cstzzy.top/categories/%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BAhexo%E5%8D%9A%E5%AE%A2/"/>
+    <category term="ah算法" scheme="http://cstzzy.top/categories/ah%E7%AE%97%E6%B3%95/"/>
     
     
-    <category term="hexo" scheme="http://cstzzy.top/tags/hexo/"/>
+    <category term="c++" scheme="http://cstzzy.top/tags/c/"/>
+    
+    <category term="排序算法总结" scheme="http://cstzzy.top/tags/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/"/>
     
   </entry>
   
   <entry>
     <title>c++中的int*, int *&amp;</title>
-    <link href="http://cstzzy.top/2023/11/18/5%EF%BC%9Ac++%E4%B8%AD%E7%9A%84int*,%20int%20*&amp;/"/>
-    <id>http://cstzzy.top/2023/11/18/5%EF%BC%9Ac++%E4%B8%AD%E7%9A%84int*,%20int%20*&amp;/</id>
-    <published>2023-11-18T13:27:00.000Z</published>
-    <updated>2023-11-21T15:27:47.545Z</updated>
+    <link href="http://cstzzy.top/2023/11/21/5%EF%BC%9Ac++%E4%B8%AD%E7%9A%84int*,%20int%20*&amp;/"/>
+    <id>http://cstzzy.top/2023/11/21/5%EF%BC%9Ac++%E4%B8%AD%E7%9A%84int*,%20int%20*&amp;/</id>
+    <published>2023-11-21T05:26:00.000Z</published>
+    <updated>2023-11-21T15:30:26.470Z</updated>
     
     <content type="html"><![CDATA[<p>突然想起来之前本科学 C++的时候老师讲过<code>int*</code> 和<code>int *&amp;</code> 的区别，但是已经很多年没接触过了，现在回忆一下。</p><p><strong>示例代码：</strong></p><blockquote><pre class="highlight"><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> a=<span class="number">10</span>;</span><br><span class="line">    <span class="type">int</span> &amp;b=a;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;a=&quot;</span>&lt;&lt;a&lt;&lt;endl;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;b=&quot;</span>&lt;&lt;b&lt;&lt;endl;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;&amp;a=&quot;</span>&lt;&lt;&amp;a&lt;&lt;endl;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;&amp;b=&quot;</span>&lt;&lt;&amp;b&lt;&lt;endl;</span><br><span class="line">    <span class="type">int</span> *p=&amp;a;</span><br><span class="line">    <span class="type">int</span> *&amp;pt=p;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;p=&quot;</span>&lt;&lt;p&lt;&lt;endl;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;*p=&quot;</span>&lt;&lt;*p&lt;&lt;endl;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;&amp;p=&quot;</span>&lt;&lt;&amp;p&lt;&lt;endl;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;*&amp;p=&quot;</span>&lt;&lt;*&amp;p&lt;&lt;endl;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;pt=&quot;</span>&lt;&lt;pt&lt;&lt;endl;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;&amp;pt=&quot;</span>&lt;&lt;&amp;pt&lt;&lt;endl;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;*&amp;pt=&quot;</span>&lt;&lt;*&amp;pt&lt;&lt;endl;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;*&amp;a=&quot;</span>&lt;&lt;*&amp;a&lt;&lt;endl;</span><br><span class="line">&#125;</span><br></pre></blockquote><ul><li><p><code>int &amp;b=a;</code> 表示 b 是 a 的引用，简单来说，b 是 a 的别名，b 和 a 是同一个人，改变 b 也会改变 a，反之亦然，</p></li><li><p><code>int *&amp;pt=p;</code> 表示 pt 是指针 p 的引用，pt 和 p 是同一个人。</p></li><li><p><code>*&amp;p=p，*&amp;a=a</code> 即：*&amp;XXX 相当于取 XXX 地址里存的东西，那自然是 XXX 本身了。</p></li></ul><p><strong>输出：</strong></p><p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://pic.imgdb.cn/item/655c41dfc458853aefc3dda7.jpg" class="lozad post-image"src="https://pic.imgdb.cn/item/655c41dfc458853aefc3dda7.jpg"></p>]]></content>
     
@@ -70,31 +75,26 @@
   </entry>
   
   <entry>
-    <title>c++中的int*, int *&amp;</title>
-    <link href="http://cstzzy.top/2023/11/18/6%EF%BC%9A%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/"/>
-    <id>http://cstzzy.top/2023/11/18/6%EF%BC%9A%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/</id>
+    <title>搭建个人 hexo 博客（4）</title>
+    <link href="http://cstzzy.top/2023/11/18/4%EF%BC%9A%E7%BB%99%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F/"/>
+    <id>http://cstzzy.top/2023/11/18/4%EF%BC%9A%E7%BB%99%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F/</id>
     <published>2023-11-18T13:27:00.000Z</published>
-    <updated>2023-11-21T15:28:16.809Z</updated>
+    <updated>2023-11-18T13:30:54.919Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="对常见的排序算法进行总结"><a href="#对常见的排序算法进行总结" class="headerlink" title="对常见的排序算法进行总结"></a>对常见的排序算法进行总结</h2><table><thead><tr><th align="center">名称</th><th align="center">时间复杂度</th><th align="center">算法核心思想</th><th align="center">优点</th><th align="center">缺点</th></tr></thead><tbody><tr><td align="center">桶排序（啊哈简化版）</td><td align="center">$O(m+n)$其中，m 为桶的个数，n 为待排序数的个数</td><td align="center">比如有范围为 0-10 的数需要排序，则需要 11 个桶，每个桶 i 保存数字 i 出现的次数，然后遍历桶，按照桶 i 中存放的 i 出现的次数 k 输出 k 次 i。</td><td align="center">1. 时间复杂度较小。</td><td align="center">1. 比如需要对（姓名，得分）进行排序，使用桶排序无法知道各个分数对应的姓名；</td></tr></tbody></table><ol start="2"><li>无法对小数进行排序。 |<br>| 冒泡排序 | $O(n^2)$其中 n 为待排序数的个数 | 每次比较相邻的两个元素，如果顺序错误则交换这两个元素的顺序，且每一趟仅将一个元素归位，因此如果有 n 个数进行排序，则需要进行 n-1 趟操作。 | —— | 1. 时间复杂度高。 |</li></ol>]]></content>
+    <content type="html"><![CDATA[<h2 id="参考链接：https-zhuanlan-zhihu-com-p-350704151"><a href="#参考链接：https-zhuanlan-zhihu-com-p-350704151" class="headerlink" title="参考链接：https://zhuanlan.zhihu.com/p/350704151"></a>参考链接：<a href="https://zhuanlan.zhihu.com/p/350704151">https://zhuanlan.zhihu.com/p/350704151</a></h2><p>这里使用 valine 实现评论，官方网  <a href="https://link.zhihu.com/?target=https://leancloud.cn/">https://leancloud.cn/</a></p><p>进入控制台后点击左下角创建应用</p><p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://pic1.zhimg.com/80/v2-495635ee224900cdbc25bb5c0e8b8d08_1440w.webp" class="lozad post-image"src="https://pic1.zhimg.com/80/v2-495635ee224900cdbc25bb5c0e8b8d08_1440w.webp"></p><p>应用创建好以后，进入刚刚创建的应用，选择左下角的设置&gt;应用 Key，然后就能看到你的 APP ID 和 APP Key 了</p><p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://pic.imgdb.cn/item/6558bc6fc458853aef47afef.jpg" class="lozad post-image"src="https://pic.imgdb.cn/item/6558bc6fc458853aef47afef.jpg"></p><p>开启评论功能  <code>kaze/_config.yml</code></p><pre class="highlight"><span class="line">comment:</span><br><span class="line">  enable: true</span><br><span class="line">  type: valine # valine | gitalk | livere | disqus | we recommend valine</span><br><span class="line"><span class="meta prompt_">  # </span><span class="language-bash">gitalk config details can see <span class="keyword">in</span> https://github.com/gitalk/gitalk/blob/master/readme-cn.md</span></span><br><span class="line">  valine:</span><br><span class="line">    appId: 你的appId</span><br><span class="line">    appKey: 你的appKey</span><br></pre>]]></content>
     
     
       
       
-    <summary type="html">&lt;h2 id=&quot;对常见的排序算法进行总结&quot;&gt;&lt;a href=&quot;#对常见的排序算法进行总结&quot; class=&quot;headerlink&quot; title=&quot;对常见的排序算法进行总结&quot;&gt;&lt;/a&gt;对常见的排序算法进行总结&lt;/h2&gt;&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th align=&quot;c</summary>
+    <summary type="html">&lt;h2 id=&quot;参考链接：https-zhuanlan-zhihu-com-p-350704151&quot;&gt;&lt;a href=&quot;#参考链接：https-zhuanlan-zhihu-com-p-350704151&quot; class=&quot;headerlink&quot; title=&quot;参考链接：https</summary>
       
     
     
     
-    <category term="ah算法" scheme="http://cstzzy.top/categories/ah%E7%AE%97%E6%B3%95/"/>
+    <category term="搭建个人hexo博客" scheme="http://cstzzy.top/categories/%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BAhexo%E5%8D%9A%E5%AE%A2/"/>
     
     
-    <category term="c++" scheme="http://cstzzy.top/tags/c/"/>
-    
-    <category term="排序算法总结" scheme="http://cstzzy.top/tags/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/"/>
+    <category term="hexo" scheme="http://cstzzy.top/tags/hexo/"/>
     
   </entry>
   
