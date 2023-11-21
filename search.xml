@@ -275,7 +275,7 @@
       </tags>
   </entry>
   <entry>
-    <title>c++中的int*, int *&amp;</title>
+    <title>排序算法总结</title>
     <url>/2023/11/21/6%EF%BC%9A%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/</url>
     <content><![CDATA[<h2 id="对常见的排序算法进行总结"><a href="#对常见的排序算法进行总结" class="headerlink" title="对常见的排序算法进行总结"></a>对常见的排序算法进行总结</h2><table>
 <thead>
