@@ -6,7 +6,7 @@
   <link href="http://cstzzy.top/atom.xml" rel="self"/>
   
   <link href="http://cstzzy.top/"/>
-  <updated>2023-11-23T12:28:43.848Z</updated>
+  <updated>2023-11-23T14:07:27.242Z</updated>
   <id>http://cstzzy.top/</id>
   
   <author>
@@ -17,12 +17,68 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>c++中的int*, int *&amp;</title>
-    <link href="http://cstzzy.top/2023/11/23/7%EF%BC%9Agit1/"/>
-    <id>http://cstzzy.top/2023/11/23/7%EF%BC%9Agit1/</id>
-    <published>2023-11-23T12:27:00.000Z</published>
-    <updated>2023-11-23T12:28:43.848Z</updated>
+    <title>Git查看修改内容与仓库状态</title>
+    <link href="http://cstzzy.top/2023/11/23/9%EF%BC%9Agit-%E6%9F%A5%E7%9C%8B%E4%BF%AE%E6%94%B9%E5%86%85%E5%AE%B9%E4%B8%8E%E4%BB%93%E5%BA%93%E7%8A%B6%E6%80%81/"/>
+    <id>http://cstzzy.top/2023/11/23/9%EF%BC%9Agit-%E6%9F%A5%E7%9C%8B%E4%BF%AE%E6%94%B9%E5%86%85%E5%AE%B9%E4%B8%8E%E4%BB%93%E5%BA%93%E7%8A%B6%E6%80%81/</id>
+    <published>2023-11-23T13:38:00.000Z</published>
+    <updated>2023-11-23T14:07:27.242Z</updated>
     
+    <content type="html"><![CDATA[<h1 id="Git查看修改内容与仓库状态"><a href="#Git查看修改内容与仓库状态" class="headerlink" title="Git查看修改内容与仓库状态"></a>Git查看修改内容与仓库状态</h1><p>我们已经成功地添加并提交了一个readme.txt文件，现在，是时候继续工作了，于是，我们继续修改readme.txt文件（在第一行插入单词”distributed”），改成如下内容：</p><pre class="highlight"><span class="line">Git is a distributed version control system.</span><br><span class="line">Git is free software.</span><br></pre><p>现在，运行git status命令看看结果：</p><pre class="highlight"><span class="line">$ git status</span><br><span class="line">On branch main</span><br><span class="line">Changes not staged for commit:</span><br><span class="line">  (use &quot;git add &lt;file&gt;...&quot; to update what will be committed)</span><br><span class="line">  (use &quot;git restore &lt;file&gt;...&quot; to discard changes in working directory)</span><br><span class="line">modified:   readme.txt</span><br><span class="line"></span><br><span class="line">Untracked files:</span><br><span class="line">  (use &quot;git add &lt;file&gt;...&quot; to include in what will be committed)</span><br><span class="line">.DS_Store</span><br></pre><p>git status命令可以让我们时刻掌握仓库当前的状态，上面的命令输出告诉我们，readme.txt被修改过了，但还没有准备提交的修改。</p><p>虽然Git告诉我们readme.txt被修改了，但如果能看看具体修改了什么内容，自然是很好的。比如你休假两周从国外回来，第一天上班时，已经记不清上次怎么修改的readme.txt，所以，需要用git diff这个命令看看：</p><pre class="highlight"><span class="line">diff --git a/readme.txt b/readme.txt</span><br><span class="line">index d8036c1..013b5bc 100644</span><br><span class="line">--- a/readme.txt</span><br><span class="line">+++ b/readme.txt</span><br><span class="line">@@ -1,2 +1,2 @@</span><br><span class="line">-Git is a version control system.</span><br><span class="line">+Git is a distributed version control system.</span><br><span class="line"> Git is free software.</span><br><span class="line">\ No newline at end of file</span><br><span class="line"></span><br></pre><p>git diff顾名思义就是查看difference，显示的格式正是Unix通用的diff格式，可以从上面的命令输出看到，我们在第一行添加了一个distributed单词。</p><p>因为之前没有了解过Unix的diff命令的输出格式，因此去查了一下，记录如下：</p><p>上面展示的<code>git diff</code>的输出结果是合并格式的diff，除此之外还有其它两种格式（参考：<a href="https://blog.csdn.net/qq_37179197/article/details/97649845">Unix系统的diff工具程序</a>）。</p><pre class="highlight"><span class="line">diff --git a/readme.txt b/readme.txt</span><br></pre><p>表示进行比较的是，a版本的readme.txt（即变动前）和b版本的readme.txt（即变动后）。</p><pre class="highlight"><span class="line">index d8036c1..013b5bc 100644</span><br></pre><p>第二行表示两个版本的git哈希值（index区域的d8036c1对象，与工作目录区域的013b5bc对象进行比较），100644是对象的模式（普通文件，644权限）。</p><pre class="highlight"><span class="line">--- a/readme.txt</span><br><span class="line">+++ b/readme.txt</span><br></pre><p>表示文件的基本信息，“—”表示变动前的文件,”+++”表示变动后的文件。</p><pre class="highlight"><span class="line">@@ -1,2 +1,2 @@</span><br></pre><p>变动的位置用两个@作为起首和结束。</p><p><code>-1,2</code>分成三个部分：减号表示变动前的文件，”1”表示第1行，“2”表示连续2行。合在一起，就表示下面是变动前的文件从第1行开始的连续2行。同样的，”+1,2”表示变动后的文件从第1行开始的连续2行。</p><p>最后除了有变动的那些行以外，还将两个文件的上下文合并显示在一起，所以叫做”合并格式”。每一行最前面的标志位，空表示无变动，减号表示变动前的文件删除的行，加号表示变动后的文件新增的行。</p><p>知道了对readme.txt作了什么修改后，再把它提交到仓库就放心多了，提交修改和提交新文件是一样的两步，第一步是git add：</p><pre class="highlight"><span class="line">git add readme.txt</span><br></pre><p>同样没有任何输出。在执行第二步git commit之前，我们再运行git status看看当前仓库的状态：</p><pre class="highlight"><span class="line">git status</span><br><span class="line"></span><br><span class="line">On branch main</span><br><span class="line">Changes to be committed:</span><br><span class="line">  (use &quot;git restore --staged &lt;file&gt;...&quot; to unstage)</span><br><span class="line">modified:   readme.txt</span><br></pre><p>git status告诉我们，将要被提交的修改包括readme.txt，下一步，就可以放心地提交了：</p><pre class="highlight"><span class="line">git commit -m &quot;add distributed&quot;</span><br></pre><p>提交后，我们再用git status命令看看仓库的当前状态：</p><pre class="highlight"><span class="line">git status</span><br><span class="line"></span><br><span class="line">On branch master</span><br><span class="line">nothing to commit, working tree clean</span><br></pre><p>Git告诉我们当前没有需要提交的修改，而且，工作目录是干净（working tree clean）的。</p><h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><ol><li>要随时掌握工作区的状态，使用git status命令。</li><li>如果git status告诉你有文件被修改过，用git diff可以查看修改内容。</li><li>上述例子仅展示了使用git add跟踪一个文件，还可以继续使用git add命令添加要跟踪的文件，之后如果修改了多个跟踪文件，则使用git diff时会分别显示各个文件的diff。</li></ol>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;Git查看修改内容与仓库状态&quot;&gt;&lt;a href=&quot;#Git查看修改内容与仓库状态&quot; class=&quot;headerlink&quot; title=&quot;Git查看修改内容与仓库状态&quot;&gt;&lt;/a&gt;Git查看修改内容与仓库状态&lt;/h1&gt;&lt;p&gt;我们已经成功地添加并提交了一个readme.</summary>
+      
+    
+    
+    
+    <category term="git" scheme="http://cstzzy.top/categories/git/"/>
+    
+    
+    <category term="git" scheme="http://cstzzy.top/tags/git/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Git创建版本库</title>
+    <link href="http://cstzzy.top/2023/11/23/8%EF%BC%9Agit-%E5%88%9B%E5%BB%BA%E7%89%88%E6%9C%AC%E5%BA%93/"/>
+    <id>http://cstzzy.top/2023/11/23/8%EF%BC%9Agit-%E5%88%9B%E5%BB%BA%E7%89%88%E6%9C%AC%E5%BA%93/</id>
+    <published>2023-11-23T13:04:00.000Z</published>
+    <updated>2023-11-23T13:26:06.236Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Git创建版本库"><a href="#Git创建版本库" class="headerlink" title="Git创建版本库"></a>Git创建版本库</h1><p>版本库又名仓库，英文名repository，你可以简单理解成一个目录，这个目录里面的所有文件都可以被Git管理起来，每个文件的修改、删除，Git都能跟踪，以便任何时刻都可以追踪历史，或者在将来某个时刻可以“还原”。<br>创建一个版本库非常简单，首先，选择一个合适的地方，创建一个空目录：</p><pre class="highlight"><span class="line">mkdir learngit</span><br><span class="line">cd learngit</span><br></pre><p>第二步，通过git init命令把这个目录变成Git可以管理的仓库：</p><pre class="highlight"><span class="line">git init</span><br></pre><p>瞬间Git就把仓库建好了，而且告诉你是一个空的仓库（empty Git repository），细心的读者可以发现当前目录下多了一个.git的目录，这个目录是Git来跟踪管理版本库的，没事千万不要手动修改这个目录里面的文件，不然改乱了，就把Git仓库给破坏了。<br>如果你没有看到.git目录，那是因为这个目录默认是隐藏的，用ls -ah命令就可以看见。</p><h2 id="把文件添加到版本库"><a href="#把文件添加到版本库" class="headerlink" title="把文件添加到版本库"></a>把文件添加到版本库</h2><p>首先这里再明确一下，所有的版本控制系统，其实只能跟踪文本文件的改动，比如TXT文件，网页，所有的程序代码等等，Git也不例外。版本控制系统可以告诉你每次的改动，比如在第5行加了一个单词“Linux”，在第8行删了一个单词“Windows”。而图片、视频这些二进制文件，虽然也能由版本控制系统管理，但没法跟踪文件的变化，只能把二进制文件每次改动串起来，也就是只知道图片从100KB改成了120KB，但到底改了啥，版本控制系统不知道，也没法知道。</p><p>不幸的是，Microsoft的Word格式是二进制格式，因此，版本控制系统是没法跟踪Word文件的改动的，前面我们举的例子只是为了演示，如果要真正使用版本控制系统，就要以纯文本方式编写文件。</p><p>因为文本是有编码的，比如中文有常用的GBK编码，日文有Shift_JIS编码，如果没有历史遗留问题，强烈建议使用标准的UTF-8编码，所有语言使用同一种编码，既没有冲突，又被所有平台所支持。</p><p>编写一个readme.txt文件，内容如下：</p><pre class="highlight"><span class="line">Git is a version control system.</span><br><span class="line">Git is free software.</span><br></pre><p>和把大象放到冰箱需要3步相比，把一个文件放到Git仓库只需要两步。</p><p>第一步，用命令git add告诉Git，把文件添加到仓库：</p><pre class="highlight"><span class="line">git add readme.txt</span><br></pre><p>执行上面的命令，没有任何显示，这就对了，Unix的哲学是“没有消息就是好消息”，说明添加成功。</p><p>第二步，用命令git commit告诉Git，把文件提交到仓库：</p><pre class="highlight"><span class="line">git commit -m &quot;wrote a readme file&quot;</span><br></pre><p>简单解释一下git commit命令，-m后面输入的是本次提交的说明，可以输入任意内容，当然最好是有意义的，这样你就能从历史记录里方便地找到改动记录。</p><p>git commit命令执行成功后会告诉你，1 file changed：1个文件被改动（我们新添加的readme.txt文件）；2 insertions：插入了两行内容（readme.txt有两行内容）。</p><p>为什么Git添加文件需要add，commit一共两步呢？因为commit可以一次提交很多文件，所以你可以多次add不同的文件（到暂存区），比如：</p><pre class="highlight"><span class="line">git add file1.txt</span><br><span class="line">git add file2.txt file3.txt</span><br><span class="line">git commit -m &quot;add 3 files.&quot;</span><br></pre><h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>初始化一个Git仓库，使用git init命令。</p><p>添加文件到Git仓库，分两步：</p><p>使用命令git add <file>，注意，可反复多次使用，添加多个文件；<br>使用命令git commit -m <message>，完成。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;Git创建版本库&quot;&gt;&lt;a href=&quot;#Git创建版本库&quot; class=&quot;headerlink&quot; title=&quot;Git创建版本库&quot;&gt;&lt;/a&gt;Git创建版本库&lt;/h1&gt;&lt;p&gt;版本库又名仓库，英文名repository，你可以简单理解成一个目录，这个目录里面的所有文件</summary>
+      
+    
+    
+    
+    <category term="git" scheme="http://cstzzy.top/categories/git/"/>
+    
+    
+    <category term="git" scheme="http://cstzzy.top/tags/git/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Git简介</title>
+    <link href="http://cstzzy.top/2023/11/23/7%EF%BC%9Agit-%E7%AE%80%E4%BB%8B/"/>
+    <id>http://cstzzy.top/2023/11/23/7%EF%BC%9Agit-%E7%AE%80%E4%BB%8B/</id>
+    <published>2023-11-23T12:27:00.000Z</published>
+    <updated>2023-11-23T12:56:14.287Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Git简介"><a href="#Git简介" class="headerlink" title="Git简介"></a>Git简介</h1><p>CVS及SVN都是集中式的版本控制系统，而Git是分布式版本控制系统。</p><p>集中式版本控制系统：版本库集中存放在中央服务器，而干活的时候，用的都是自己的电脑，所以要先从中央服务器取得最新的版本，然后开始干活，干完活再把自己的活推送给中央服务器。中央服务器就好比是一个图书馆，你要改一本书，必须先从图书馆借出来，然后回到家自己改，改完了，再放回图书馆。</p><p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/vx_images/10974702836917" class="lozad post-image"src="/vx_images/10974702836917"></p><p>分布式版本控制系统：没有中央服务器，每个人的电脑上都有一个完整的版本库，因此分布式比集中式安全：某台电脑坏了仅需要从其它电脑复制一份版本库即可，而中央服务器坏了就无法找回版本库了。利用分布式版本控制系统工作时就不需要联网了，因为版本库就在你自己的电脑上。既然每个人电脑上都有一个完整的版本库，那多个人如何协作呢？比方说你在自己电脑上改了文件A，你的同事也在他的电脑上改了文件A，这时，你们俩之间只需把各自的修改推送给对方，就可以互相看到对方的修改了。</p><p>在实际使用分布式版本控制系统的时候，其实很少在两人之间的电脑上推送版本库的修改，因为可能你们俩不在一个局域网内，两台电脑互相访问不了，也可能今天你的同事病了，他的电脑压根没有开机。因此，分布式版本控制系统通常也有一台充当“中央服务器”的电脑，但这个服务器的作用仅仅是用来方便“交换”大家的修改，没有它大家也一样干活，只是交换修改不方便而已。</p><p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/vx_images/222346411626009" class="lozad post-image"src="/vx_images/222346411626009"></p><p>Git的优点：无需联网、分布式、强大的分制管理。<br>其它免费版本控制系统：</p><ul><li>CVS：最早的开源而且免费的集中式版本控制系统，直到现在还有不少人在用。由于CVS自身设计的问题，会造成提交文件不完整，版本库莫名其妙损坏的情况。</li><li>SVN：修正了CVS的一些稳定性问题，是目前用得最多的集中式版本库控制系统。</li></ul><p>除了免费的外，还有收费的集中式版本控制系统，比如IBM的ClearCase（以前是Rational公司的，被IBM收购了），特点是安装比Windows还大，运行比蜗牛还慢，能用ClearCase的一般是世界500强，他们有个共同的特点是财大气粗，或者人傻钱多。</p><p>微软自己也有一个集中式版本控制系统叫VSS，集成在Visual Studio中。由于其反人类的设计，连微软自己都不好意思用了。</p><p>分布式版本控制系统除了Git以及促使Git诞生的BitKeeper外，还有类似Git的Mercurial和Bazaar等。这些分布式版本控制系统各有特点，但最快、最简单也最流行的依然是Git！</p><p>了解完Git后下一步应该开始安装Git，但是MacBook已经安装了git，因此pass。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;Git简介&quot;&gt;&lt;a href=&quot;#Git简介&quot; class=&quot;headerlink&quot; title=&quot;Git简介&quot;&gt;&lt;/a&gt;Git简介&lt;/h1&gt;&lt;p&gt;CVS及SVN都是集中式的版本控制系统，而Git是分布式版本控制系统。&lt;/p&gt;
+&lt;p&gt;集中式版本控制系统：版本库集中</summary>
+      
     
     
     
@@ -38,9 +94,9 @@
     <link href="http://cstzzy.top/2023/11/23/vx/"/>
     <id>http://cstzzy.top/2023/11/23/vx/</id>
     <published>2023-11-23T11:55:09.229Z</published>
-    <updated>2023-11-23T12:33:16.569Z</updated>
+    <updated>2023-11-23T14:07:27.243Z</updated>
     
-    <content type="html"><![CDATA[{"created_time":"2023-11-23T11:55:09Z","files":[{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"2","modified_time":"2023-11-23T12:01:59Z","name":"1：hexo初级搭建、github page部署及个人域名绑定.md","signature":"784285914990853533","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"3","modified_time":"2023-11-23T11:55:09Z","name":"2：hexo的基本配置、更换主题.md","signature":"5546498803292388765","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"4","modified_time":"2023-11-23T11:55:09Z","name":"3：给个人博客添加RSS.md","signature":"8223662518592028061","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"5","modified_time":"2023-11-23T11:55:09Z","name":"4：给个人博客添加评论系统.md","signature":"8927815552003423645","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"6","modified_time":"2023-11-23T11:55:09Z","name":"5：c++中的int*, int *&.md","signature":"1749579338025483677","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"7","modified_time":"2023-11-23T12:33:16Z","name":"6：排序算法总结.md","signature":"4749813615771467165","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T12:25:17Z","id":"8","modified_time":"2023-11-23T12:28:43Z","name":"7：git1.md","signature":"207324067087533","tags":[]}],"folders":[],"id":"1","modified_time":"2023-11-23T11:55:09Z","signature":"207324067085725","version":3}]]></content>
+    <content type="html"><![CDATA[{"created_time":"2023-11-23T11:55:09Z","files":[{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"2","modified_time":"2023-11-23T12:01:59Z","name":"1：hexo初级搭建、github page部署及个人域名绑定.md","signature":"784285914990853533","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"3","modified_time":"2023-11-23T11:55:09Z","name":"2：hexo的基本配置、更换主题.md","signature":"5546498803292388765","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"4","modified_time":"2023-11-23T11:55:09Z","name":"3：给个人博客添加RSS.md","signature":"8223662518592028061","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"5","modified_time":"2023-11-23T11:55:09Z","name":"4：给个人博客添加评论系统.md","signature":"8927815552003423645","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"6","modified_time":"2023-11-23T11:55:09Z","name":"5：c++中的int*, int *&.md","signature":"1749579338025483677","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"7","modified_time":"2023-11-23T12:33:16Z","name":"6：排序算法总结.md","signature":"4749813615771467165","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T12:25:17Z","id":"12","modified_time":"2023-11-23T12:56:14Z","name":"7：git-简介.md","signature":"207324067087533","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T12:25:17Z","id":"11","modified_time":"2023-11-23T13:26:06Z","name":"8：git-创建版本库.md","signature":"8223662518592031744","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T12:25:17Z","id":"14","modified_time":"2023-11-23T14:07:27Z","name":"9：git-查看修改内容与仓库状态.md","signature":"8927815552003429748","tags":[]}],"folders":[],"id":"1","modified_time":"2023-11-23T11:55:09Z","signature":"207324067085725","version":3}]]></content>
     
     
       
