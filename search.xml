@@ -259,7 +259,7 @@
   <entry>
     <title></title>
     <url>/2023/11/23/vx/</url>
-    <content><![CDATA[{"created_time":"2023-11-23T11:55:09Z","files":[{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"2","modified_time":"2023-11-23T12:01:59Z","name":"1：hexo初级搭建、github page部署及个人域名绑定.md","signature":"784285914990853533","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"3","modified_time":"2023-11-23T11:55:09Z","name":"2：hexo的基本配置、更换主题.md","signature":"5546498803292388765","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"4","modified_time":"2023-11-23T11:55:09Z","name":"3：给个人博客添加RSS.md","signature":"8223662518592028061","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"5","modified_time":"2023-11-23T11:55:09Z","name":"4：给个人博客添加评论系统.md","signature":"8927815552003423645","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"6","modified_time":"2023-11-23T11:55:09Z","name":"5：c++中的int*, int *&.md","signature":"1749579338025483677","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"7","modified_time":"2023-11-23T12:21:26Z","name":"6：排序算法总结.md","signature":"4749813615771467165","tags":[]}],"folders":[],"id":"1","modified_time":"2023-11-23T11:55:09Z","signature":"207324067085725","version":3}]]></content>
+    <content><![CDATA[{"created_time":"2023-11-23T11:55:09Z","files":[{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"2","modified_time":"2023-11-23T12:01:59Z","name":"1：hexo初级搭建、github page部署及个人域名绑定.md","signature":"784285914990853533","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"3","modified_time":"2023-11-23T11:55:09Z","name":"2：hexo的基本配置、更换主题.md","signature":"5546498803292388765","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"4","modified_time":"2023-11-23T11:55:09Z","name":"3：给个人博客添加RSS.md","signature":"8223662518592028061","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"5","modified_time":"2023-11-23T11:55:09Z","name":"4：给个人博客添加评论系统.md","signature":"8927815552003423645","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"6","modified_time":"2023-11-23T11:55:09Z","name":"5：c++中的int*, int *&.md","signature":"1749579338025483677","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"7","modified_time":"2023-11-23T12:33:16Z","name":"6：排序算法总结.md","signature":"4749813615771467165","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T12:25:17Z","id":"8","modified_time":"2023-11-23T12:28:43Z","name":"7：git1.md","signature":"207324067087533","tags":[]}],"folders":[],"id":"1","modified_time":"2023-11-23T11:55:09Z","signature":"207324067085725","version":3}]]></content>
   </entry>
   <entry>
     <title>搭建个人 hexo 博客（4）</title>
@@ -299,14 +299,14 @@
 </thead>
 <tbody><tr>
 <td align="center">桶排序（啊哈简化版）</td>
-<td align="center">$O(m+n)$其中，m 为桶的个数，n 为待排序数的个数</td>
+<td align="center">$O(m+n)$ 其中，m 为桶的个数，n 为待排序数的个数</td>
 <td align="center">比如有范围为 0-10 的数需要排序，则需要 11 个桶，每个桶 i 保存数字 i 出现的次数，然后遍历桶，按照桶 i 中存放的 i 出现的次数 k 输出 k 次 i。</td>
 <td align="center">1. 时间复杂度较小。</td>
 <td>1. 比如需要对（姓名，得分）进行排序，使用桶排序无法知道各个分数对应的姓名；</td>
 </tr>
 <tr>
 <td align="center">冒泡排序</td>
-<td align="center">$O(n^2)$其中 n 为待排序数的个数</td>
+<td align="center">$O(n^2)$ 其中 n 为待排序数的个数</td>
 <td align="center">每次比较相邻的两个元素，如果顺序错误则交换这两个元素的顺序，且每一趟仅将一个元素归位，因此如果有 n 个数进行排序，则需要进行 n-1 趟操作。</td>
 <td align="center">-</td>
 <td>1. 时间复杂度高。</td>
@@ -319,6 +319,17 @@
       <tags>
         <tag>c++</tag>
         <tag>排序算法总结</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>c++中的int*, int *&amp;</title>
+    <url>/2023/11/23/7%EF%BC%9Agit1/</url>
+    <content><![CDATA[]]></content>
+      <categories>
+        <category>git</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
       </tags>
   </entry>
 </search>
