@@ -6,7 +6,7 @@
   <link href="http://cstzzy.top/atom.xml" rel="self"/>
   
   <link href="http://cstzzy.top/"/>
-  <updated>2023-11-26T11:59:24.155Z</updated>
+  <updated>2023-11-26T12:38:00.097Z</updated>
   <id>http://cstzzy.top/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>LeetCode热题2</title>
+    <link href="http://cstzzy.top/2023/11/26/11%EF%BC%9ALeetCode%E7%83%AD%E9%A2%982/"/>
+    <id>http://cstzzy.top/2023/11/26/11%EF%BC%9ALeetCode%E7%83%AD%E9%A2%982/</id>
+    <published>2023-11-26T12:25:00.000Z</published>
+    <updated>2023-11-26T12:38:00.097Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="字母异位词分组"><a href="#字母异位词分组" class="headerlink" title="字母异位词分组"></a><a href="https://leetcode.cn/problems/group-anagrams/?envType=study-plan-v2&envId=top-100-liked">字母异位词分组</a></h1><p>前言<br>两个字符串互为字母异位词，当且仅当两个字符串包含的字母相同。同一组字母异位词中的字符串具备相同点，可以使用相同点作为一组字母异位词的标志，使用哈希表存储每一组字母异位词，哈希表的键为一组字母异位词的标志，哈希表的值为一组字母异位词列表。</p><p>遍历每个字符串，对于每个字符串，得到该字符串所在的一组字母异位词的标志，将当前字符串加入该组字母异位词的列表中。遍历全部字符串之后，哈希表中的每个键值对即为一组字母异位词。</p><p>以下的两种方法分别使用排序和计数作为哈希表的键。</p><h2 id="方法一：排序"><a href="#方法一：排序" class="headerlink" title="方法一：排序"></a>方法一：排序</h2><p>思路及算法：</p><p>由于互为字母异位词的两个字符串包含的字母相同，因此对两个字符串分别进行排序之后得到的字符串一定是相同的，故可以将排序之后的字符串作为哈希表的键。</p><pre class="highlight"><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    vector&lt;vector&lt;string&gt;&gt; groupAnagrams(vector&lt;string&gt;&amp; strs) &#123;</span><br><span class="line">        unordered_map&lt;string,vector&lt;string&gt;&gt; mp;</span><br><span class="line">        for(string&amp; str:strs)&#123;</span><br><span class="line">            string key=str;</span><br><span class="line">            sort(key.begin(),key.end());</span><br><span class="line">            mp[key].push_back(str);</span><br><span class="line">        &#125;</span><br><span class="line">        vector&lt;vector&lt;string&gt;&gt; res;</span><br><span class="line">        for(auto it=mp.begin();it!=mp.end();it++)&#123;</span><br><span class="line">            res.push_back(it-&gt;second);</span><br><span class="line">        &#125;</span><br><span class="line">        return res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre><p>复杂度分析</p><p>时间复杂度：$O(nk\log⁡k)$，其中 n 是 strs 中的字符串的数量，k是 strs 中的字符串的的最大长度。需要遍历 n 个字符串，对于每个字符串，需要 $O(k \log k)$ 的时间进行排序以及 $O(1)$ 的时间更新哈希表，因此总时间复杂度是 $O(nk \log k)$。</p><p>空间复杂度：$O(nk)$，其中 n 是 strs 中的字符串的数量，k 是 strs 中的字符串的的最大长度。需要用哈希表存储全部字符串。</p><p>注意：向vector添加元素有两种方法：push_back()和emplace_back()，要了解<a href="https://c.biancheng.net/view/6826.html">它们的区别</a>。</p><h2 id="方法二：计数"><a href="#方法二：计数" class="headerlink" title="方法二：计数"></a>方法二：计数</h2><p>没有第一种方法好，因此不详述，想了解可以去查看官方题解。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;字母异位词分组&quot;&gt;&lt;a href=&quot;#字母异位词分组&quot; class=&quot;headerlink&quot; title=&quot;字母异位词分组&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://leetcode.cn/problems/group-anagrams/?envType=stu</summary>
+      
+    
+    
+    
+    <category term="LeetCode热题100" scheme="http://cstzzy.top/categories/LeetCode%E7%83%AD%E9%A2%98100/"/>
+    
+    
+    <category term="c++" scheme="http://cstzzy.top/tags/c/"/>
+    
+    <category term="LeetCode热题100" scheme="http://cstzzy.top/tags/LeetCode%E7%83%AD%E9%A2%98100/"/>
+    
+  </entry>
   
   <entry>
     <title>LeetCode热题1</title>
@@ -120,9 +146,9 @@
     <link href="http://cstzzy.top/2023/11/23/vx/"/>
     <id>http://cstzzy.top/2023/11/23/vx/</id>
     <published>2023-11-23T11:55:09.229Z</published>
-    <updated>2023-11-26T11:59:24.156Z</updated>
+    <updated>2023-11-26T12:38:00.098Z</updated>
     
-    <content type="html"><![CDATA[{"created_time":"2023-11-23T11:55:09Z","files":[{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"2","modified_time":"2023-11-23T12:01:59Z","name":"1：hexo初级搭建、github page部署及个人域名绑定.md","signature":"784285914990853533","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"3","modified_time":"2023-11-23T11:55:09Z","name":"2：hexo的基本配置、更换主题.md","signature":"5546498803292388765","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"4","modified_time":"2023-11-23T11:55:09Z","name":"3：给个人博客添加RSS.md","signature":"8223662518592028061","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"5","modified_time":"2023-11-23T11:55:09Z","name":"4：给个人博客添加评论系统.md","signature":"8927815552003423645","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"6","modified_time":"2023-11-23T11:55:09Z","name":"5：c++中的int*, int *&.md","signature":"1749579338025483677","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"7","modified_time":"2023-11-26T10:37:43Z","name":"6：排序算法总结.md","signature":"4749813615771467165","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T12:25:17Z","id":"12","modified_time":"2023-11-23T12:56:14Z","name":"7：git-简介.md","signature":"207324067087533","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T12:25:17Z","id":"11","modified_time":"2023-11-23T13:26:06Z","name":"8：git-创建版本库.md","signature":"8223662518592031744","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T12:25:17Z","id":"14","modified_time":"2023-11-23T14:20:53Z","name":"9：git-查看修改内容与仓库状态.md","signature":"8927815552003429748","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"17","modified_time":"2023-11-26T11:59:24Z","name":"10：LeetCode热题1.md","signature":"207324067343228","tags":[]}],"folders":[],"id":"1","modified_time":"2023-11-23T11:55:09Z","signature":"207324067085725","version":3}]]></content>
+    <content type="html"><![CDATA[{"created_time":"2023-11-23T11:55:09Z","files":[{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"2","modified_time":"2023-11-23T12:01:59Z","name":"1：hexo初级搭建、github page部署及个人域名绑定.md","signature":"784285914990853533","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"3","modified_time":"2023-11-23T11:55:09Z","name":"2：hexo的基本配置、更换主题.md","signature":"5546498803292388765","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"4","modified_time":"2023-11-23T11:55:09Z","name":"3：给个人博客添加RSS.md","signature":"8223662518592028061","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"5","modified_time":"2023-11-23T11:55:09Z","name":"4：给个人博客添加评论系统.md","signature":"8927815552003423645","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"6","modified_time":"2023-11-23T11:55:09Z","name":"5：c++中的int*, int *&.md","signature":"1749579338025483677","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"7","modified_time":"2023-11-26T10:37:43Z","name":"6：排序算法总结.md","signature":"4749813615771467165","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T12:25:17Z","id":"12","modified_time":"2023-11-23T12:56:14Z","name":"7：git-简介.md","signature":"207324067087533","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T12:25:17Z","id":"11","modified_time":"2023-11-23T13:26:06Z","name":"8：git-创建版本库.md","signature":"8223662518592031744","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T12:25:17Z","id":"14","modified_time":"2023-11-23T14:20:53Z","name":"9：git-查看修改内容与仓库状态.md","signature":"8927815552003429748","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"17","modified_time":"2023-11-26T11:59:24Z","name":"10：LeetCode热题1.md","signature":"207324067343228","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"19","modified_time":"2023-11-26T12:38:00Z","name":"11：LeetCode热题2.md","signature":"784285914991114496","tags":[]}],"folders":[],"id":"1","modified_time":"2023-11-23T11:55:09Z","signature":"207324067085725","version":3}]]></content>
     
     
       
