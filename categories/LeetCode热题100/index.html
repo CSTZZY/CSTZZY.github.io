@@ -18,17 +18,17 @@
   <link 
     rel="icon" 
     href="https://pic.imgdb.cn/item/65571aabc458853aefbb0c4f.png">
-  <title>c++中的int*, int *&</title>
+  <title>分类</title>
   
     
       <meta 
         property="og:title" 
-        content="c++中的int*, int *&amp;">
+        content="分类">
     
     
       <meta 
         property="og:url" 
-        content="http://cstzzy.top/2023/11/21/5%EF%BC%9Ac++%E4%B8%AD%E7%9A%84int*,%20int%20*&amp;/index.html">
+        content="http://cstzzy.top/categories/LeetCode%E7%83%AD%E9%A2%98100/index.html">
     
     
       <meta 
@@ -40,30 +40,6 @@
         property="og:img" 
         content="个人主页">
     
-    
-      <meta 
-        property="og:type" 
-        content="article">
-      <meta 
-        property="og:article:published_time" 
-        content="2023-11-21">
-      <meta 
-        property="og:article:modified_time" 
-        content="2023-11-21">
-      <meta 
-        property="og:article:author" 
-        content="CSTZZY">
-      
-        
-          <meta 
-            property="og:article:tag" 
-            content="c++">
-        
-          <meta 
-            property="og:article:tag" 
-            content="指针">
-        
-      
     
   
   
@@ -80,8 +56,6 @@
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1952792_89b4ac4k4up.css">
   
   
-  
-    <link rel="stylesheet" href="/js/lib/lightbox/baguetteBox.min.css">
   
   <script>
     function loadScript(url, cb) {
@@ -326,18 +300,6 @@
                <div class="sticky-tablet">
   
   
-    <article class="display-when-two-columns spacer">
-      <div class="card card-content toc-card">
-        <div class="toc-header">
-  <i 
-    class="iconfont icon-menu" 
-    style="padding-right: 2px;">
-  </i>目录
-</div>
-
-      </div>
-    </article>
-  
   
   <article class="card card-content categories-widget">
     <div class="categories-card">
@@ -439,209 +401,115 @@
   </article>
   
   
+    <article class="card card-content widescreen-archive archive-widget">
+      <div class="archive-card">
+  <div class="archive-card-header">
+    <i 
+      class="iconfont icon-wodebaobiao" 
+      style="padding-right: 2px;">
+    </i>归档
+  </div>
+  <div class="archive-card-list">
+    
+    
+    
+      
+        
+        
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+    
+      <a 
+        href="/archives/2023" 
+        class="archive-card-list-item">
+        2023
+        <span class="archive-card-list-item-badge">12</span>
+      </a>
+    
+  </div>
+</div>
+    </article>
+  
 </div>
             </aside>
             <main class="main-column">
               
-<article class="card card-content">
-  <header>
-    <h1 class="post-title">
-      c++中的int*, int *&amp;
-    </h1>
-  </header>
-  <div class="post-meta post-show-meta">
-    <time datetime="2023-11-21T05:26:00.000Z">
-      <i 
-        class="iconfont icon-calendar" 
-        style="margin-right: 2px;">
-      </i>
-      <span>2023-11-21</span>
-    </time>
-    
-      <span class="dot"></span>
-      
-        <a 
-          href="/categories/c-%E5%9F%BA%E7%A1%80/" 
-          class="post-meta-link">
-          c++基础
-        </a>
-      
-    
-    
-      <span class="dot"></span>
-      <span>326 字</span>
-    
-  </div>
+<div class="card card-content category-page-card">
+  <div class="categories-page-title">分类&nbsp-&nbspLeetCode热题100</div>
+</div>
+<div class="archive-timeline">
   
-    <div 
-      class="post-meta post-show-meta" 
-      style="margin-top: -10px;">
-      <div style="display: flex; align-items: center;">
-        <i 
-          class="iconfont icon-biaoqian" 
-          style="margin-right: 2px; font-size: 1.15rem;">
-        </i>
-        
-          
-          <a 
-            href="/tags/c/" 
-            class="post-meta-link">
-            c++
-          </a>
-        
-          
-            <span class="dot"></span>
-          
-          <a 
-            href="/tags/%E6%8C%87%E9%92%88/" 
-            class="post-meta-link">
-            指针
-          </a>
-        
+  
+    
+      <div class="archive-timeline-tag"><span>2023</span></div>
+      
+    
+    <div class="archive-timeline-item">
+      <div class="archive-timeline-post">
+        <div class="card card-content">
+          <div class="archive-timeline-post-date">2023-11-26</div>
+          <div class="archive-timeline-post-content">
+            <a 
+              href="/2023/11/26/10%EF%BC%9ALeetCode%E7%83%AD%E9%A2%981/" 
+              class="archive-timeline-post-item">
+              LeetCode热题1
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   
-  </header>
-  <div 
-    id="section" 
-    class="post-content">
-    <p>突然想起来之前本科学 C++的时候老师讲过<code>int*</code> 和<code>int *&amp;</code> 的区别，但是已经很多年没接触过了，现在回忆一下。</p>
-<p><strong>示例代码：</strong></p>
-<blockquote>
-<pre class="highlight"><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> a=<span class="number">10</span>;</span><br><span class="line">    <span class="type">int</span> &amp;b=a;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;a=&quot;</span>&lt;&lt;a&lt;&lt;endl;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;b=&quot;</span>&lt;&lt;b&lt;&lt;endl;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;&amp;a=&quot;</span>&lt;&lt;&amp;a&lt;&lt;endl;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;&amp;b=&quot;</span>&lt;&lt;&amp;b&lt;&lt;endl;</span><br><span class="line">    <span class="type">int</span> *p=&amp;a;</span><br><span class="line">    <span class="type">int</span> *&amp;pt=p;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;p=&quot;</span>&lt;&lt;p&lt;&lt;endl;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;*p=&quot;</span>&lt;&lt;*p&lt;&lt;endl;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;&amp;p=&quot;</span>&lt;&lt;&amp;p&lt;&lt;endl;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;*&amp;p=&quot;</span>&lt;&lt;*&amp;p&lt;&lt;endl;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;pt=&quot;</span>&lt;&lt;pt&lt;&lt;endl;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;&amp;pt=&quot;</span>&lt;&lt;&amp;pt&lt;&lt;endl;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;*&amp;pt=&quot;</span>&lt;&lt;*&amp;pt&lt;&lt;endl;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;*&amp;a=&quot;</span>&lt;&lt;*&amp;a&lt;&lt;endl;</span><br><span class="line">&#125;</span><br></pre>
-</blockquote>
-<ul>
-<li><p><code>int &amp;b=a;</code> 表示 b 是 a 的引用，简单来说，b 是 a 的别名，b 和 a 是同一个人，改变 b 也会改变 a，反之亦然，</p>
-</li>
-<li><p><code>int *&amp;pt=p;</code> 表示 pt 是指针 p 的引用，pt 和 p 是同一个人。</p>
-</li>
-<li><p><code>*&amp;p=p，*&amp;a=a</code> 即：*&amp;XXX 相当于取 XXX 地址里存的东西，那自然是 XXX 本身了。</p>
-</li>
-</ul>
-<p><strong>输出：</strong></p>
-<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://pic.imgdb.cn/item/655c41dfc458853aefc3dda7.jpg" class="lozad post-image"src="https://pic.imgdb.cn/item/655c41dfc458853aefc3dda7.jpg"></p>
-
-  </div>
-  <div>
-    
-      <div 
-        class="post-note note-warning copyright" 
-        style="margin-top: 42px">
-        <p>
-          <span style="font-weight: bold;">作者：</span><a 
-            target="_blank" 
-            rel="nofollow noopener noreferrer" 
-            href="/about">
-            CSTZZY
-          </a>
-        </p>
-        <p>
-          <span style="font-weight: bold;">文章链接：</span><a 
-            target="_blank" 
-            rel="nofollow noopener noreferrer" 
-            href="http://cstzzy.top/2023/11/21/5%EF%BC%9Ac++%E4%B8%AD%E7%9A%84int*,%20int%20*&amp;/">
-            http://cstzzy.top/2023/11/21/5%EF%BC%9Ac++%E4%B8%AD%E7%9A%84int*,%20int%20*&amp;/
-          </a>
-        </p>
-        <p><span style="font-weight: bold;">版权声明：</span>本博客所有文章除特别声明外，均采用<a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0 协议</a>。转载请注明出处！</p>
-      </div>
-    
-  </div>
-</article>
-<div class="nav">
-  
-    <div class="nav-item-prev">
-      <a 
-        href="/2023/11/21/6%EF%BC%9A%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/" 
-        class="nav-link">
-        <i class="iconfont icon-left nav-prev-icon"></i>
-        <div>
-          <div class="nav-label">上一篇</div>
-          
-            <div class="nav-title">排序算法总结 </div>
-          
-        </div>
-      </a>
-    </div>
-  
-  
-    <div class="nav-item-next">
-      <a 
-        href="/2023/11/18/4%EF%BC%9A%E7%BB%99%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F/" 
-        class="nav-link">
-        <div>
-          <div class="nav-label">下一篇</div>
-          
-            <div class="nav-title">搭建个人 hexo 博客（4） </div>
-          
-        </div>
-        <i class="iconfont icon-right nav-next-icon"></i>
-      </a>
-    </div>
-  
 </div>
 
-  <div 
-    class="card card-content comment-card" 
-    style="margin-top: 16px;">
-    <div class="comment-card-title">评论</div>
-    
-  <div id="vcomments"></div>
-  
-  <script>
-    loadScript("//unpkg.com/valine/dist/Valine.min.js");
-    var oldLoadVa = window.onload;
-    window.onload = function () {
-      oldLoadVa && oldLoadVa();
-      new Valine({
-        el: '#vcomments',
-        appId: 'k5SQut679NDTITKh7cWDLPA3-gzGzoHsz',
-        appKey: 'on3io9l2hCJI0dJQnRroGtyS',
-        placeholder: '欢迎交流',
-        path: window.location.pathname,
-        avatar: 'mp',
-        meta: ["nick","mail","link"],
-        pageSize: '10',
-        lang: '',
-        visitor: 'false',
-        highlight: true,
-        recordIP: false,
-        
-        
-        
-        enableQQ: 'false',
-        requiredFields: [],
-      });
-    };
-  </script>
-
-  </div>
-
-<div 
-  class="card card-content toc-card" 
-  id="mobiletoc">
-  <div class="toc-header">
-  <i 
-    class="iconfont icon-menu" 
-    style="padding-right: 2px;">
-  </i>目录
-</div>
-
-</div>
             </main>
             <aside class="right-column">
               <div class="sticky-widescreen">
   
-  
-    <article class="card card-content toc-card">
-      <div class="toc-header">
-  <i 
-    class="iconfont icon-menu" 
-    style="padding-right: 2px;">
-  </i>目录
-</div>
-
-    </article>
   
   
   <article class="card card-content">
@@ -678,6 +546,80 @@
 </div>
   </article>
   
+  
+    <article class="card card-content">
+      <div class="archive-card">
+  <div class="archive-card-header">
+    <i 
+      class="iconfont icon-wodebaobiao" 
+      style="padding-right: 2px;">
+    </i>归档
+  </div>
+  <div class="archive-card-list">
+    
+    
+    
+      
+        
+        
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+    
+      <a 
+        href="/archives/2023" 
+        class="archive-card-list-item">
+        2023
+        <span class="archive-card-list-item-badge">12</span>
+      </a>
+    
+  </div>
+</div>
+    </article>
   
 </div>
             </aside>
@@ -764,36 +706,6 @@
 </a> 
      
      
-     
-      <script>
-  var addImgLayout = function () {
-    var img = document.querySelectorAll('.post-content img')
-    var i
-    for (i = 0; i < img.length; i++) {
-      var wrapper = document.createElement('a')
-      wrapper.setAttribute('href', img[i].getAttribute('data-src'))
-      wrapper.setAttribute('aria-label', 'illustration')
-      wrapper.style.cssText =
-        'width: 100%; display: flex; justify-content: center;'
-      if (img[i].alt) wrapper.dataset.caption = img[i].alt
-      wrapper.dataset.nolink = true
-      img[i].before(wrapper)
-      wrapper.append(img[i])
-      var divWrap = document.createElement('div')
-      divWrap.classList.add('gallery')
-      wrapper.before(divWrap)
-      divWrap.append(wrapper)
-    }
-    baguetteBox.run('.gallery')
-  }
-</script>
-<script>
-  loadScript(
-    "/js/lib/lightbox/baguetteBox.min.js",
-    addImgLayout
-  )
-</script>
- 
      
      
     <script src="/js/main.js"></script> 
