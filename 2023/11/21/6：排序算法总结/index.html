@@ -49,7 +49,7 @@
         content="2023-11-21">
       <meta 
         property="og:article:modified_time" 
-        content="2023-11-23">
+        content="2023-11-26">
       <meta 
         property="og:article:author" 
         content="CSTZZY">
@@ -398,15 +398,15 @@
       </a>
     
       <a 
-        href="/tags/c/" 
-        title="c++">
-        <div class="tags-list-item">c++</div>
+        href="/tags/git/" 
+        title="git">
+        <div class="tags-list-item">git</div>
       </a>
     
       <a 
-        href="/tags/%E6%8C%87%E9%92%88/" 
-        title="指针">
-        <div class="tags-list-item">指针</div>
+        href="/tags/c/" 
+        title="c++">
+        <div class="tags-list-item">c++</div>
       </a>
     
       <a 
@@ -416,9 +416,9 @@
       </a>
     
       <a 
-        href="/tags/git/" 
-        title="git">
-        <div class="tags-list-item">git</div>
+        href="/tags/%E6%8C%87%E9%92%88/" 
+        title="指针">
+        <div class="tags-list-item">指针</div>
       </a>
     
   </div>
@@ -456,7 +456,7 @@
     
     
       <span class="dot"></span>
-      <span>243 字</span>
+      <span>482 字</span>
     
   </div>
   
@@ -499,22 +499,29 @@
 <th align="center">时间复杂度</th>
 <th align="center">算法核心思想</th>
 <th align="center">优点</th>
-<th>缺点</th>
+<th align="center">缺点</th>
 </tr>
 </thead>
 <tbody><tr>
 <td align="center">桶排序（啊哈简化版）</td>
-<td align="center">$O(m+n)$ 其中，m 为桶的个数，n 为待排序数的个数</td>
+<td align="center">$O(m+n)$ <br> 其中，m为桶的个数，n为待排序数的个数</td>
 <td align="center">比如有范围为 0-10 的数需要排序，则需要 11 个桶，每个桶 i 保存数字 i 出现的次数，然后遍历桶，按照桶 i 中存放的 i 出现的次数 k 输出 k 次 i。</td>
 <td align="center">1. 时间复杂度较小。</td>
-<td>1. 比如需要对（姓名，得分）进行排序，使用桶排序无法知道各个分数对应的姓名；</td>
+<td align="center">1. 比如需要对（姓名，得分）进行排序，使用桶排序无法知道各个分数对应的姓名；</td>
 </tr>
 <tr>
 <td align="center">冒泡排序</td>
-<td align="center">$O(n^2)$ 其中 n 为待排序数的个数</td>
+<td align="center">$O(n^2)$ <br> 其中n为待排序数的个数</td>
 <td align="center">每次比较相邻的两个元素，如果顺序错误则交换这两个元素的顺序，且每一趟仅将一个元素归位，因此如果有 n 个数进行排序，则需要进行 n-1 趟操作。</td>
 <td align="center">-</td>
-<td>1. 时间复杂度高。</td>
+<td align="center">1. 时间复杂度高。</td>
+</tr>
+<tr>
+<td align="center">快速排序</td>
+<td align="center">最大时间复杂度：$O(N^2)$ <br> 平均时间复杂度：$O(NlogN)$ <br> 其中n为待排序数的个数</td>
+<td align="center">每次以最左边的数为基准点，然后设置左右两个指针(i, j)分别指向待排序片段的最左侧和最右侧，然后先将右指针向左移动直到找到小于基准点的数或者与i相遇，再将左指针向右移动直到找到大于基准点的数或者与j相遇，然后交换i和j指向的数，重复上述过程直到i和j相遇，此时交换i指向的数与基准点，然后再对基准点左右两侧的数组片段重复上述过程，直到最终的片段只剩余一个数。</td>
+<td align="center">1. 平均时间复杂度较小； <br> 2. 空间复杂度较小，仅需要使用一个额外存储空间以进行数组元素交换。</td>
+<td align="center">-</td>
 </tr>
 </tbody></table>
 
