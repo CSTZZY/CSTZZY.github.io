@@ -52,6 +52,34 @@
       </tags>
   </entry>
   <entry>
+    <title>Git查看修改内容与仓库状态</title>
+    <url>/2023/11/27/12%EF%BC%9Agit-%E7%89%88%E6%9C%AC%E5%9B%9E%E9%80%80/</url>
+    <content><![CDATA[<h1 id="Git版本回退"><a href="#Git版本回退" class="headerlink" title="Git版本回退"></a>Git版本回退</h1><p><code>git log</code>命令显示从最近到最远的提交日志</p>
+<p>首先，Git必须知道当前版本是哪个版本，在Git中，用HEAD表示当前版本，也就是最新的提交，上一个版本就是HEAD^，上上一个版本就是HEAD^^，当然往上100个版本写100个^比较容易数不过来，所以写成HEAD~100。</p>
+<ol>
+<li>回退到上一个版本：<code>git reset --hard HEAD^</code></li>
+<li>如果我想恢复到回退前的版本呢？也可以的！只要有回退前版本的<code>commit id</code>就好了：<code>git reset --hard &lt;commit id&gt;</code></li>
+</ol>
+<p>Git的版本回退速度非常快，因为Git在内部有个指向当前版本的HEAD指针，当回退版本的时候，Git仅需要改变HEAD的指向，然后顺便把工作区的文件更新了。所以你让HEAD指向哪个版本号，你就把当前版本定位在哪。</p>
+<p>现在回退到了某个版本，关掉了电脑，第二天早上就后悔了，想恢复到新版本怎么办？找不到新版本的<code>commit id</code>怎么办？</p>
+<p>在Git中，总是有后悔药可以吃的。Git提供了一个命令<code>git reflog</code>用来记录你的每一次命令：</p>
+<pre class="highlight"><span class="line">8ddffe0 (HEAD -&gt; main) HEAD@&#123;0&#125;: reset: moving to 8ddffe0c55</span><br><span class="line">0c21810 HEAD@&#123;1&#125;: reset: moving to 0c218101</span><br><span class="line">c40f97b HEAD@&#123;2&#125;: reset: moving to HEAD^</span><br><span class="line">0c21810 HEAD@&#123;3&#125;: reset: moving to HEAD^</span><br><span class="line">8ddffe0 (HEAD -&gt; main) HEAD@&#123;4&#125;: commit: append GPL</span><br><span class="line">0c21810 HEAD@&#123;5&#125;: commit: add ds</span><br><span class="line">c40f97b HEAD@&#123;6&#125;: commit: add distributed</span><br><span class="line">3c16155 HEAD@&#123;7&#125;: commit (initial): wrote a readme file</span><br></pre>
+<p>从上述输出可以知道“append GPL”的<code>commit id</code>为8ddffe0，因此使用<code>git reset --hard 8ddffe0</code>即可。</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>现在总结一下：</p>
+<ol>
+<li>HEAD指向的版本就是当前版本，因此，Git允许我们在版本的历史之间穿梭，使用命令<code>git reset --hard commit_id</code>。</li>
+<li>穿梭前，用<code>git log</code>可以查看提交历史，以便确定要回退到哪个版本。</li>
+<li>要重返未来，用<code>git reflog</code>查看命令历史，以便确定要回到未来的哪个版本。</li>
+</ol>
+]]></content>
+      <categories>
+        <category>git</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>搭建个人hexo博客（1）</title>
     <url>/2023/11/18/1%EF%BC%9Ahexo%E5%88%9D%E7%BA%A7%E6%90%AD%E5%BB%BA%E3%80%81github%20page%E9%83%A8%E7%BD%B2%E5%8F%8A%E4%B8%AA%E4%BA%BA%E5%9F%9F%E5%90%8D%E7%BB%91%E5%AE%9A/</url>
     <content><![CDATA[<p>记录搭建 hexo 博客的相关步骤，以备后续再次使用。文章参考链接：</p>
@@ -174,15 +202,26 @@
       </tags>
   </entry>
   <entry>
-    <title>搭建个人 hexo 博客（4）</title>
-    <url>/2023/11/18/4%EF%BC%9A%E7%BB%99%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F/</url>
-    <content><![CDATA[<h2 id="参考链接：https-zhuanlan-zhihu-com-p-350704151"><a href="#参考链接：https-zhuanlan-zhihu-com-p-350704151" class="headerlink" title="参考链接：https://zhuanlan.zhihu.com/p/350704151"></a>参考链接：<a href="https://zhuanlan.zhihu.com/p/350704151">https://zhuanlan.zhihu.com/p/350704151</a></h2><p>这里使用 valine 实现评论，官方网  <a href="https://link.zhihu.com/?target=https://leancloud.cn/">https://leancloud.cn/</a></p>
-<p>进入控制台后点击左下角创建应用</p>
-<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://pic1.zhimg.com/80/v2-495635ee224900cdbc25bb5c0e8b8d08_1440w.webp" class="lozad post-image"src="https://pic1.zhimg.com/80/v2-495635ee224900cdbc25bb5c0e8b8d08_1440w.webp"></p>
-<p>应用创建好以后，进入刚刚创建的应用，选择左下角的设置&gt;应用 Key，然后就能看到你的 APP ID 和 APP Key 了</p>
-<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://pic.imgdb.cn/item/6558bc6fc458853aef47afef.jpg" class="lozad post-image"src="https://pic.imgdb.cn/item/6558bc6fc458853aef47afef.jpg"></p>
-<p>开启评论功能  <code>kaze/_config.yml</code></p>
-<pre class="highlight"><span class="line">comment:</span><br><span class="line">  enable: true</span><br><span class="line">  type: valine # valine | gitalk | livere | disqus | we recommend valine</span><br><span class="line"><span class="meta prompt_">  # </span><span class="language-bash">gitalk config details can see <span class="keyword">in</span> https://github.com/gitalk/gitalk/blob/master/readme-cn.md</span></span><br><span class="line">  valine:</span><br><span class="line">    appId: 你的appId</span><br><span class="line">    appKey: 你的appKey</span><br></pre>
+    <title>搭建个人hexo博客（3）</title>
+    <url>/2023/11/18/3%EF%BC%9A%E7%BB%99%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0RSS/</url>
+    <content><![CDATA[<h2 id="1：什么是-RSS？"><a href="#1：什么是-RSS？" class="headerlink" title="1：什么是 RSS？"></a><strong>1：什么是 RSS？</strong></h2><p>RSS 也就是订阅功能，你可以理解为类似与订阅公众号的功能，来订阅各种博客，杂志等等。</p>
+<h2 id="2：为什么要用-RSS？"><a href="#2：为什么要用-RSS？" class="headerlink" title="2：为什么要用 RSS？"></a><strong>2：为什么要用 RSS？</strong></h2><p>就如同订阅公众号一样，你对某个公众号感兴趣，你总不可能一直时不时搜索这个公众号来看它的文章吧。博客也是一样，如果你喜欢某个博主，或者某个平台的内容，你可以通过 RSS 订阅它们，然后在 RSS 阅读器上可以实时推送这些消息。现在网上的垃圾消息太多了，如果你每一天都在看这些消息中度过，漫无目的的浏览，只会让你的时间一点一点的流逝，太不值得了。如果你关注的博主每次都发的消息都是精华，而且不是每一天十几条几十条的轰炸你，那么这个博主就值得你的关注，你就可以通过 RSS 订阅他。</p>
+<p>在我的理解中，如果你不想每天都被那些没有质量的消息轰炸，只想安安静静的关注几个博主，每天看一些有质量的内容也不用太多，那么 RSS 订阅值得你的拥有。</p>
+<h2 id="3：添加-RSS-功能"><a href="#3：添加-RSS-功能" class="headerlink" title="3：添加 RSS 功能"></a><strong>3：添加 RSS 功能</strong></h2><p>先安装 RSS 插件</p>
+<pre class="highlight"><span class="line">npm i hexo-generator-feed</span><br></pre>
+
+<p>而后在你整个项目的<code>_config.yml</code>中找到 Extensions，添加：</p>
+<pre class="highlight"><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Extensions</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="comment"># Plugins: https://hexo.io/plugins/</span></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">RSS订阅</span></span><br><span class="line">plugin:</span><br><span class="line">- hexo-generator-feed</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">Feed Atom</span></span><br><span class="line">feed:</span><br><span class="line">  type: atom</span><br><span class="line">  path: atom.xml</span><br><span class="line">  limit: 20</span><br></pre>
+
+<p>这个时候你的 RSS 链接就是 域名<code>/atom.xml</code>了。</p>
+<p>所以，在主题配置文件中的这个<code>social links</code>，开启 RSS 的页面功能，这样你网站上就有那个像 wifi 一样符号的 RSS logo 了，注意空格。</p>
+<pre class="highlight"><span class="line">rss: /atom.xml</span><br></pre>
+
+<h2 id="4：如何关注-RSS？"><a href="#4：如何关注-RSS？" class="headerlink" title="4：如何关注 RSS？"></a><strong>4：如何关注 RSS？</strong></h2><p>首先，你需要一个 RSS 阅读器，在这里我推荐<code>inoreader</code>，宇宙第一 RSS 阅读器，而且中文支持的挺好。不过它没有 PC 端的程序，只有网页版，chrome 上有插件。在官网上用 google 账号或者自己注册账号登录，就可以开始你的关注之旅了。</p>
+<p>每次需要关注某个博主时，就点开他的 RSS 链接，把链接复制到<code>inoreader</code>上，就能关注了，当然，如果是比较大众化的很厉害的博主，你直接搜名字也可以的，比如每个人都非常佩服的阮一峰大师，直接在阅读器上搜索<code>阮一峰</code>，应该就能出来了。</p>
+<p>在安卓端，inoreader 也有下载，不过因为国内 google 是登录不了的，你需要在 inoreader 官网上把你的密码修改了，然后就可以用账户名和密码登录了。</p>
+<p>在 IOS 端，没用过，好像是 reader 3 可以支持 inoreader 账户，还有个 readon 也不错，可以去试试。</p>
+<p>⚠️：按照上述步骤配置后网站打不开了，最后也没找到原因。</p>
 ]]></content>
       <categories>
         <category>搭建个人hexo博客</category>
@@ -270,26 +309,15 @@
       </tags>
   </entry>
   <entry>
-    <title>搭建个人hexo博客（3）</title>
-    <url>/2023/11/18/3%EF%BC%9A%E7%BB%99%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0RSS/</url>
-    <content><![CDATA[<h2 id="1：什么是-RSS？"><a href="#1：什么是-RSS？" class="headerlink" title="1：什么是 RSS？"></a><strong>1：什么是 RSS？</strong></h2><p>RSS 也就是订阅功能，你可以理解为类似与订阅公众号的功能，来订阅各种博客，杂志等等。</p>
-<h2 id="2：为什么要用-RSS？"><a href="#2：为什么要用-RSS？" class="headerlink" title="2：为什么要用 RSS？"></a><strong>2：为什么要用 RSS？</strong></h2><p>就如同订阅公众号一样，你对某个公众号感兴趣，你总不可能一直时不时搜索这个公众号来看它的文章吧。博客也是一样，如果你喜欢某个博主，或者某个平台的内容，你可以通过 RSS 订阅它们，然后在 RSS 阅读器上可以实时推送这些消息。现在网上的垃圾消息太多了，如果你每一天都在看这些消息中度过，漫无目的的浏览，只会让你的时间一点一点的流逝，太不值得了。如果你关注的博主每次都发的消息都是精华，而且不是每一天十几条几十条的轰炸你，那么这个博主就值得你的关注，你就可以通过 RSS 订阅他。</p>
-<p>在我的理解中，如果你不想每天都被那些没有质量的消息轰炸，只想安安静静的关注几个博主，每天看一些有质量的内容也不用太多，那么 RSS 订阅值得你的拥有。</p>
-<h2 id="3：添加-RSS-功能"><a href="#3：添加-RSS-功能" class="headerlink" title="3：添加 RSS 功能"></a><strong>3：添加 RSS 功能</strong></h2><p>先安装 RSS 插件</p>
-<pre class="highlight"><span class="line">npm i hexo-generator-feed</span><br></pre>
-
-<p>而后在你整个项目的<code>_config.yml</code>中找到 Extensions，添加：</p>
-<pre class="highlight"><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Extensions</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="comment"># Plugins: https://hexo.io/plugins/</span></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">RSS订阅</span></span><br><span class="line">plugin:</span><br><span class="line">- hexo-generator-feed</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">Feed Atom</span></span><br><span class="line">feed:</span><br><span class="line">  type: atom</span><br><span class="line">  path: atom.xml</span><br><span class="line">  limit: 20</span><br></pre>
-
-<p>这个时候你的 RSS 链接就是 域名<code>/atom.xml</code>了。</p>
-<p>所以，在主题配置文件中的这个<code>social links</code>，开启 RSS 的页面功能，这样你网站上就有那个像 wifi 一样符号的 RSS logo 了，注意空格。</p>
-<pre class="highlight"><span class="line">rss: /atom.xml</span><br></pre>
-
-<h2 id="4：如何关注-RSS？"><a href="#4：如何关注-RSS？" class="headerlink" title="4：如何关注 RSS？"></a><strong>4：如何关注 RSS？</strong></h2><p>首先，你需要一个 RSS 阅读器，在这里我推荐<code>inoreader</code>，宇宙第一 RSS 阅读器，而且中文支持的挺好。不过它没有 PC 端的程序，只有网页版，chrome 上有插件。在官网上用 google 账号或者自己注册账号登录，就可以开始你的关注之旅了。</p>
-<p>每次需要关注某个博主时，就点开他的 RSS 链接，把链接复制到<code>inoreader</code>上，就能关注了，当然，如果是比较大众化的很厉害的博主，你直接搜名字也可以的，比如每个人都非常佩服的阮一峰大师，直接在阅读器上搜索<code>阮一峰</code>，应该就能出来了。</p>
-<p>在安卓端，inoreader 也有下载，不过因为国内 google 是登录不了的，你需要在 inoreader 官网上把你的密码修改了，然后就可以用账户名和密码登录了。</p>
-<p>在 IOS 端，没用过，好像是 reader 3 可以支持 inoreader 账户，还有个 readon 也不错，可以去试试。</p>
-<p>⚠️：按照上述步骤配置后网站打不开了，最后也没找到原因。</p>
+    <title>搭建个人 hexo 博客（4）</title>
+    <url>/2023/11/18/4%EF%BC%9A%E7%BB%99%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F/</url>
+    <content><![CDATA[<h2 id="参考链接：https-zhuanlan-zhihu-com-p-350704151"><a href="#参考链接：https-zhuanlan-zhihu-com-p-350704151" class="headerlink" title="参考链接：https://zhuanlan.zhihu.com/p/350704151"></a>参考链接：<a href="https://zhuanlan.zhihu.com/p/350704151">https://zhuanlan.zhihu.com/p/350704151</a></h2><p>这里使用 valine 实现评论，官方网  <a href="https://link.zhihu.com/?target=https://leancloud.cn/">https://leancloud.cn/</a></p>
+<p>进入控制台后点击左下角创建应用</p>
+<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://pic1.zhimg.com/80/v2-495635ee224900cdbc25bb5c0e8b8d08_1440w.webp" class="lozad post-image"src="https://pic1.zhimg.com/80/v2-495635ee224900cdbc25bb5c0e8b8d08_1440w.webp"></p>
+<p>应用创建好以后，进入刚刚创建的应用，选择左下角的设置&gt;应用 Key，然后就能看到你的 APP ID 和 APP Key 了</p>
+<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://pic.imgdb.cn/item/6558bc6fc458853aef47afef.jpg" class="lozad post-image"src="https://pic.imgdb.cn/item/6558bc6fc458853aef47afef.jpg"></p>
+<p>开启评论功能  <code>kaze/_config.yml</code></p>
+<pre class="highlight"><span class="line">comment:</span><br><span class="line">  enable: true</span><br><span class="line">  type: valine # valine | gitalk | livere | disqus | we recommend valine</span><br><span class="line"><span class="meta prompt_">  # </span><span class="language-bash">gitalk config details can see <span class="keyword">in</span> https://github.com/gitalk/gitalk/blob/master/readme-cn.md</span></span><br><span class="line">  valine:</span><br><span class="line">    appId: 你的appId</span><br><span class="line">    appKey: 你的appKey</span><br></pre>
 ]]></content>
       <categories>
         <category>搭建个人hexo博客</category>
@@ -396,9 +424,42 @@
       </tags>
   </entry>
   <entry>
-    <title></title>
-    <url>/2023/11/23/vx/</url>
-    <content><![CDATA[{"created_time":"2023-11-23T11:55:09Z","files":[{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"2","modified_time":"2023-11-23T12:01:59Z","name":"1：hexo初级搭建、github page部署及个人域名绑定.md","signature":"784285914990853533","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"3","modified_time":"2023-11-23T11:55:09Z","name":"2：hexo的基本配置、更换主题.md","signature":"5546498803292388765","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"4","modified_time":"2023-11-23T11:55:09Z","name":"3：给个人博客添加RSS.md","signature":"8223662518592028061","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"5","modified_time":"2023-11-23T11:55:09Z","name":"4：给个人博客添加评论系统.md","signature":"8927815552003423645","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"6","modified_time":"2023-11-23T11:55:09Z","name":"5：c++中的int*, int *&.md","signature":"1749579338025483677","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"7","modified_time":"2023-11-26T10:37:43Z","name":"6：排序算法总结.md","signature":"4749813615771467165","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T12:25:17Z","id":"12","modified_time":"2023-11-23T12:56:14Z","name":"7：git-简介.md","signature":"207324067087533","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T12:25:17Z","id":"11","modified_time":"2023-11-23T13:26:06Z","name":"8：git-创建版本库.md","signature":"8223662518592031744","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T12:25:17Z","id":"14","modified_time":"2023-11-23T14:20:53Z","name":"9：git-查看修改内容与仓库状态.md","signature":"8927815552003429748","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"17","modified_time":"2023-11-26T11:59:24Z","name":"10：LeetCode热题1.md","signature":"207324067343228","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"19","modified_time":"2023-11-26T12:38:00Z","name":"11：LeetCode热题2.md","signature":"784285914991114496","tags":[]}],"folders":[],"id":"1","modified_time":"2023-11-23T11:55:09Z","signature":"207324067085725","version":3}]]></content>
+    <title>Git创建版本库</title>
+    <url>/2023/11/23/8%EF%BC%9Agit-%E5%88%9B%E5%BB%BA%E7%89%88%E6%9C%AC%E5%BA%93/</url>
+    <content><![CDATA[<h1 id="Git创建版本库"><a href="#Git创建版本库" class="headerlink" title="Git创建版本库"></a>Git创建版本库</h1><p>版本库又名仓库，英文名repository，你可以简单理解成一个目录，这个目录里面的所有文件都可以被Git管理起来，每个文件的修改、删除，Git都能跟踪，以便任何时刻都可以追踪历史，或者在将来某个时刻可以“还原”。<br>创建一个版本库非常简单，首先，选择一个合适的地方，创建一个空目录：</p>
+<pre class="highlight"><span class="line">mkdir learngit</span><br><span class="line">cd learngit</span><br></pre>
+<p>第二步，通过git init命令把这个目录变成Git可以管理的仓库：</p>
+<pre class="highlight"><span class="line">git init</span><br></pre>
+
+<p>瞬间Git就把仓库建好了，而且告诉你是一个空的仓库（empty Git repository），细心的读者可以发现当前目录下多了一个.git的目录，这个目录是Git来跟踪管理版本库的，没事千万不要手动修改这个目录里面的文件，不然改乱了，就把Git仓库给破坏了。<br>如果你没有看到.git目录，那是因为这个目录默认是隐藏的，用ls -ah命令就可以看见。</p>
+<h2 id="把文件添加到版本库"><a href="#把文件添加到版本库" class="headerlink" title="把文件添加到版本库"></a>把文件添加到版本库</h2><p>首先这里再明确一下，所有的版本控制系统，其实只能跟踪文本文件的改动，比如TXT文件，网页，所有的程序代码等等，Git也不例外。版本控制系统可以告诉你每次的改动，比如在第5行加了一个单词“Linux”，在第8行删了一个单词“Windows”。而图片、视频这些二进制文件，虽然也能由版本控制系统管理，但没法跟踪文件的变化，只能把二进制文件每次改动串起来，也就是只知道图片从100KB改成了120KB，但到底改了啥，版本控制系统不知道，也没法知道。</p>
+<p>不幸的是，Microsoft的Word格式是二进制格式，因此，版本控制系统是没法跟踪Word文件的改动的，前面我们举的例子只是为了演示，如果要真正使用版本控制系统，就要以纯文本方式编写文件。</p>
+<p>因为文本是有编码的，比如中文有常用的GBK编码，日文有Shift_JIS编码，如果没有历史遗留问题，强烈建议使用标准的UTF-8编码，所有语言使用同一种编码，既没有冲突，又被所有平台所支持。</p>
+<p>编写一个readme.txt文件，内容如下：</p>
+<pre class="highlight"><span class="line">Git is a version control system.</span><br><span class="line">Git is free software.</span><br></pre>
+
+<p>和把大象放到冰箱需要3步相比，把一个文件放到Git仓库只需要两步。</p>
+<p>第一步，用命令git add告诉Git，把文件添加到仓库：</p>
+<pre class="highlight"><span class="line">git add readme.txt</span><br></pre>
+
+<p>执行上面的命令，没有任何显示，这就对了，Unix的哲学是“没有消息就是好消息”，说明添加成功。</p>
+<p>第二步，用命令git commit告诉Git，把文件提交到仓库：</p>
+<pre class="highlight"><span class="line">git commit -m &quot;wrote a readme file&quot;</span><br></pre>
+<p>简单解释一下git commit命令，-m后面输入的是本次提交的说明，可以输入任意内容，当然最好是有意义的，这样你就能从历史记录里方便地找到改动记录。</p>
+<p>git commit命令执行成功后会告诉你，1 file changed：1个文件被改动（我们新添加的readme.txt文件）；2 insertions：插入了两行内容（readme.txt有两行内容）。</p>
+<p>为什么Git添加文件需要add，commit一共两步呢？因为commit可以一次提交很多文件，所以你可以多次add不同的文件（到暂存区），比如：</p>
+<pre class="highlight"><span class="line">git add file1.txt</span><br><span class="line">git add file2.txt file3.txt</span><br><span class="line">git commit -m &quot;add 3 files.&quot;</span><br></pre>
+
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>初始化一个Git仓库，使用git init命令。</p>
+<p>添加文件到Git仓库，分两步：</p>
+<p>使用命令git add <file>，注意，可反复多次使用，添加多个文件；<br>使用命令git commit -m <message>，完成。</p>
+]]></content>
+      <categories>
+        <category>git</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
+      </tags>
   </entry>
   <entry>
     <title>Git查看修改内容与仓库状态</title>
@@ -452,42 +513,9 @@
       </tags>
   </entry>
   <entry>
-    <title>Git创建版本库</title>
-    <url>/2023/11/23/8%EF%BC%9Agit-%E5%88%9B%E5%BB%BA%E7%89%88%E6%9C%AC%E5%BA%93/</url>
-    <content><![CDATA[<h1 id="Git创建版本库"><a href="#Git创建版本库" class="headerlink" title="Git创建版本库"></a>Git创建版本库</h1><p>版本库又名仓库，英文名repository，你可以简单理解成一个目录，这个目录里面的所有文件都可以被Git管理起来，每个文件的修改、删除，Git都能跟踪，以便任何时刻都可以追踪历史，或者在将来某个时刻可以“还原”。<br>创建一个版本库非常简单，首先，选择一个合适的地方，创建一个空目录：</p>
-<pre class="highlight"><span class="line">mkdir learngit</span><br><span class="line">cd learngit</span><br></pre>
-<p>第二步，通过git init命令把这个目录变成Git可以管理的仓库：</p>
-<pre class="highlight"><span class="line">git init</span><br></pre>
-
-<p>瞬间Git就把仓库建好了，而且告诉你是一个空的仓库（empty Git repository），细心的读者可以发现当前目录下多了一个.git的目录，这个目录是Git来跟踪管理版本库的，没事千万不要手动修改这个目录里面的文件，不然改乱了，就把Git仓库给破坏了。<br>如果你没有看到.git目录，那是因为这个目录默认是隐藏的，用ls -ah命令就可以看见。</p>
-<h2 id="把文件添加到版本库"><a href="#把文件添加到版本库" class="headerlink" title="把文件添加到版本库"></a>把文件添加到版本库</h2><p>首先这里再明确一下，所有的版本控制系统，其实只能跟踪文本文件的改动，比如TXT文件，网页，所有的程序代码等等，Git也不例外。版本控制系统可以告诉你每次的改动，比如在第5行加了一个单词“Linux”，在第8行删了一个单词“Windows”。而图片、视频这些二进制文件，虽然也能由版本控制系统管理，但没法跟踪文件的变化，只能把二进制文件每次改动串起来，也就是只知道图片从100KB改成了120KB，但到底改了啥，版本控制系统不知道，也没法知道。</p>
-<p>不幸的是，Microsoft的Word格式是二进制格式，因此，版本控制系统是没法跟踪Word文件的改动的，前面我们举的例子只是为了演示，如果要真正使用版本控制系统，就要以纯文本方式编写文件。</p>
-<p>因为文本是有编码的，比如中文有常用的GBK编码，日文有Shift_JIS编码，如果没有历史遗留问题，强烈建议使用标准的UTF-8编码，所有语言使用同一种编码，既没有冲突，又被所有平台所支持。</p>
-<p>编写一个readme.txt文件，内容如下：</p>
-<pre class="highlight"><span class="line">Git is a version control system.</span><br><span class="line">Git is free software.</span><br></pre>
-
-<p>和把大象放到冰箱需要3步相比，把一个文件放到Git仓库只需要两步。</p>
-<p>第一步，用命令git add告诉Git，把文件添加到仓库：</p>
-<pre class="highlight"><span class="line">git add readme.txt</span><br></pre>
-
-<p>执行上面的命令，没有任何显示，这就对了，Unix的哲学是“没有消息就是好消息”，说明添加成功。</p>
-<p>第二步，用命令git commit告诉Git，把文件提交到仓库：</p>
-<pre class="highlight"><span class="line">git commit -m &quot;wrote a readme file&quot;</span><br></pre>
-<p>简单解释一下git commit命令，-m后面输入的是本次提交的说明，可以输入任意内容，当然最好是有意义的，这样你就能从历史记录里方便地找到改动记录。</p>
-<p>git commit命令执行成功后会告诉你，1 file changed：1个文件被改动（我们新添加的readme.txt文件）；2 insertions：插入了两行内容（readme.txt有两行内容）。</p>
-<p>为什么Git添加文件需要add，commit一共两步呢？因为commit可以一次提交很多文件，所以你可以多次add不同的文件（到暂存区），比如：</p>
-<pre class="highlight"><span class="line">git add file1.txt</span><br><span class="line">git add file2.txt file3.txt</span><br><span class="line">git commit -m &quot;add 3 files.&quot;</span><br></pre>
-
-<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>初始化一个Git仓库，使用git init命令。</p>
-<p>添加文件到Git仓库，分两步：</p>
-<p>使用命令git add <file>，注意，可反复多次使用，添加多个文件；<br>使用命令git commit -m <message>，完成。</p>
-]]></content>
-      <categories>
-        <category>git</category>
-      </categories>
-      <tags>
-        <tag>git</tag>
-      </tags>
+    <title></title>
+    <url>/2023/11/23/vx/</url>
+    <content><![CDATA[{"created_time":"2023-11-23T11:55:09Z","files":[{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"2","modified_time":"2023-11-23T12:01:59Z","name":"1：hexo初级搭建、github page部署及个人域名绑定.md","signature":"784285914990853533","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"3","modified_time":"2023-11-23T11:55:09Z","name":"2：hexo的基本配置、更换主题.md","signature":"5546498803292388765","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"4","modified_time":"2023-11-23T11:55:09Z","name":"3：给个人博客添加RSS.md","signature":"8223662518592028061","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"5","modified_time":"2023-11-23T11:55:09Z","name":"4：给个人博客添加评论系统.md","signature":"8927815552003423645","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"6","modified_time":"2023-11-23T11:55:09Z","name":"5：c++中的int*, int *&.md","signature":"1749579338025483677","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"7","modified_time":"2023-11-26T10:37:43Z","name":"6：排序算法总结.md","signature":"4749813615771467165","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T12:25:17Z","id":"12","modified_time":"2023-11-23T12:56:14Z","name":"7：git-简介.md","signature":"207324067087533","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T12:25:17Z","id":"11","modified_time":"2023-11-23T13:26:06Z","name":"8：git-创建版本库.md","signature":"8223662518592031744","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T12:25:17Z","id":"14","modified_time":"2023-11-23T14:20:53Z","name":"9：git-查看修改内容与仓库状态.md","signature":"8927815552003429748","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"17","modified_time":"2023-11-27T05:12:58Z","name":"10：LeetCode热题1.md","signature":"207324067343228","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"19","modified_time":"2023-11-26T12:38:00Z","name":"11：LeetCode热题2.md","signature":"784285914991114496","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T12:25:17Z","id":"21","modified_time":"2023-11-27T08:39:22Z","name":"12：git-版本回退.md","signature":"207324067418869","tags":[]}],"folders":[],"id":"1","modified_time":"2023-11-23T11:55:09Z","signature":"207324067085725","version":3}]]></content>
   </entry>
   <entry>
     <title></title>

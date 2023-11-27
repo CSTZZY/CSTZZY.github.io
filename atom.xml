@@ -6,7 +6,7 @@
   <link href="http://cstzzy.top/atom.xml" rel="self"/>
   
   <link href="http://cstzzy.top/"/>
-  <updated>2023-11-26T12:38:00.097Z</updated>
+  <updated>2023-11-27T08:39:22.671Z</updated>
   <id>http://cstzzy.top/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Git查看修改内容与仓库状态</title>
+    <link href="http://cstzzy.top/2023/11/27/12%EF%BC%9Agit-%E7%89%88%E6%9C%AC%E5%9B%9E%E9%80%80/"/>
+    <id>http://cstzzy.top/2023/11/27/12%EF%BC%9Agit-%E7%89%88%E6%9C%AC%E5%9B%9E%E9%80%80/</id>
+    <published>2023-11-27T08:28:00.000Z</published>
+    <updated>2023-11-27T08:39:22.671Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Git版本回退"><a href="#Git版本回退" class="headerlink" title="Git版本回退"></a>Git版本回退</h1><p><code>git log</code>命令显示从最近到最远的提交日志</p><p>首先，Git必须知道当前版本是哪个版本，在Git中，用HEAD表示当前版本，也就是最新的提交，上一个版本就是HEAD^，上上一个版本就是HEAD^^，当然往上100个版本写100个^比较容易数不过来，所以写成HEAD~100。</p><ol><li>回退到上一个版本：<code>git reset --hard HEAD^</code></li><li>如果我想恢复到回退前的版本呢？也可以的！只要有回退前版本的<code>commit id</code>就好了：<code>git reset --hard &lt;commit id&gt;</code></li></ol><p>Git的版本回退速度非常快，因为Git在内部有个指向当前版本的HEAD指针，当回退版本的时候，Git仅需要改变HEAD的指向，然后顺便把工作区的文件更新了。所以你让HEAD指向哪个版本号，你就把当前版本定位在哪。</p><p>现在回退到了某个版本，关掉了电脑，第二天早上就后悔了，想恢复到新版本怎么办？找不到新版本的<code>commit id</code>怎么办？</p><p>在Git中，总是有后悔药可以吃的。Git提供了一个命令<code>git reflog</code>用来记录你的每一次命令：</p><pre class="highlight"><span class="line">8ddffe0 (HEAD -&gt; main) HEAD@&#123;0&#125;: reset: moving to 8ddffe0c55</span><br><span class="line">0c21810 HEAD@&#123;1&#125;: reset: moving to 0c218101</span><br><span class="line">c40f97b HEAD@&#123;2&#125;: reset: moving to HEAD^</span><br><span class="line">0c21810 HEAD@&#123;3&#125;: reset: moving to HEAD^</span><br><span class="line">8ddffe0 (HEAD -&gt; main) HEAD@&#123;4&#125;: commit: append GPL</span><br><span class="line">0c21810 HEAD@&#123;5&#125;: commit: add ds</span><br><span class="line">c40f97b HEAD@&#123;6&#125;: commit: add distributed</span><br><span class="line">3c16155 HEAD@&#123;7&#125;: commit (initial): wrote a readme file</span><br></pre><p>从上述输出可以知道“append GPL”的<code>commit id</code>为8ddffe0，因此使用<code>git reset --hard 8ddffe0</code>即可。</p><h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>现在总结一下：</p><ol><li>HEAD指向的版本就是当前版本，因此，Git允许我们在版本的历史之间穿梭，使用命令<code>git reset --hard commit_id</code>。</li><li>穿梭前，用<code>git log</code>可以查看提交历史，以便确定要回退到哪个版本。</li><li>要重返未来，用<code>git reflog</code>查看命令历史，以便确定要回到未来的哪个版本。</li></ol>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;Git版本回退&quot;&gt;&lt;a href=&quot;#Git版本回退&quot; class=&quot;headerlink&quot; title=&quot;Git版本回退&quot;&gt;&lt;/a&gt;Git版本回退&lt;/h1&gt;&lt;p&gt;&lt;code&gt;git log&lt;/code&gt;命令显示从最近到最远的提交日志&lt;/p&gt;
+&lt;p&gt;首先，Git必</summary>
+      
+    
+    
+    
+    <category term="git" scheme="http://cstzzy.top/categories/git/"/>
+    
+    
+    <category term="git" scheme="http://cstzzy.top/tags/git/"/>
+    
+  </entry>
   
   <entry>
     <title>LeetCode热题2</title>
@@ -47,7 +72,7 @@
     <link href="http://cstzzy.top/2023/11/26/10%EF%BC%9ALeetCode%E7%83%AD%E9%A2%981/"/>
     <id>http://cstzzy.top/2023/11/26/10%EF%BC%9ALeetCode%E7%83%AD%E9%A2%981/</id>
     <published>2023-11-26T11:28:00.000Z</published>
-    <updated>2023-11-26T11:59:24.155Z</updated>
+    <updated>2023-11-27T05:12:58.624Z</updated>
     
     <content type="html"><![CDATA[<h1 id="两数之和"><a href="#两数之和" class="headerlink" title="两数之和"></a><a href="https://leetcode.cn/problems/two-sum/description/?envType=study-plan-v2&envId=top-100-liked">两数之和</a></h1><h2 id="方法一：暴力枚举"><a href="#方法一：暴力枚举" class="headerlink" title="方法一：暴力枚举"></a>方法一：暴力枚举</h2><p>思路及算法：</p><p>最容易想到的方法是枚举数组中的每一个数 x，寻找数组中是否存在 target - x。</p><p>当我们使用遍历整个数组的方式寻找 target - x 时，需要注意到每一个位于 x 之前的元素都已经和 x 匹配过，因此不需要再进行匹配。而每一个元素不能被使用两次，所以我们只需要在 x 后面的元素中寻找 target - x。</p><pre class="highlight"><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    vector&lt;int&gt; twoSum(vector&lt;int&gt;&amp; nums, int target) &#123;</span><br><span class="line">        for(int i=0;i&lt;nums.size()-1;i++)</span><br><span class="line">        &#123;</span><br><span class="line">            for(int j=i+1;j&lt;nums.size();j++)</span><br><span class="line">            &#123;</span><br><span class="line">                if((nums[i]+nums[j])==target)</span><br><span class="line">                    return &#123;i,j&#125;;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return &#123;&#125;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre><p>复杂度分析</p><p>时间复杂度：$O(N^2)$，其中N是数组中的元素数量。最坏情况下数组中任意两个数都要被匹配一次。</p><p>空间复杂度：$O(1)$。</p><h2 id="方法二：哈希表"><a href="#方法二：哈希表" class="headerlink" title="方法二：哈希表"></a>方法二：哈希表</h2><p>思路及算法：</p><p>注意到方法一的时间复杂度较高的原因是寻找 target - x 的时间复杂度过高。因此，我们需要一种更优秀的方法，能够快速寻找数组中是否存在目标元素。如果存在，我们需要找出它的索引。</p><p>使用哈希表，可以将寻找 target - x 的时间复杂度降低到从$O(N)$降低到$O(1)$。</p><p>这样我们创建一个哈希表，对于每一个 x，我们首先查询哈希表中是否存在 target - x，然后将 x 插入到哈希表中，即可保证不会让 x 和自己匹配。</p><pre class="highlight"><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    vector&lt;int&gt; twoSum(vector&lt;int&gt;&amp; nums, int target) &#123;</span><br><span class="line">        unordered_map&lt;int,int&gt; hashtable;</span><br><span class="line">        for(int i=0;i&lt;nums.size();i++)&#123;</span><br><span class="line">            auto it=hashtable.find(target-nums[i]);</span><br><span class="line">            if(it!=hashtable.end())&#123;</span><br><span class="line">                return &#123;it-&gt;second,i&#125;;</span><br><span class="line">            &#125;</span><br><span class="line">            hashtable[nums[i]]=i;</span><br><span class="line">        &#125;</span><br><span class="line">        return &#123;&#125;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre><p>注意：这里用到了C++中的容器：<a href="https://blog.csdn.net/hk2291976/article/details/51037095">unordered_map</a>。</p>]]></content>
     
@@ -146,9 +171,9 @@
     <link href="http://cstzzy.top/2023/11/23/vx/"/>
     <id>http://cstzzy.top/2023/11/23/vx/</id>
     <published>2023-11-23T11:55:09.229Z</published>
-    <updated>2023-11-26T12:38:00.098Z</updated>
+    <updated>2023-11-27T08:39:22.672Z</updated>
     
-    <content type="html"><![CDATA[{"created_time":"2023-11-23T11:55:09Z","files":[{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"2","modified_time":"2023-11-23T12:01:59Z","name":"1：hexo初级搭建、github page部署及个人域名绑定.md","signature":"784285914990853533","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"3","modified_time":"2023-11-23T11:55:09Z","name":"2：hexo的基本配置、更换主题.md","signature":"5546498803292388765","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"4","modified_time":"2023-11-23T11:55:09Z","name":"3：给个人博客添加RSS.md","signature":"8223662518592028061","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"5","modified_time":"2023-11-23T11:55:09Z","name":"4：给个人博客添加评论系统.md","signature":"8927815552003423645","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"6","modified_time":"2023-11-23T11:55:09Z","name":"5：c++中的int*, int *&.md","signature":"1749579338025483677","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"7","modified_time":"2023-11-26T10:37:43Z","name":"6：排序算法总结.md","signature":"4749813615771467165","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T12:25:17Z","id":"12","modified_time":"2023-11-23T12:56:14Z","name":"7：git-简介.md","signature":"207324067087533","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T12:25:17Z","id":"11","modified_time":"2023-11-23T13:26:06Z","name":"8：git-创建版本库.md","signature":"8223662518592031744","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T12:25:17Z","id":"14","modified_time":"2023-11-23T14:20:53Z","name":"9：git-查看修改内容与仓库状态.md","signature":"8927815552003429748","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"17","modified_time":"2023-11-26T11:59:24Z","name":"10：LeetCode热题1.md","signature":"207324067343228","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"19","modified_time":"2023-11-26T12:38:00Z","name":"11：LeetCode热题2.md","signature":"784285914991114496","tags":[]}],"folders":[],"id":"1","modified_time":"2023-11-23T11:55:09Z","signature":"207324067085725","version":3}]]></content>
+    <content type="html"><![CDATA[{"created_time":"2023-11-23T11:55:09Z","files":[{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"2","modified_time":"2023-11-23T12:01:59Z","name":"1：hexo初级搭建、github page部署及个人域名绑定.md","signature":"784285914990853533","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"3","modified_time":"2023-11-23T11:55:09Z","name":"2：hexo的基本配置、更换主题.md","signature":"5546498803292388765","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"4","modified_time":"2023-11-23T11:55:09Z","name":"3：给个人博客添加RSS.md","signature":"8223662518592028061","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"5","modified_time":"2023-11-23T11:55:09Z","name":"4：给个人博客添加评论系统.md","signature":"8927815552003423645","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"6","modified_time":"2023-11-23T11:55:09Z","name":"5：c++中的int*, int *&.md","signature":"1749579338025483677","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"7","modified_time":"2023-11-26T10:37:43Z","name":"6：排序算法总结.md","signature":"4749813615771467165","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T12:25:17Z","id":"12","modified_time":"2023-11-23T12:56:14Z","name":"7：git-简介.md","signature":"207324067087533","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T12:25:17Z","id":"11","modified_time":"2023-11-23T13:26:06Z","name":"8：git-创建版本库.md","signature":"8223662518592031744","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T12:25:17Z","id":"14","modified_time":"2023-11-23T14:20:53Z","name":"9：git-查看修改内容与仓库状态.md","signature":"8927815552003429748","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"17","modified_time":"2023-11-27T05:12:58Z","name":"10：LeetCode热题1.md","signature":"207324067343228","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"19","modified_time":"2023-11-26T12:38:00Z","name":"11：LeetCode热题2.md","signature":"784285914991114496","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T12:25:17Z","id":"21","modified_time":"2023-11-27T08:39:22Z","name":"12：git-版本回退.md","signature":"207324067418869","tags":[]}],"folders":[],"id":"1","modified_time":"2023-11-23T11:55:09Z","signature":"207324067085725","version":3}]]></content>
     
     
       
