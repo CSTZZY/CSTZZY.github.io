@@ -49,7 +49,7 @@
         content="2023-12-01">
       <meta 
         property="og:article:modified_time" 
-        content="2023-12-01">
+        content="2023-12-02">
       <meta 
         property="og:article:author" 
         content="CSTZZY">
@@ -478,7 +478,7 @@
     
     
       <span class="dot"></span>
-      <span>308 字</span>
+      <span>309 字</span>
     
   </div>
   
@@ -513,9 +513,9 @@
 <ul>
 <li><p>打开命令行cmd， 拉取 Overleaf 官方开源镜像，<a target="_blank" rel="noopener" href="https://github.com/overleaf/overleaf/wiki/Release-Notes--4.x.x">Overleaf版本参考地址</a>：</p>
 <pre class="highlight"><span class="line">docker pull sharelatex/sharelatex:4.1.6</span><br></pre>
-<p>由于国内下载比较慢，需要等待挺长时间，可以参照<a target="_blank" rel="noopener" href="https://www.cnblogs.com/Flat-White/p/17107494.html%E8%AE%BE%E7%BD%AE%E5%9B%BD%E5%86%85%E7%9A%84Docker%E6%BA%90%E3%80%82">https://www.cnblogs.com/Flat-White/p/17107494.html设置国内的Docker源。</a></p>
+<p>由于国内下载比较慢，需要等待挺长时间，可以参照 <a target="_blank" rel="noopener" href="https://www.cnblogs.com/Flat-White/p/17107494.html">https://www.cnblogs.com/Flat-White/p/17107494.html</a> 设置国内的Docker源。</p>
 </li>
-<li><p>前往 <a target="_blank" rel="noopener" href="https://github.com/overleaf/overleaf/blob/main/docker-compose.yml%E4%B8%8B%E8%BD%BD">https://github.com/overleaf/overleaf/blob/main/docker-compose.yml下载</a> docker-compose.yml 文件到本地；</p>
+<li><p>前往 <a target="_blank" rel="noopener" href="https://github.com/overleaf/overleaf/blob/main/docker-compose.yml">https://github.com/overleaf/overleaf/blob/main/docker-compose.yml</a> 下载 docker-compose.yml 文件到本地；</p>
 </li>
 <li><p>对下载下来的docker-compose.yml 进行如下修改：<br>(1): 将image: sharelatex&#x2F;sharelatex的版本修改为：</p>
 <pre class="highlight"><span class="line">image: sharelatex/sharelatex:4.1.6</span><br></pre>
@@ -523,7 +523,6 @@
  <pre class="highlight"><span class="line">mongo:</span><br><span class="line">     restart: always</span><br><span class="line">     image: mongo:4.4</span><br><span class="line">     container_name: mongo</span><br><span class="line">     command: &quot;--replSet overleaf&quot;</span><br><span class="line">     expose:</span><br><span class="line">       - 27017</span><br><span class="line">     volumes:</span><br><span class="line">       - &quot;./mongo_data:/data/db&quot;</span><br><span class="line">     healthcheck:</span><br><span class="line">       test: echo &#x27;db.stats().ok&#x27; | mongo localhost:27017/test --quiet</span><br><span class="line">       interval: 10s</span><br><span class="line">       timeout: 10s</span><br><span class="line">       retries: 5</span><br><span class="line"></span><br><span class="line"> mongoinit:</span><br><span class="line">     image: mongo:4.4</span><br><span class="line">     # this container will exit after executing the command</span><br><span class="line">     restart: &quot;no&quot;</span><br><span class="line">     depends_on:</span><br><span class="line">       mongo:</span><br><span class="line">         condition: service_healthy</span><br><span class="line">     entrypoint:</span><br><span class="line">       [</span><br><span class="line">         &quot;mongo&quot;,</span><br><span class="line">         &quot;--host&quot;,</span><br><span class="line">         &quot;mongo:27017&quot;,</span><br><span class="line">         &quot;--eval&quot;,</span><br><span class="line">         &#x27;rs.initiate(&#123; _id: &quot;overleaf&quot;, members: [ &#123; _id: 0, host: &quot;mongo:27017&quot; &#125; ] &#125;)&#x27;,</span><br><span class="line">       ]</span><br></pre></li>
 <li><p>命令行进入docker-compose.yml 文件所在目录下，然后执行：</p>
 <pre class="highlight"><span class="line">docker-compose up</span><br></pre></li>
-<li></li>
 </ul>
 <ol start="3">
 <li>通过访问<a target="_blank" rel="noopener" href="http://127.0.0.1/launchpad">http://127.0.0.1/launchpad</a> 可以配置管理员账号。</li>
