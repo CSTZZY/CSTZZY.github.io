@@ -6,7 +6,7 @@
   <link href="http://cstzzy.top/atom.xml" rel="self"/>
   
   <link href="http://cstzzy.top/"/>
-  <updated>2023-12-02T12:30:16.075Z</updated>
+  <updated>2023-12-05T13:43:31.856Z</updated>
   <id>http://cstzzy.top/</id>
   
   <author>
@@ -15,6 +15,54 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Git删除文件</title>
+    <link href="http://cstzzy.top/2023/12/05/17%EF%BC%9Agit-%E5%88%A0%E9%99%A4%E6%96%87%E4%BB%B6/"/>
+    <id>http://cstzzy.top/2023/12/05/17%EF%BC%9Agit-%E5%88%A0%E9%99%A4%E6%96%87%E4%BB%B6/</id>
+    <published>2023-12-05T13:39:00.000Z</published>
+    <updated>2023-12-05T13:43:31.856Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Git删除文件"><a href="#Git删除文件" class="headerlink" title="Git删除文件"></a>Git删除文件</h1><p>在Git中，删除也是一个修改操作，我们实战一下，先添加一个新文件test.txt到Git并且提交：</p><pre class="highlight"><span class="line">$ git add test.txt</span><br><span class="line"></span><br><span class="line">$ git commit -m &quot;add test.txt&quot;</span><br><span class="line">[master b84166e] add test.txt</span><br><span class="line"> 1 file changed, 1 insertion(+)</span><br><span class="line"> create mode 100644 test.txt</span><br></pre><p>一般情况下，你通常直接在文件管理器中把没用的文件删了，或者用rm命令删了：</p><pre class="highlight"><span class="line">$ rm test.txt</span><br></pre><p>这个时候，Git知道你删除了文件，因此，工作区和版本库就不一致了，git status命令会立刻告诉你哪些文件被删除了：</p><pre class="highlight"><span class="line">$ git status</span><br><span class="line">On branch master</span><br><span class="line">Changes not staged for commit:</span><br><span class="line">  (use &quot;git add/rm &lt;file&gt;...&quot; to update what will be committed)</span><br><span class="line">  (use &quot;git checkout -- &lt;file&gt;...&quot; to discard changes in working directory)</span><br><span class="line"></span><br><span class="line">deleted:    test.txt</span><br><span class="line"></span><br><span class="line">no changes added to commit (use &quot;git add&quot; and/or &quot;git commit -a&quot;)</span><br></pre><p>现在你有两个选择，一是确实要从版本库中删除该文件，那就用命令git rm删掉，并且git commit：</p><pre class="highlight"><span class="line">$ git rm test.txt</span><br><span class="line">rm &#x27;test.txt&#x27;</span><br><span class="line"></span><br><span class="line">$ git commit -m &quot;remove test.txt&quot;</span><br><span class="line">[master d46f35e] remove test.txt</span><br><span class="line"> 1 file changed, 1 deletion(-)</span><br><span class="line"> delete mode 100644 test.txt</span><br></pre><p>现在，文件就从版本库中被删除了。</p><p>另一种情况是删错了，因为版本库里还有呢，所以可以很轻松地把误删的文件恢复到最新版本：</p><pre class="highlight"><span class="line">$ git checkout -- test.txt</span><br></pre><p>git checkout其实是用版本库里的版本替换工作区的版本，无论工作区是修改还是删除，都可以“一键还原”。</p><p> 注意：从来没有被添加（git add）到版本库就被删除的文件，是无法恢复的！</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;Git删除文件&quot;&gt;&lt;a href=&quot;#Git删除文件&quot; class=&quot;headerlink&quot; title=&quot;Git删除文件&quot;&gt;&lt;/a&gt;Git删除文件&lt;/h1&gt;&lt;p&gt;在Git中，删除也是一个修改操作，我们实战一下，先添加一个新文件test.txt到Git并且提交：&lt;</summary>
+      
+    
+    
+    
+    <category term="git" scheme="http://cstzzy.top/categories/git/"/>
+    
+    
+    <category term="git" scheme="http://cstzzy.top/tags/git/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Git管理与撤销修改</title>
+    <link href="http://cstzzy.top/2023/12/05/16%EF%BC%9Agit-%E7%AE%A1%E7%90%86%E4%B8%8E%E6%92%A4%E9%94%80%E4%BF%AE%E6%94%B9/"/>
+    <id>http://cstzzy.top/2023/12/05/16%EF%BC%9Agit-%E7%AE%A1%E7%90%86%E4%B8%8E%E6%92%A4%E9%94%80%E4%BF%AE%E6%94%B9/</id>
+    <published>2023-12-05T13:10:00.000Z</published>
+    <updated>2023-12-05T13:35:03.113Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Git管理与撤销修改"><a href="#Git管理与撤销修改" class="headerlink" title="Git管理与撤销修改"></a>Git管理与撤销修改</h1><h2 id="管理修改"><a href="#管理修改" class="headerlink" title="管理修改"></a>管理修改</h2><p>为什么Git比其他版本控制系统设计得优秀，因为Git跟踪并管理的是修改，而非文件。</p><p>你会问，什么是修改？比如你新增了一行，这就是一个修改，删除了一行，也是一个修改，更改了某些字符，也是一个修改，删了一些又加了一些，也是一个修改，甚至创建一个新文件，也算一个修改。</p><p>进行实验验证git管理的是修改：</p><p>第一次修改 -&gt; git add -&gt; 第二次修改 -&gt; git commit</p><p>按照上述过程操作，你会发现第二次的修改并没有被提交，这是因为Git管理的是修改，当你用git add命令后，在工作区的第一次修改被放入暂存区，准备提交，但是，在工作区的第二次修改并没有放入暂存区，所以，git commit只负责把暂存区的修改提交了，也就是第一次的修改被提交了，第二次的修改不会被提交。</p><p>那怎么提交第二次修改呢？你可以继续git add再git commit，也可以别着急提交第一次修改，先git add第二次修改，再git commit，就相当于把两次修改合并后一块提交了：</p><p>第一次修改 -&gt; git add -&gt; 第二次修改 -&gt; git add -&gt; git commit</p><h2 id="撤销修改"><a href="#撤销修改" class="headerlink" title="撤销修改"></a>撤销修改</h2><p>场景1：当你改乱了工作区某个文件的内容，想直接丢弃工作区的修改时（没有进行git add 和 git commit），用命令git checkout – file。</p><p>场景2：当你不但改乱了工作区某个文件的内容，还添加到了暂存区时（仅使用了git add），想丢弃修改，分两步，第一步用命令git reset HEAD <file>，就回到了场景1，第二步按场景1操作。</p><p>场景3：已经提交了不合适的修改到版本库时（已经使用了git add 和 git commit），想要撤销本次提交，参考版本回退一节，不过前提是没有推送到远程库。</p><p>注意：</p><ul><li>当使用git status查看git状态时，如果提示Changes not staged for commit，这表示没有使用git add，如果提示Changes to be committed，这表明已经使用git add将修改添加到了暂存取但没有使用git commit提交修改。</li><li>先手动删除文件，然后使用git rm <file>和git add<file>效果是一样的。</li></ul>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;Git管理与撤销修改&quot;&gt;&lt;a href=&quot;#Git管理与撤销修改&quot; class=&quot;headerlink&quot; title=&quot;Git管理与撤销修改&quot;&gt;&lt;/a&gt;Git管理与撤销修改&lt;/h1&gt;&lt;h2 id=&quot;管理修改&quot;&gt;&lt;a href=&quot;#管理修改&quot; class=&quot;head</summary>
+      
+    
+    
+    
+    <category term="git" scheme="http://cstzzy.top/categories/git/"/>
+    
+    
+    <category term="git" scheme="http://cstzzy.top/tags/git/"/>
+    
+  </entry>
   
   <entry>
     <title>Git工作区和暂存区</title>
@@ -247,9 +295,9 @@
     <link href="http://cstzzy.top/2023/11/23/vx/"/>
     <id>http://cstzzy.top/2023/11/23/vx/</id>
     <published>2023-11-23T11:55:09.229Z</published>
-    <updated>2023-12-02T12:30:16.077Z</updated>
+    <updated>2023-12-05T13:43:31.857Z</updated>
     
-    <content type="html"><![CDATA[{"created_time":"2023-11-23T11:55:09Z","files":[{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"2","modified_time":"2023-11-23T12:01:59Z","name":"1：hexo初级搭建、github page部署及个人域名绑定.md","signature":"784285914990853533","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"3","modified_time":"2023-11-23T11:55:09Z","name":"2：hexo的基本配置、更换主题.md","signature":"5546498803292388765","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"4","modified_time":"2023-11-23T11:55:09Z","name":"3：给个人博客添加RSS.md","signature":"8223662518592028061","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"5","modified_time":"2023-11-23T11:55:09Z","name":"4：给个人博客添加评论系统.md","signature":"8927815552003423645","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"6","modified_time":"2023-11-23T11:55:09Z","name":"5：c++中的int*, int *&.md","signature":"1749579338025483677","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"7","modified_time":"2023-11-26T10:37:43Z","name":"6：排序算法总结.md","signature":"4749813615771467165","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T12:25:17Z","id":"12","modified_time":"2023-11-23T12:56:14Z","name":"7：git-简介.md","signature":"207324067087533","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T12:25:17Z","id":"11","modified_time":"2023-11-28T13:45:39Z","name":"8：git-创建版本库.md","signature":"8223662518592031744","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T12:25:17Z","id":"14","modified_time":"2023-11-23T14:20:53Z","name":"9：git-查看修改内容与仓库状态.md","signature":"8927815552003429748","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"17","modified_time":"2023-11-27T05:12:58Z","name":"10：LeetCode热题1.md","signature":"207324067343228","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"19","modified_time":"2023-11-26T12:38:00Z","name":"11：LeetCode热题2.md","signature":"784285914991114496","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T12:25:17Z","id":"21","modified_time":"2023-12-01T12:15:29Z","name":"12：git-版本回退.md","signature":"207324067418869","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"24","modified_time":"2023-12-02T03:15:41Z","name":"13：在本地部署Overleaf.md","signature":"207324067778492","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"26","modified_time":"2023-12-02T10:06:58Z","name":"14：LeetCode热题3.md","signature":"207324067854486","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T12:25:17Z","id":"28","modified_time":"2023-12-02T12:30:16Z","name":"15：git-工作区和暂存区.md","signature":"784285914991630751","tags":[]}],"folders":[],"id":"1","modified_time":"2023-11-23T11:55:09Z","signature":"207324067085725","version":3}]]></content>
+    <content type="html"><![CDATA[{"created_time":"2023-11-23T11:55:09Z","files":[{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"2","modified_time":"2023-11-23T12:01:59Z","name":"1：hexo初级搭建、github page部署及个人域名绑定.md","signature":"784285914990853533","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"3","modified_time":"2023-11-23T11:55:09Z","name":"2：hexo的基本配置、更换主题.md","signature":"5546498803292388765","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"4","modified_time":"2023-11-23T11:55:09Z","name":"3：给个人博客添加RSS.md","signature":"8223662518592028061","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"5","modified_time":"2023-11-23T11:55:09Z","name":"4：给个人博客添加评论系统.md","signature":"8927815552003423645","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"6","modified_time":"2023-11-23T11:55:09Z","name":"5：c++中的int*, int *&.md","signature":"1749579338025483677","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"7","modified_time":"2023-11-26T10:37:43Z","name":"6：排序算法总结.md","signature":"4749813615771467165","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T12:25:17Z","id":"12","modified_time":"2023-11-23T12:56:14Z","name":"7：git-简介.md","signature":"207324067087533","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T12:25:17Z","id":"11","modified_time":"2023-11-28T13:45:39Z","name":"8：git-创建版本库.md","signature":"8223662518592031744","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T12:25:17Z","id":"14","modified_time":"2023-11-23T14:20:53Z","name":"9：git-查看修改内容与仓库状态.md","signature":"8927815552003429748","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"17","modified_time":"2023-11-27T05:12:58Z","name":"10：LeetCode热题1.md","signature":"207324067343228","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"19","modified_time":"2023-11-26T12:38:00Z","name":"11：LeetCode热题2.md","signature":"784285914991114496","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T12:25:17Z","id":"21","modified_time":"2023-12-01T12:15:29Z","name":"12：git-版本回退.md","signature":"207324067418869","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"24","modified_time":"2023-12-02T03:15:41Z","name":"13：在本地部署Overleaf.md","signature":"207324067778492","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"26","modified_time":"2023-12-02T10:06:58Z","name":"14：LeetCode热题3.md","signature":"207324067854486","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T12:25:17Z","id":"28","modified_time":"2023-12-02T12:30:16Z","name":"15：git-工作区和暂存区.md","signature":"784285914991630751","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T12:25:17Z","id":"30","modified_time":"2023-12-05T13:35:03Z","name":"16：git-管理与撤销修改.md","signature":"207324068127003","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T12:25:17Z","id":"32","modified_time":"2023-12-05T13:43:31Z","name":"17：git-删除文件.md","signature":"784285914991896562","tags":[]}],"folders":[],"id":"1","modified_time":"2023-11-23T11:55:09Z","signature":"207324067085725","version":3}]]></content>
     
     
       
