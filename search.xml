@@ -56,6 +56,39 @@
       </tags>
   </entry>
   <entry>
+    <title>在本地部署Overleaf</title>
+    <url>/2023/12/01/13%EF%BC%9A%E5%9C%A8%E6%9C%AC%E5%9C%B0%E9%83%A8%E7%BD%B2Overleaf/</url>
+    <content><![CDATA[<p>一直在用在线的Overleaf，最近想要在本地部署一个Overleaf。</p>
+<ol>
+<li>安装Docker Desktop </br> <a href="https://www.docker.com/products/docker-desktop/">Docker官网</a> </br> <a href="https://blog.csdn.net/rongtaoup/article/details/131263235">安装教程</a></li>
+<li>使用Docker安装Overleaf</li>
+</ol>
+<ul>
+<li><p>打开命令行cmd， 拉取 Overleaf 官方开源镜像，<a href="https://github.com/overleaf/overleaf/wiki/Release-Notes--4.x.x">Overleaf版本参考地址</a>：</p>
+<pre class="highlight"><span class="line">docker pull sharelatex/sharelatex:4.1.6</span><br></pre>
+<p>由于国内下载比较慢，需要等待挺长时间，可以参照 <a href="https://www.cnblogs.com/Flat-White/p/17107494.html">https://www.cnblogs.com/Flat-White/p/17107494.html</a> 设置国内的Docker源。</p>
+</li>
+<li><p>前往 <a href="https://github.com/overleaf/overleaf/blob/main/docker-compose.yml">https://github.com/overleaf/overleaf/blob/main/docker-compose.yml</a> 下载 docker-compose.yml 文件到本地；</p>
+</li>
+<li><p>对下载下来的docker-compose.yml 进行如下修改：<br>(1): 将image: sharelatex&#x2F;sharelatex的版本修改为：</p>
+<pre class="highlight"><span class="line">image: sharelatex/sharelatex:4.1.6</span><br></pre>
+<p>(2): 将mongo部分的配置修改成如下所示：</p>
+ <pre class="highlight"><span class="line">mongo:</span><br><span class="line">     restart: always</span><br><span class="line">     image: mongo:4.4</span><br><span class="line">     container_name: mongo</span><br><span class="line">     command: &quot;--replSet overleaf&quot;</span><br><span class="line">     expose:</span><br><span class="line">       - 27017</span><br><span class="line">     volumes:</span><br><span class="line">       - &quot;./mongo_data:/data/db&quot;</span><br><span class="line">     healthcheck:</span><br><span class="line">       test: echo &#x27;db.stats().ok&#x27; | mongo localhost:27017/test --quiet</span><br><span class="line">       interval: 10s</span><br><span class="line">       timeout: 10s</span><br><span class="line">       retries: 5</span><br><span class="line"></span><br><span class="line"> mongoinit:</span><br><span class="line">     image: mongo:4.4</span><br><span class="line">     # this container will exit after executing the command</span><br><span class="line">     restart: &quot;no&quot;</span><br><span class="line">     depends_on:</span><br><span class="line">       mongo:</span><br><span class="line">         condition: service_healthy</span><br><span class="line">     entrypoint:</span><br><span class="line">       [</span><br><span class="line">         &quot;mongo&quot;,</span><br><span class="line">         &quot;--host&quot;,</span><br><span class="line">         &quot;mongo:27017&quot;,</span><br><span class="line">         &quot;--eval&quot;,</span><br><span class="line">         &#x27;rs.initiate(&#123; _id: &quot;overleaf&quot;, members: [ &#123; _id: 0, host: &quot;mongo:27017&quot; &#125; ] &#125;)&#x27;,</span><br><span class="line">       ]</span><br></pre></li>
+<li><p>命令行进入docker-compose.yml 文件所在目录下，然后执行：</p>
+<pre class="highlight"><span class="line">docker-compose up</span><br></pre></li>
+</ul>
+<ol start="3">
+<li>通过访问<a href="http://127.0.0.1/launchpad">http://127.0.0.1/launchpad</a> 可以配置管理员账号。</li>
+</ol>
+]]></content>
+      <categories>
+        <category>Overleaf</category>
+      </categories>
+      <tags>
+        <tag>Overleaf</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>LeetCode热题2</title>
     <url>/2023/11/26/11%EF%BC%9ALeetCode%E7%83%AD%E9%A2%982/</url>
     <content><![CDATA[<h1 id="字母异位词分组"><a href="#字母异位词分组" class="headerlink" title="字母异位词分组"></a><a href="https://leetcode.cn/problems/group-anagrams/?envType=study-plan-v2&envId=top-100-liked">字母异位词分组</a></h1><p>前言<br>两个字符串互为字母异位词，当且仅当两个字符串包含的字母相同。同一组字母异位词中的字符串具备相同点，可以使用相同点作为一组字母异位词的标志，使用哈希表存储每一组字母异位词，哈希表的键为一组字母异位词的标志，哈希表的值为一组字母异位词列表。</p>
@@ -77,6 +110,132 @@
       <tags>
         <tag>c++</tag>
         <tag>LeetCode热题100</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Git工作区和暂存区</title>
+    <url>/2023/12/02/15%EF%BC%9Agit-%E5%B7%A5%E4%BD%9C%E5%8C%BA%E5%92%8C%E6%9A%82%E5%AD%98%E5%8C%BA/</url>
+    <content><![CDATA[<h1 id="Git工作区和暂存区"><a href="#Git工作区和暂存区" class="headerlink" title="Git工作区和暂存区"></a>Git工作区和暂存区</h1><p>Git和其他版本控制系统如SVN的一个不同之处就是有暂存区的概念。<br>工作区（Working Directory）：就是你在电脑里能看到的目录。<br>版本库（Repository）：工作区有一个隐藏目录.git，这个不算工作区，而是Git的版本库。<br>Git的版本库里存了很多东西，其中最重要的就是称为stage（或者叫index）的暂存区，还有Git为我们自动创建的第一个分支master，以及指向master的一个指针叫HEAD。<br>下图可以形象的解释<code>git add</code>和<code>git commit</code>的作用：<br><img src="/vx_images/269463611626088" alt="0" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/vx_images/269463611626088" class="lozad post-image"><br>把文件往Git版本库里添加的时候，是分两步执行的：<br>第一步是用git add把文件添加进去，实际上就是把文件修改添加到暂存区；<br>第二步是用git commit提交更改，实际上就是把暂存区的所有内容提交到当前分支。<br>因为我们创建Git版本库时，Git自动为我们创建了唯一一个master分支，所以，现在，git commit就是往master分支上提交更改。<br>你可以简单理解为，需要提交的文件修改通通放到暂存区，然后，一次性提交暂存区的所有修改。</p>
+]]></content>
+      <categories>
+        <category>git</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>LeetCode热题3</title>
+    <url>/2023/12/02/14%EF%BC%9ALeetCode%E7%83%AD%E9%A2%983/</url>
+    <content><![CDATA[<h1 id="最长连续序列"><a href="#最长连续序列" class="headerlink" title="最长连续序列"></a><a href="https://leetcode.cn/problems/longest-consecutive-sequence/?envType=study-plan-v2&envId=top-100-liked">最长连续序列</a></h1><p>首先介绍一开始我自己的想的方法，然后再介绍官方题解。</p>
+<h2 id="方法一：我的方法"><a href="#方法一：我的方法" class="headerlink" title="方法一：我的方法"></a>方法一：我的方法</h2><p>思路及算法：</p>
+<p>首先对数组进行排序，并去重，然后从第一个元素向后匹配，注意：每个数仅遍历1次，下一次匹配的起点为当前匹配的终点的后一个元素。如果不算排序加去重的时间复杂度，那么这个方法的时间复杂度刚好为$O(N)$。</p>
+<pre class="highlight"><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int longestConsecutive(vector&lt;int&gt;&amp; nums) &#123;</span><br><span class="line">        if(nums.size()==0)</span><br><span class="line">            return 0;</span><br><span class="line">        sort(nums.begin(),nums.end());</span><br><span class="line">        unique(nums.begin(),nums.end());</span><br><span class="line">        int res=1;</span><br><span class="line">        int temp=1;</span><br><span class="line">        for(int i=0;i&lt;nums.size()-1;i++)&#123;</span><br><span class="line">            while(i&lt;(nums.size()-1)&amp;&amp;(nums[i+1]==(nums[i]+1)))&#123;</span><br><span class="line">                temp++;</span><br><span class="line">                i++;</span><br><span class="line">            &#125;</span><br><span class="line">            if(temp&gt;res)</span><br><span class="line">                res=temp;</span><br><span class="line">            temp=1;</span><br><span class="line">        &#125;</span><br><span class="line">        return res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre>
+
+<h2 id="方法二：哈希表"><a href="#方法二：哈希表" class="headerlink" title="方法二：哈希表"></a>方法二：哈希表</h2><p>由于我们要枚举的数 x 一定是在数组中不存在前驱数 x−1 的，不然按照上面的分析我们会从 x−1 开始尝试匹配，因此我们每次在哈希表中检查是否存在 x−1 即能判断是否需要跳过了。</p>
+<pre class="highlight"><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int longestConsecutive(vector&lt;int&gt;&amp; nums) &#123;</span><br><span class="line">        unordered_set&lt;int&gt; num_set;</span><br><span class="line">        for(int num:nums)&#123;</span><br><span class="line">            num_set.insert(num);</span><br><span class="line">        &#125;</span><br><span class="line">        int res=0;</span><br><span class="line">        for(int num:num_set)&#123;</span><br><span class="line">            if(!num_set.count(num-1))&#123;</span><br><span class="line">                int cur_num=num;</span><br><span class="line">                int temp=1;</span><br><span class="line">                while(num_set.count(cur_num+1))&#123;</span><br><span class="line">                    cur_num++;</span><br><span class="line">                    temp++;</span><br><span class="line">                &#125;</span><br><span class="line">                if(temp&gt;res)</span><br><span class="line">                    res=temp;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre>
+
+<p>这个方法的运行时间为128ms，而我的方法运行时间只有80ms。</p>
+<p>注意：在leetcode中提交带有数组下标是否越界判断的语句时，要先判断arr[i] &lt; arr[i+1]，再判断(i+1)&lt;&#x3D;len，这里i+1可能已经越界了，会导致此错误。<br>参考链接： <a href="https://blog.csdn.net/adoge_/article/details/129072054">https://blog.csdn.net/adoge_/article/details/129072054</a></p>
+]]></content>
+      <categories>
+        <category>LeetCode热题100</category>
+      </categories>
+      <tags>
+        <tag>c++</tag>
+        <tag>LeetCode热题100</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Git删除文件</title>
+    <url>/2023/12/05/17%EF%BC%9Agit-%E5%88%A0%E9%99%A4%E6%96%87%E4%BB%B6/</url>
+    <content><![CDATA[<h1 id="Git删除文件"><a href="#Git删除文件" class="headerlink" title="Git删除文件"></a>Git删除文件</h1><p>在Git中，删除也是一个修改操作，我们实战一下，先添加一个新文件test.txt到Git并且提交：</p>
+<pre class="highlight"><span class="line">$ git add test.txt</span><br><span class="line"></span><br><span class="line">$ git commit -m &quot;add test.txt&quot;</span><br><span class="line">[master b84166e] add test.txt</span><br><span class="line"> 1 file changed, 1 insertion(+)</span><br><span class="line"> create mode 100644 test.txt</span><br></pre>
+
+<p>一般情况下，你通常直接在文件管理器中把没用的文件删了，或者用rm命令删了：</p>
+<pre class="highlight"><span class="line">$ rm test.txt</span><br></pre>
+
+<p>这个时候，Git知道你删除了文件，因此，工作区和版本库就不一致了，git status命令会立刻告诉你哪些文件被删除了：</p>
+<pre class="highlight"><span class="line">$ git status</span><br><span class="line">On branch master</span><br><span class="line">Changes not staged for commit:</span><br><span class="line">  (use &quot;git add/rm &lt;file&gt;...&quot; to update what will be committed)</span><br><span class="line">  (use &quot;git checkout -- &lt;file&gt;...&quot; to discard changes in working directory)</span><br><span class="line"></span><br><span class="line">	deleted:    test.txt</span><br><span class="line"></span><br><span class="line">no changes added to commit (use &quot;git add&quot; and/or &quot;git commit -a&quot;)</span><br></pre>
+
+<p>现在你有两个选择，一是确实要从版本库中删除该文件，那就用命令git rm删掉，并且git commit：</p>
+<pre class="highlight"><span class="line">$ git rm test.txt</span><br><span class="line">rm &#x27;test.txt&#x27;</span><br><span class="line"></span><br><span class="line">$ git commit -m &quot;remove test.txt&quot;</span><br><span class="line">[master d46f35e] remove test.txt</span><br><span class="line"> 1 file changed, 1 deletion(-)</span><br><span class="line"> delete mode 100644 test.txt</span><br></pre>
+
+<p>现在，文件就从版本库中被删除了。</p>
+<p>另一种情况是删错了，因为版本库里还有呢，所以可以很轻松地把误删的文件恢复到最新版本：</p>
+<pre class="highlight"><span class="line">$ git checkout -- test.txt</span><br></pre>
+<p>git checkout其实是用版本库里的版本替换工作区的版本，无论工作区是修改还是删除，都可以“一键还原”。</p>
+<p> 注意：从来没有被添加（git add）到版本库就被删除的文件，是无法恢复的！</p>
+]]></content>
+      <categories>
+        <category>git</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Git管理与撤销修改</title>
+    <url>/2023/12/05/16%EF%BC%9Agit-%E7%AE%A1%E7%90%86%E4%B8%8E%E6%92%A4%E9%94%80%E4%BF%AE%E6%94%B9/</url>
+    <content><![CDATA[<h1 id="Git管理与撤销修改"><a href="#Git管理与撤销修改" class="headerlink" title="Git管理与撤销修改"></a>Git管理与撤销修改</h1><h2 id="管理修改"><a href="#管理修改" class="headerlink" title="管理修改"></a>管理修改</h2><p>为什么Git比其他版本控制系统设计得优秀，因为Git跟踪并管理的是修改，而非文件。</p>
+<p>你会问，什么是修改？比如你新增了一行，这就是一个修改，删除了一行，也是一个修改，更改了某些字符，也是一个修改，删了一些又加了一些，也是一个修改，甚至创建一个新文件，也算一个修改。</p>
+<p>进行实验验证git管理的是修改：</p>
+<p>第一次修改 -&gt; git add -&gt; 第二次修改 -&gt; git commit</p>
+<p>按照上述过程操作，你会发现第二次的修改并没有被提交，这是因为Git管理的是修改，当你用git add命令后，在工作区的第一次修改被放入暂存区，准备提交，但是，在工作区的第二次修改并没有放入暂存区，所以，git commit只负责把暂存区的修改提交了，也就是第一次的修改被提交了，第二次的修改不会被提交。</p>
+<p>那怎么提交第二次修改呢？你可以继续git add再git commit，也可以别着急提交第一次修改，先git add第二次修改，再git commit，就相当于把两次修改合并后一块提交了：</p>
+<p>第一次修改 -&gt; git add -&gt; 第二次修改 -&gt; git add -&gt; git commit</p>
+<h2 id="撤销修改"><a href="#撤销修改" class="headerlink" title="撤销修改"></a>撤销修改</h2><p>场景1：当你改乱了工作区某个文件的内容，想直接丢弃工作区的修改时（没有进行git add 和 git commit），用命令git checkout – file。</p>
+<p>场景2：当你不但改乱了工作区某个文件的内容，还添加到了暂存区时（仅使用了git add），想丢弃修改，分两步，第一步用命令git reset HEAD &lt;file&gt;，就回到了场景1，第二步按场景1操作。</p>
+<p>场景3：已经提交了不合适的修改到版本库时（已经使用了git add 和 git commit），想要撤销本次提交，参考版本回退一节，不过前提是没有推送到远程库。</p>
+<p>注意：</p>
+<ul>
+<li>当使用git status查看git状态时，如果提示Changes not staged for commit，这表示没有使用git add，如果提示Changes to be committed，这表明已经使用git add将修改添加到了暂存取但没有使用git commit提交修改。</li>
+<li>先手动删除文件，然后使用git rm &lt;file&gt;和git add &lt;file&gt;效果是一样的。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>git</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Git远程仓库</title>
+    <url>/2023/12/06/18%EF%BC%9Agit-%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93/</url>
+    <content><![CDATA[<h1 id="Git远程仓库"><a href="#Git远程仓库" class="headerlink" title="Git远程仓库"></a>Git远程仓库</h1><p>为什么GitHub需要SSH Key呢？因为GitHub需要识别出你推送的提交确实是你推送的，而不是别人冒充的，而Git支持SSH协议，所以，GitHub只要知道了你的公钥，就可以确认只有你自己才能推送。</p>
+<p>当然，GitHub允许你添加多个Key。假定你有若干电脑，你一会儿在公司提交，一会儿在家里提交，只要把每台电脑的Key都添加到GitHub，就可以在每台电脑上往GitHub推送了。</p>
+<p>最后友情提示，在GitHub上免费托管的Git仓库，任何人都可以看到喔（但只有你自己才能改）。所以，不要把敏感信息放进去。</p>
+<p>现在的情景是，你已经在本地创建了一个Git仓库后，又想在GitHub创建一个Git仓库，并且让这两个仓库进行远程同步，这样，GitHub上的仓库既可以作为备份，又可以让其他人通过该仓库来协作，真是一举多得。</p>
+<ul>
+<li>在GitHub中创建一个名为learngit的仓库；</li>
+<li>在<mark>本地的learngit仓库</mark>下运行命令： <pre class="highlight"><span class="line">$ git remote add origin https://github.com/CSTZZY/learngit.git</span><br></pre>
+添加后，远程库的名字就是origin，这是Git默认的叫法，也可以改成别的，但是origin这个名字一看就知道是远程库。</li>
+<li>把本地库的所有内容推送到远程库上：<pre class="highlight"><span class="line">git push -u origin main</span><br></pre>
+把本地库的内容推送到远程，用git push命令，实际上是把当前分支master推送到远程。</li>
+</ul>
+<p>由于远程库是空的，我们第一次推送master分支时，加上了-u参数，Git不但会把本地的master分支内容推送的远程新的master分支，还会把本地的master分支和远程的master分支关联起来，在以后的推送或者拉取时就可以简化命令。</p>
+<ul>
+<li>从现在起，只要本地作了提交，就可以通过命令：<pre class="highlight"><span class="line">git push -u origin main</span><br></pre>
+把本地master分支的最新修改推送至GitHub，现在，你就拥有了真正的分布式版本库！</li>
+</ul>
+<p>如果你想删除远程库，可以先使用：<code>git remote -v</code>查看远程库的信息，然后根据远程库的名称使用<code>git remote rm origin</code>删除远程库。</p>
+<p><strong>注意：此处的“删除”其实是解除了本地和远程的绑定关系，并不是物理上删除了远程库。远程库本身并没有任何改动。要真正删除远程库，需要登录到GitHub，在后台页面找到删除按钮再删除。</strong></p>
+<p>以上内容为先有本地库，后有远程库时，怎么关联远程库。<br>现在，假设我们从零开发，那么最好的方式是先创建远程库，然后，从远程库克隆。</p>
+<p>首先，登陆GitHub，创建一个新的仓库，名字叫gitskills，并勾选Initialize this repository with a README。</p>
+<p>下一步是用命令git clone克隆一个本地库：</p>
+<pre class="highlight"><span class="line">git clone git@github.com:CSTZZY/gitskills.git</span><br><span class="line">或者</span><br><span class="line">git clone https://github.com/CSTZZY/gitskills.git</span><br></pre>
+
+<p>GitHub给出的地址不止一个。实际上，Git支持多种协议，<a href="mailto:&#x67;&#x69;&#x74;&#64;&#x67;&#x69;&#116;&#x68;&#117;&#98;&#x2e;&#x63;&#111;&#x6d;">&#x67;&#x69;&#x74;&#64;&#x67;&#x69;&#116;&#x68;&#117;&#98;&#x2e;&#x63;&#111;&#x6d;</a>:CSTZZY&#x2F;gitskills.git使用ssh，但也可以使用https（如：<a href="https://github.com/CSTZZY/gitskills.git%EF%BC%89%E7%AD%89%E5%85%B6%E4%BB%96%E5%8D%8F%E8%AE%AE%E3%80%82">https://github.com/CSTZZY/gitskills.git）等其他协议。</a></p>
+<p>使用https除了速度慢以外，还有个最大的麻烦是每次推送都必须输入口令，但是在某些只开放http端口的公司内部就无法使用ssh协议而只能用https。</p>
+<p>Git支持多种协议，包括https，但ssh协议速度最快。</p>
+<p>这里对git push的讲解不是很全面，可以参考：<a href="https://blog.csdn.net/qq_37049311/article/details/127932396">https://blog.csdn.net/qq_37049311&#x2F;article&#x2F;details&#x2F;127932396</a>。</p>
+]]></content>
+      <categories>
+        <category>git</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
       </tags>
   </entry>
   <entry>
@@ -199,6 +358,67 @@
       </categories>
       <tags>
         <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Git分支管理</title>
+    <url>/2023/12/06/19%EF%BC%9Agit-%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/</url>
+    <content><![CDATA[<h1 id="Git分支管理"><a href="#Git分支管理" class="headerlink" title="Git分支管理"></a>Git分支管理</h1><p>分支在实际中有什么用呢？假设你准备开发一个新功能，但是需要两周才能完成，第一周你写了50%的代码，如果立刻提交，由于代码还没写完，不完整的代码库会导致别人不能干活了。如果等代码全部写完再一次提交，又存在丢失每天进度的巨大风险。</p>
+<p>现在有了分支，就不用怕了。你创建了一个属于你自己的分支，别人看不到，还继续在原来的分支上正常工作，而你在自己的分支上干活，想提交就提交，直到开发完毕后，再一次性合并到原来的分支上，这样，既安全，又不影响别人工作。</p>
+<p>创建与合并分支的示意图见：<a href="https://www.liaoxuefeng.com/wiki/896043488029600/900003767775424#0">创建与合并分支</a></p>
+<p>Git鼓励大量使用分支：</p>
+<p>查看分支：git branch</p>
+<p>创建分支：git branch <name></p>
+<p>切换分支：git checkout <name>或者git switch <name></p>
+<p>创建+切换分支：git checkout -b <name>或者git switch -c <name></p>
+<p>合并某分支到当前分支：git merge <name></p>
+<p>删除分支：git branch -d <name></p>
+<p>因为创建、合并和删除分支非常快，所以Git鼓励你使用分支完成某个任务，合并后再删掉分支，这和直接在master分支上工作效果是一样的，但过程更安全。</p>
+<p>当Git无法自动合并分支时，就必须首先解决冲突。解决冲突后，再提交，合并完成。</p>
+<p>解决冲突就是把Git合并失败的文件手动编辑为我们希望的内容，再提交。</p>
+<p>用git log –graph命令可以看到分支合并图。</p>
+<p>Git分支十分强大，在团队开发中应该充分应用。</p>
+<p>合并分支时，加上–no-ff参数就可以用普通模式合并，合并后的历史有分支，能看出来曾经做过合并，而fast forward合并就看不出来曾经做过合并。</p>
+<p><strong><a href="https://www.liaoxuefeng.com/wiki/896043488029600/900388704535136#0">Bug分支</a></strong></p>
+<p>修复bug时，我们会通过创建新的bug分支进行修复，然后合并，最后删除；</p>
+<p>当手头工作没有完成时，先把工作现场git stash一下，然后去修复bug，修复后，再git stash pop，回到工作现场；</p>
+<p>在master分支上修复的bug，想要合并到当前dev分支，可以用git cherry-pick <commit>命令，把bug提交的修改“复制”到当前分支，避免重复劳动。</p>
+<p><a href="https://www.liaoxuefeng.com/wiki/896043488029600/900394246995648">Feature分支</a></p>
+<p>开发一个新feature，最好新建一个分支；</p>
+<p>如果要丢弃一个没有被合并过的分支，可以通过git branch -D <name>强行删除。</p>
+<p><a href="https://www.liaoxuefeng.com/wiki/896043488029600/900375748016320">多人协作</a></p>
+<p>多人协作的工作模式通常是这样：</p>
+<p>首先，可以试图用git push origin <branch-name>推送自己的修改；</p>
+<p>如果推送失败，则因为远程分支比你的本地更新，需要先用git pull试图合并；</p>
+<p>如果合并有冲突，则解决冲突，并在本地提交；</p>
+<p>没有冲突或者解决掉冲突后，再用git push origin <branch-name>推送就能成功！</p>
+<p>如果git pull提示no tracking information，则说明本地分支和远程分支的链接关系没有创建，用命令git branch –set-upstream-to <branch-name> origin&#x2F;<branch-name>。</p>
+<p>这就是多人协作的工作模式，一旦熟悉了，就非常简单。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>查看远程库信息，使用git remote -v；</p>
+<p>本地新建的分支如果不推送到远程，对其他人就是不可见的；</p>
+<p>从本地推送分支，使用git push origin branch-name，如果推送失败，先用git pull抓取远程的新提交；</p>
+<p>在本地创建和远程分支对应的分支，使用git checkout -b branch-name origin&#x2F;branch-name，本地和远程分支的名称最好一致；</p>
+<p>建立本地分支和远程分支的关联，使用git branch –set-upstream branch-name origin&#x2F;branch-name；</p>
+<p>从远程抓取分支，使用git pull，如果有冲突，要先处理冲突。</p>
+<p>注意：</p>
+<ul>
+<li>在进行<code>git pull</code>时可能会出现error: insufficient permission for adding an object to repository database .git&#x2F;objects，可参考<a href="https://blog.csdn.net/menglishuigui/article/details/123548275">此链接</a>解决。</li>
+<li>进行<code>git pull</code>时会输出以下提示：<pre class="highlight"><span class="line">hint: You have divergent branches and need to specify how to reconcile them.</span><br><span class="line">hint: You can do so by running one of the following commands sometime before</span><br><span class="line">hint: your next pull:</span><br><span class="line">hint: </span><br><span class="line">hint:   git config pull.rebase false  # merge</span><br><span class="line">hint:   git config pull.rebase true   # rebase</span><br><span class="line">hint:   git config pull.ff only       # fast-forward only</span><br><span class="line">hint: </span><br><span class="line">hint: You can replace &quot;git config&quot; with &quot;git config --global&quot; to set a default</span><br><span class="line">hint: preference for all repositories. You can also pass --rebase, --no-rebase,</span><br><span class="line">hint: or --ff-only on the command line to override the configured default per</span><br><span class="line">hint: invocation.</span><br></pre>
+改为使用<code>git config pull.rebase false</code>，再<code>git pull</code>即可。</li>
+</ul>
+<p><a href="https://www.liaoxuefeng.com/wiki/896043488029600/1216289527823648">Rebase</a>没太看懂举的例子，但是直到rebase操作的作用。</p>
+<ul>
+<li><p>rebase操作可以把本地未push的分叉提交历史整理成直线；</p>
+</li>
+<li><p>rebase的目的是使得我们在查看历史提交的变化时更容易，因为分叉的提交需要三方对比。</p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>git</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
       </tags>
   </entry>
   <entry>
@@ -463,6 +683,16 @@
       </tags>
   </entry>
   <entry>
+    <title></title>
+    <url>/2023/11/23/vx_notebook/vx_notebook/</url>
+    <content><![CDATA[{"attachment_folder":"vx_attachments","config_mgr":"vx.vnotex","created_time":"2023-11-23T11:55:09Z","description":"myblog","extra_configs":{},"history":[],"image_folder":"vx_images","name":"_posts","tag_graph":"","version":3,"version_controller":"dummy.vnotex"}]]></content>
+  </entry>
+  <entry>
+    <title></title>
+    <url>/2023/11/23/vx/</url>
+    <content><![CDATA[{"created_time":"2023-11-23T11:55:09Z","files":[{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"2","modified_time":"2023-11-23T12:01:59Z","name":"1：hexo初级搭建、github page部署及个人域名绑定.md","signature":"784285914990853533","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"3","modified_time":"2023-11-23T11:55:09Z","name":"2：hexo的基本配置、更换主题.md","signature":"5546498803292388765","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"4","modified_time":"2023-11-23T11:55:09Z","name":"3：给个人博客添加RSS.md","signature":"8223662518592028061","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"5","modified_time":"2023-11-23T11:55:09Z","name":"4：给个人博客添加评论系统.md","signature":"8927815552003423645","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"6","modified_time":"2023-11-23T11:55:09Z","name":"5：c++中的int*, int *&.md","signature":"1749579338025483677","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"7","modified_time":"2023-11-26T10:37:43Z","name":"6：排序算法总结.md","signature":"4749813615771467165","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T12:25:17Z","id":"12","modified_time":"2023-11-23T12:56:14Z","name":"7：git-简介.md","signature":"207324067087533","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T12:25:17Z","id":"11","modified_time":"2023-11-28T13:45:39Z","name":"8：git-创建版本库.md","signature":"8223662518592031744","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T12:25:17Z","id":"14","modified_time":"2023-11-23T14:20:53Z","name":"9：git-查看修改内容与仓库状态.md","signature":"8927815552003429748","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"17","modified_time":"2023-11-27T05:12:58Z","name":"10：LeetCode热题1.md","signature":"207324067343228","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"19","modified_time":"2023-11-26T12:38:00Z","name":"11：LeetCode热题2.md","signature":"784285914991114496","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T12:25:17Z","id":"21","modified_time":"2023-12-01T12:15:29Z","name":"12：git-版本回退.md","signature":"207324067418869","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"24","modified_time":"2023-12-02T03:15:41Z","name":"13：在本地部署Overleaf.md","signature":"207324067778492","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"26","modified_time":"2023-12-02T10:06:58Z","name":"14：LeetCode热题3.md","signature":"207324067854486","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T12:25:17Z","id":"28","modified_time":"2023-12-02T12:30:16Z","name":"15：git-工作区和暂存区.md","signature":"784285914991630751","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T12:25:17Z","id":"30","modified_time":"2023-12-06T01:03:27Z","name":"16：git-管理与撤销修改.md","signature":"207324068127003","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T12:25:17Z","id":"32","modified_time":"2023-12-05T13:43:31Z","name":"17：git-删除文件.md","signature":"784285914991896562","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T12:25:17Z","id":"34","modified_time":"2023-12-06T11:50:59Z","name":"18：git-远程仓库.md","signature":"207324068199273","tags":[]},{"attachment_folder":"238732412626092","created_time":"2023-11-23T12:25:17Z","id":"36","modified_time":"2023-12-08T07:23:27Z","name":"19：git-分支管理.md","signature":"784285914991976579","tags":[]}],"folders":[],"id":"1","modified_time":"2023-11-23T11:55:09Z","signature":"207324067085725","version":3}]]></content>
+  </entry>
+  <entry>
     <title>Git查看修改内容与仓库状态</title>
     <url>/2023/11/23/9%EF%BC%9Agit-%E6%9F%A5%E7%9C%8B%E4%BF%AE%E6%94%B9%E5%86%85%E5%AE%B9%E4%B8%8E%E4%BB%93%E5%BA%93%E7%8A%B6%E6%80%81/</url>
     <content><![CDATA[<h1 id="Git查看修改内容与仓库状态"><a href="#Git查看修改内容与仓库状态" class="headerlink" title="Git查看修改内容与仓库状态"></a>Git查看修改内容与仓库状态</h1><p>我们已经成功地添加并提交了一个readme.txt文件，现在，是时候继续工作了，于是，我们继续修改readme.txt文件（在第一行插入单词”distributed”），改成如下内容：</p>
@@ -505,137 +735,6 @@
 <li>如果git status告诉你有文件被修改过，用git diff可以查看修改内容。</li>
 <li>上述例子仅展示了使用git add跟踪一个文件，还可以继续使用git add命令添加要跟踪的文件，之后如果修改了多个跟踪文件，则使用git diff时会分别显示各个文件的diff。</li>
 </ol>
-]]></content>
-      <categories>
-        <category>git</category>
-      </categories>
-      <tags>
-        <tag>git</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title></title>
-    <url>/2023/11/23/vx/</url>
-    <content><![CDATA[{"created_time":"2023-11-23T11:55:09Z","files":[{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"2","modified_time":"2023-11-23T12:01:59Z","name":"1：hexo初级搭建、github page部署及个人域名绑定.md","signature":"784285914990853533","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"3","modified_time":"2023-11-23T11:55:09Z","name":"2：hexo的基本配置、更换主题.md","signature":"5546498803292388765","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"4","modified_time":"2023-11-23T11:55:09Z","name":"3：给个人博客添加RSS.md","signature":"8223662518592028061","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"5","modified_time":"2023-11-23T11:55:09Z","name":"4：给个人博客添加评论系统.md","signature":"8927815552003423645","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"6","modified_time":"2023-11-23T11:55:09Z","name":"5：c++中的int*, int *&.md","signature":"1749579338025483677","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"7","modified_time":"2023-11-26T10:37:43Z","name":"6：排序算法总结.md","signature":"4749813615771467165","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T12:25:17Z","id":"12","modified_time":"2023-11-23T12:56:14Z","name":"7：git-简介.md","signature":"207324067087533","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T12:25:17Z","id":"11","modified_time":"2023-11-28T13:45:39Z","name":"8：git-创建版本库.md","signature":"8223662518592031744","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T12:25:17Z","id":"14","modified_time":"2023-11-23T14:20:53Z","name":"9：git-查看修改内容与仓库状态.md","signature":"8927815552003429748","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"17","modified_time":"2023-11-27T05:12:58Z","name":"10：LeetCode热题1.md","signature":"207324067343228","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"19","modified_time":"2023-11-26T12:38:00Z","name":"11：LeetCode热题2.md","signature":"784285914991114496","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T12:25:17Z","id":"21","modified_time":"2023-12-01T12:15:29Z","name":"12：git-版本回退.md","signature":"207324067418869","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"24","modified_time":"2023-12-02T03:15:41Z","name":"13：在本地部署Overleaf.md","signature":"207324067778492","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"26","modified_time":"2023-12-02T10:06:58Z","name":"14：LeetCode热题3.md","signature":"207324067854486","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T12:25:17Z","id":"28","modified_time":"2023-12-02T12:30:16Z","name":"15：git-工作区和暂存区.md","signature":"784285914991630751","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T12:25:17Z","id":"30","modified_time":"2023-12-05T13:35:03Z","name":"16：git-管理与撤销修改.md","signature":"207324068127003","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T12:25:17Z","id":"32","modified_time":"2023-12-05T13:43:31Z","name":"17：git-删除文件.md","signature":"784285914991896562","tags":[]}],"folders":[],"id":"1","modified_time":"2023-11-23T11:55:09Z","signature":"207324067085725","version":3}]]></content>
-  </entry>
-  <entry>
-    <title></title>
-    <url>/2023/11/23/vx_notebook/vx_notebook/</url>
-    <content><![CDATA[{"attachment_folder":"vx_attachments","config_mgr":"vx.vnotex","created_time":"2023-11-23T11:55:09Z","description":"myblog","extra_configs":{},"history":[],"image_folder":"vx_images","name":"_posts","tag_graph":"","version":3,"version_controller":"dummy.vnotex"}]]></content>
-  </entry>
-  <entry>
-    <title>在本地部署Overleaf</title>
-    <url>/2023/12/01/13%EF%BC%9A%E5%9C%A8%E6%9C%AC%E5%9C%B0%E9%83%A8%E7%BD%B2Overleaf/</url>
-    <content><![CDATA[<p>一直在用在线的Overleaf，最近想要在本地部署一个Overleaf。</p>
-<ol>
-<li>安装Docker Desktop </br> <a href="https://www.docker.com/products/docker-desktop/">Docker官网</a> </br> <a href="https://blog.csdn.net/rongtaoup/article/details/131263235">安装教程</a></li>
-<li>使用Docker安装Overleaf</li>
-</ol>
-<ul>
-<li><p>打开命令行cmd， 拉取 Overleaf 官方开源镜像，<a href="https://github.com/overleaf/overleaf/wiki/Release-Notes--4.x.x">Overleaf版本参考地址</a>：</p>
-<pre class="highlight"><span class="line">docker pull sharelatex/sharelatex:4.1.6</span><br></pre>
-<p>由于国内下载比较慢，需要等待挺长时间，可以参照 <a href="https://www.cnblogs.com/Flat-White/p/17107494.html">https://www.cnblogs.com/Flat-White/p/17107494.html</a> 设置国内的Docker源。</p>
-</li>
-<li><p>前往 <a href="https://github.com/overleaf/overleaf/blob/main/docker-compose.yml">https://github.com/overleaf/overleaf/blob/main/docker-compose.yml</a> 下载 docker-compose.yml 文件到本地；</p>
-</li>
-<li><p>对下载下来的docker-compose.yml 进行如下修改：<br>(1): 将image: sharelatex&#x2F;sharelatex的版本修改为：</p>
-<pre class="highlight"><span class="line">image: sharelatex/sharelatex:4.1.6</span><br></pre>
-<p>(2): 将mongo部分的配置修改成如下所示：</p>
- <pre class="highlight"><span class="line">mongo:</span><br><span class="line">     restart: always</span><br><span class="line">     image: mongo:4.4</span><br><span class="line">     container_name: mongo</span><br><span class="line">     command: &quot;--replSet overleaf&quot;</span><br><span class="line">     expose:</span><br><span class="line">       - 27017</span><br><span class="line">     volumes:</span><br><span class="line">       - &quot;./mongo_data:/data/db&quot;</span><br><span class="line">     healthcheck:</span><br><span class="line">       test: echo &#x27;db.stats().ok&#x27; | mongo localhost:27017/test --quiet</span><br><span class="line">       interval: 10s</span><br><span class="line">       timeout: 10s</span><br><span class="line">       retries: 5</span><br><span class="line"></span><br><span class="line"> mongoinit:</span><br><span class="line">     image: mongo:4.4</span><br><span class="line">     # this container will exit after executing the command</span><br><span class="line">     restart: &quot;no&quot;</span><br><span class="line">     depends_on:</span><br><span class="line">       mongo:</span><br><span class="line">         condition: service_healthy</span><br><span class="line">     entrypoint:</span><br><span class="line">       [</span><br><span class="line">         &quot;mongo&quot;,</span><br><span class="line">         &quot;--host&quot;,</span><br><span class="line">         &quot;mongo:27017&quot;,</span><br><span class="line">         &quot;--eval&quot;,</span><br><span class="line">         &#x27;rs.initiate(&#123; _id: &quot;overleaf&quot;, members: [ &#123; _id: 0, host: &quot;mongo:27017&quot; &#125; ] &#125;)&#x27;,</span><br><span class="line">       ]</span><br></pre></li>
-<li><p>命令行进入docker-compose.yml 文件所在目录下，然后执行：</p>
-<pre class="highlight"><span class="line">docker-compose up</span><br></pre></li>
-</ul>
-<ol start="3">
-<li>通过访问<a href="http://127.0.0.1/launchpad">http://127.0.0.1/launchpad</a> 可以配置管理员账号。</li>
-</ol>
-]]></content>
-      <categories>
-        <category>Overleaf</category>
-      </categories>
-      <tags>
-        <tag>Overleaf</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>LeetCode热题3</title>
-    <url>/2023/12/02/14%EF%BC%9ALeetCode%E7%83%AD%E9%A2%983/</url>
-    <content><![CDATA[<h1 id="最长连续序列"><a href="#最长连续序列" class="headerlink" title="最长连续序列"></a><a href="https://leetcode.cn/problems/longest-consecutive-sequence/?envType=study-plan-v2&envId=top-100-liked">最长连续序列</a></h1><p>首先介绍一开始我自己的想的方法，然后再介绍官方题解。</p>
-<h2 id="方法一：我的方法"><a href="#方法一：我的方法" class="headerlink" title="方法一：我的方法"></a>方法一：我的方法</h2><p>思路及算法：</p>
-<p>首先对数组进行排序，并去重，然后从第一个元素向后匹配，注意：每个数仅遍历1次，下一次匹配的起点为当前匹配的终点的后一个元素。如果不算排序加去重的时间复杂度，那么这个方法的时间复杂度刚好为$O(N)$。</p>
-<pre class="highlight"><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int longestConsecutive(vector&lt;int&gt;&amp; nums) &#123;</span><br><span class="line">        if(nums.size()==0)</span><br><span class="line">            return 0;</span><br><span class="line">        sort(nums.begin(),nums.end());</span><br><span class="line">        unique(nums.begin(),nums.end());</span><br><span class="line">        int res=1;</span><br><span class="line">        int temp=1;</span><br><span class="line">        for(int i=0;i&lt;nums.size()-1;i++)&#123;</span><br><span class="line">            while(i&lt;(nums.size()-1)&amp;&amp;(nums[i+1]==(nums[i]+1)))&#123;</span><br><span class="line">                temp++;</span><br><span class="line">                i++;</span><br><span class="line">            &#125;</span><br><span class="line">            if(temp&gt;res)</span><br><span class="line">                res=temp;</span><br><span class="line">            temp=1;</span><br><span class="line">        &#125;</span><br><span class="line">        return res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre>
-
-<h2 id="方法二：哈希表"><a href="#方法二：哈希表" class="headerlink" title="方法二：哈希表"></a>方法二：哈希表</h2><p>由于我们要枚举的数 x 一定是在数组中不存在前驱数 x−1 的，不然按照上面的分析我们会从 x−1 开始尝试匹配，因此我们每次在哈希表中检查是否存在 x−1 即能判断是否需要跳过了。</p>
-<pre class="highlight"><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int longestConsecutive(vector&lt;int&gt;&amp; nums) &#123;</span><br><span class="line">        unordered_set&lt;int&gt; num_set;</span><br><span class="line">        for(int num:nums)&#123;</span><br><span class="line">            num_set.insert(num);</span><br><span class="line">        &#125;</span><br><span class="line">        int res=0;</span><br><span class="line">        for(int num:num_set)&#123;</span><br><span class="line">            if(!num_set.count(num-1))&#123;</span><br><span class="line">                int cur_num=num;</span><br><span class="line">                int temp=1;</span><br><span class="line">                while(num_set.count(cur_num+1))&#123;</span><br><span class="line">                    cur_num++;</span><br><span class="line">                    temp++;</span><br><span class="line">                &#125;</span><br><span class="line">                if(temp&gt;res)</span><br><span class="line">                    res=temp;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre>
-
-<p>这个方法的运行时间为128ms，而我的方法运行时间只有80ms。</p>
-<p>注意：在leetcode中提交带有数组下标是否越界判断的语句时，要先判断arr[i] &lt; arr[i+1]，再判断(i+1)&lt;&#x3D;len，这里i+1可能已经越界了，会导致此错误。<br>参考链接： <a href="https://blog.csdn.net/adoge_/article/details/129072054">https://blog.csdn.net/adoge_/article/details/129072054</a></p>
-]]></content>
-      <categories>
-        <category>LeetCode热题100</category>
-      </categories>
-      <tags>
-        <tag>c++</tag>
-        <tag>LeetCode热题100</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Git工作区和暂存区</title>
-    <url>/2023/12/02/15%EF%BC%9Agit-%E5%B7%A5%E4%BD%9C%E5%8C%BA%E5%92%8C%E6%9A%82%E5%AD%98%E5%8C%BA/</url>
-    <content><![CDATA[<h1 id="Git工作区和暂存区"><a href="#Git工作区和暂存区" class="headerlink" title="Git工作区和暂存区"></a>Git工作区和暂存区</h1><p>Git和其他版本控制系统如SVN的一个不同之处就是有暂存区的概念。<br>工作区（Working Directory）：就是你在电脑里能看到的目录。<br>版本库（Repository）：工作区有一个隐藏目录.git，这个不算工作区，而是Git的版本库。<br>Git的版本库里存了很多东西，其中最重要的就是称为stage（或者叫index）的暂存区，还有Git为我们自动创建的第一个分支master，以及指向master的一个指针叫HEAD。<br>下图可以形象的解释<code>git add</code>和<code>git commit</code>的作用：<br><img src="/vx_images/269463611626088" alt="0" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/vx_images/269463611626088" class="lozad post-image"><br>把文件往Git版本库里添加的时候，是分两步执行的：<br>第一步是用git add把文件添加进去，实际上就是把文件修改添加到暂存区；<br>第二步是用git commit提交更改，实际上就是把暂存区的所有内容提交到当前分支。<br>因为我们创建Git版本库时，Git自动为我们创建了唯一一个master分支，所以，现在，git commit就是往master分支上提交更改。<br>你可以简单理解为，需要提交的文件修改通通放到暂存区，然后，一次性提交暂存区的所有修改。</p>
-]]></content>
-      <categories>
-        <category>git</category>
-      </categories>
-      <tags>
-        <tag>git</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Git管理与撤销修改</title>
-    <url>/2023/12/05/16%EF%BC%9Agit-%E7%AE%A1%E7%90%86%E4%B8%8E%E6%92%A4%E9%94%80%E4%BF%AE%E6%94%B9/</url>
-    <content><![CDATA[<h1 id="Git管理与撤销修改"><a href="#Git管理与撤销修改" class="headerlink" title="Git管理与撤销修改"></a>Git管理与撤销修改</h1><h2 id="管理修改"><a href="#管理修改" class="headerlink" title="管理修改"></a>管理修改</h2><p>为什么Git比其他版本控制系统设计得优秀，因为Git跟踪并管理的是修改，而非文件。</p>
-<p>你会问，什么是修改？比如你新增了一行，这就是一个修改，删除了一行，也是一个修改，更改了某些字符，也是一个修改，删了一些又加了一些，也是一个修改，甚至创建一个新文件，也算一个修改。</p>
-<p>进行实验验证git管理的是修改：</p>
-<p>第一次修改 -&gt; git add -&gt; 第二次修改 -&gt; git commit</p>
-<p>按照上述过程操作，你会发现第二次的修改并没有被提交，这是因为Git管理的是修改，当你用git add命令后，在工作区的第一次修改被放入暂存区，准备提交，但是，在工作区的第二次修改并没有放入暂存区，所以，git commit只负责把暂存区的修改提交了，也就是第一次的修改被提交了，第二次的修改不会被提交。</p>
-<p>那怎么提交第二次修改呢？你可以继续git add再git commit，也可以别着急提交第一次修改，先git add第二次修改，再git commit，就相当于把两次修改合并后一块提交了：</p>
-<p>第一次修改 -&gt; git add -&gt; 第二次修改 -&gt; git add -&gt; git commit</p>
-<h2 id="撤销修改"><a href="#撤销修改" class="headerlink" title="撤销修改"></a>撤销修改</h2><p>场景1：当你改乱了工作区某个文件的内容，想直接丢弃工作区的修改时（没有进行git add 和 git commit），用命令git checkout – file。</p>
-<p>场景2：当你不但改乱了工作区某个文件的内容，还添加到了暂存区时（仅使用了git add），想丢弃修改，分两步，第一步用命令git reset HEAD <file>，就回到了场景1，第二步按场景1操作。</p>
-<p>场景3：已经提交了不合适的修改到版本库时（已经使用了git add 和 git commit），想要撤销本次提交，参考版本回退一节，不过前提是没有推送到远程库。</p>
-<p>注意：</p>
-<ul>
-<li>当使用git status查看git状态时，如果提示Changes not staged for commit，这表示没有使用git add，如果提示Changes to be committed，这表明已经使用git add将修改添加到了暂存取但没有使用git commit提交修改。</li>
-<li>先手动删除文件，然后使用git rm <file>和git add<file>效果是一样的。</li>
-</ul>
-]]></content>
-      <categories>
-        <category>git</category>
-      </categories>
-      <tags>
-        <tag>git</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Git删除文件</title>
-    <url>/2023/12/05/17%EF%BC%9Agit-%E5%88%A0%E9%99%A4%E6%96%87%E4%BB%B6/</url>
-    <content><![CDATA[<h1 id="Git删除文件"><a href="#Git删除文件" class="headerlink" title="Git删除文件"></a>Git删除文件</h1><p>在Git中，删除也是一个修改操作，我们实战一下，先添加一个新文件test.txt到Git并且提交：</p>
-<pre class="highlight"><span class="line">$ git add test.txt</span><br><span class="line"></span><br><span class="line">$ git commit -m &quot;add test.txt&quot;</span><br><span class="line">[master b84166e] add test.txt</span><br><span class="line"> 1 file changed, 1 insertion(+)</span><br><span class="line"> create mode 100644 test.txt</span><br></pre>
-
-<p>一般情况下，你通常直接在文件管理器中把没用的文件删了，或者用rm命令删了：</p>
-<pre class="highlight"><span class="line">$ rm test.txt</span><br></pre>
-
-<p>这个时候，Git知道你删除了文件，因此，工作区和版本库就不一致了，git status命令会立刻告诉你哪些文件被删除了：</p>
-<pre class="highlight"><span class="line">$ git status</span><br><span class="line">On branch master</span><br><span class="line">Changes not staged for commit:</span><br><span class="line">  (use &quot;git add/rm &lt;file&gt;...&quot; to update what will be committed)</span><br><span class="line">  (use &quot;git checkout -- &lt;file&gt;...&quot; to discard changes in working directory)</span><br><span class="line"></span><br><span class="line">	deleted:    test.txt</span><br><span class="line"></span><br><span class="line">no changes added to commit (use &quot;git add&quot; and/or &quot;git commit -a&quot;)</span><br></pre>
-
-<p>现在你有两个选择，一是确实要从版本库中删除该文件，那就用命令git rm删掉，并且git commit：</p>
-<pre class="highlight"><span class="line">$ git rm test.txt</span><br><span class="line">rm &#x27;test.txt&#x27;</span><br><span class="line"></span><br><span class="line">$ git commit -m &quot;remove test.txt&quot;</span><br><span class="line">[master d46f35e] remove test.txt</span><br><span class="line"> 1 file changed, 1 deletion(-)</span><br><span class="line"> delete mode 100644 test.txt</span><br></pre>
-
-<p>现在，文件就从版本库中被删除了。</p>
-<p>另一种情况是删错了，因为版本库里还有呢，所以可以很轻松地把误删的文件恢复到最新版本：</p>
-<pre class="highlight"><span class="line">$ git checkout -- test.txt</span><br></pre>
-<p>git checkout其实是用版本库里的版本替换工作区的版本，无论工作区是修改还是删除，都可以“一键还原”。</p>
-<p> 注意：从来没有被添加（git add）到版本库就被删除的文件，是无法恢复的！</p>
 ]]></content>
       <categories>
         <category>git</category>
