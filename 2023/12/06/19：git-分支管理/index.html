@@ -301,7 +301,7 @@
   <a 
     class="author-posts-count" 
     href="/archives">
-    <span>21</span>
+    <span>26</span>
     <span>文章</span>
   </a>
   <a 
@@ -355,7 +355,7 @@
       <a href="/categories/git/">
         <div class="categories-list-item">
           git
-          <span class="categories-list-item-badge">9</span>
+          <span class="categories-list-item-badge">14</span>
         </div>
       </a>
     
@@ -478,7 +478,7 @@
     
     
       <span class="dot"></span>
-      <span>1.2k 字</span>
+      <span>1.3k 字</span>
     
   </div>
   
@@ -544,9 +544,14 @@
 <p>从远程抓取分支，使用git pull，如果有冲突，要先处理冲突。</p>
 <p>注意：</p>
 <ul>
-<li>在进行<code>git pull</code>时可能会出现error: insufficient permission for adding an object to repository database .git&#x2F;objects，可参考<a target="_blank" rel="noopener" href="https://blog.csdn.net/menglishuigui/article/details/123548275">此链接</a>解决。</li>
-<li>进行<code>git pull</code>时会输出以下提示：<pre class="highlight"><span class="line">hint: You have divergent branches and need to specify how to reconcile them.</span><br><span class="line">hint: You can do so by running one of the following commands sometime before</span><br><span class="line">hint: your next pull:</span><br><span class="line">hint: </span><br><span class="line">hint:   git config pull.rebase false  # merge</span><br><span class="line">hint:   git config pull.rebase true   # rebase</span><br><span class="line">hint:   git config pull.ff only       # fast-forward only</span><br><span class="line">hint: </span><br><span class="line">hint: You can replace &quot;git config&quot; with &quot;git config --global&quot; to set a default</span><br><span class="line">hint: preference for all repositories. You can also pass --rebase, --no-rebase,</span><br><span class="line">hint: or --ff-only on the command line to override the configured default per</span><br><span class="line">hint: invocation.</span><br></pre>
-改为使用<code>git config pull.rebase false</code>，再<code>git pull</code>即可。</li>
+<li><p>在进行<code>git pull</code>时可能会出现error: insufficient permission for adding an object to repository database .git&#x2F;objects，可参考<a target="_blank" rel="noopener" href="https://blog.csdn.net/menglishuigui/article/details/123548275">此链接</a>解决。</p>
+</li>
+<li><p>进行<code>git pull</code>时会输出以下提示：</p>
+<pre class="highlight"><span class="line">hint: You have divergent branches and need to specify how to reconcile them.</span><br><span class="line">hint: You can do so by running one of the following commands sometime before</span><br><span class="line">hint: your next pull:</span><br><span class="line">hint: </span><br><span class="line">hint:   git config pull.rebase false  # merge</span><br><span class="line">hint:   git config pull.rebase true   # rebase</span><br><span class="line">hint:   git config pull.ff only       # fast-forward only</span><br><span class="line">hint: </span><br><span class="line">hint: You can replace &quot;git config&quot; with &quot;git config --global&quot; to set a default</span><br><span class="line">hint: preference for all repositories. You can also pass --rebase, --no-rebase,</span><br><span class="line">hint: or --ff-only on the command line to override the configured default per</span><br><span class="line">hint: invocation.</span><br></pre>
+<p>改为使用<code>git config pull.rebase false</code>，再<code>git pull</code>即可。</p>
+</li>
+<li><p>在进行git checkout -b branch-name origin&#x2F;branch-name时可能会报错：fatal: ‘origin&#x2F;dev’ is not a commit and a branch ‘dev’ cannot be created from it，可参考<a target="_blank" rel="noopener" href="https://blog.csdn.net/leyangjun/article/details/130282665">此链接</a>解决。</p>
+</li>
 </ul>
 <p><a target="_blank" rel="noopener" href="https://www.liaoxuefeng.com/wiki/896043488029600/1216289527823648">Rebase</a>没太看懂举的例子，但是直到rebase操作的作用。</p>
 <ul>
@@ -584,6 +589,20 @@
   </div>
 </article>
 <div class="nav">
+  
+    <div class="nav-item-prev">
+      <a 
+        href="/2023/12/08/20%EF%BC%9Agit-%E6%A0%87%E7%AD%BE%E7%AE%A1%E7%90%86/" 
+        class="nav-link">
+        <i class="iconfont icon-left nav-prev-icon"></i>
+        <div>
+          <div class="nav-label">上一篇</div>
+          
+            <div class="nav-title">Git标签管理 </div>
+          
+        </div>
+      </a>
+    </div>
   
   
     <div class="nav-item-next">
@@ -676,23 +695,23 @@
   <div class="recent-posts-list">
     
       <div class="recent-posts-item">
-        <div class="recent-posts-item-title">2023-12-06</div>
-        <a href="/2023/12/06/19%EF%BC%9Agit-%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/"><div class="recent-posts-item-content">Git分支管理</div></a>
+        <div class="recent-posts-item-title">2023-12-08</div>
+        <a href="/2023/12/08/23%EF%BC%9Agit-%E4%BD%BF%E7%94%A8SourceTree/"><div class="recent-posts-item-content">Git使用SourceTree</div></a>
       </div>
     
       <div class="recent-posts-item">
-        <div class="recent-posts-item-title">2023-12-06</div>
-        <a href="/2023/12/06/18%EF%BC%9Agit-%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93/"><div class="recent-posts-item-content">Git远程仓库</div></a>
+        <div class="recent-posts-item-title">2023-12-08</div>
+        <a href="/2023/12/08/22%EF%BC%9Agit-%E8%87%AA%E5%AE%9A%E4%B9%89git/"><div class="recent-posts-item-content">Git自定义git</div></a>
       </div>
     
       <div class="recent-posts-item">
-        <div class="recent-posts-item-title">2023-12-05</div>
-        <a href="/2023/12/05/17%EF%BC%9Agit-%E5%88%A0%E9%99%A4%E6%96%87%E4%BB%B6/"><div class="recent-posts-item-content">Git删除文件</div></a>
+        <div class="recent-posts-item-title">2023-12-08</div>
+        <a href="/2023/12/08/21%EF%BC%9Agit-github%E5%92%8CGitee%E7%9A%84%E4%BD%BF%E7%94%A8/"><div class="recent-posts-item-content">GitGitub和Gitee的使用</div></a>
       </div>
     
       <div class="recent-posts-item">
-        <div class="recent-posts-item-title">2023-12-05</div>
-        <a href="/2023/12/05/16%EF%BC%9Agit-%E7%AE%A1%E7%90%86%E4%B8%8E%E6%92%A4%E9%94%80%E4%BF%AE%E6%94%B9/"><div class="recent-posts-item-content">Git管理与撤销修改</div></a>
+        <div class="recent-posts-item-title">2023-12-08</div>
+        <a href="/2023/12/08/vx_recycle_bin/20231208/21%EF%BC%9Agit-github%E5%92%8CGitee%E7%9A%84%E4%BD%BF%E7%94%A8_1.md/21%EF%BC%9Agit-github%E5%92%8CGitee%E7%9A%84%E4%BD%BF%E7%94%A8_1/"><div class="recent-posts-item-content">GitGitub和Gitee的使用</div></a>
       </div>
     
   </div>
