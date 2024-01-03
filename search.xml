@@ -1,57 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>LeetCode热题1</title>
-    <url>/2023/11/26/10%EF%BC%9ALeetCode%E7%83%AD%E9%A2%981/</url>
-    <content><![CDATA[<h1 id="两数之和"><a href="#两数之和" class="headerlink" title="两数之和"></a><a href="https://leetcode.cn/problems/two-sum/description/?envType=study-plan-v2&envId=top-100-liked">两数之和</a></h1><h2 id="方法一：暴力枚举"><a href="#方法一：暴力枚举" class="headerlink" title="方法一：暴力枚举"></a>方法一：暴力枚举</h2><p>思路及算法：</p>
-<p>最容易想到的方法是枚举数组中的每一个数 x，寻找数组中是否存在 target - x。</p>
-<p>当我们使用遍历整个数组的方式寻找 target - x 时，需要注意到每一个位于 x 之前的元素都已经和 x 匹配过，因此不需要再进行匹配。而每一个元素不能被使用两次，所以我们只需要在 x 后面的元素中寻找 target - x。</p>
-<pre class="highlight"><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    vector&lt;int&gt; twoSum(vector&lt;int&gt;&amp; nums, int target) &#123;</span><br><span class="line">        for(int i=0;i&lt;nums.size()-1;i++)</span><br><span class="line">        &#123;</span><br><span class="line">            for(int j=i+1;j&lt;nums.size();j++)</span><br><span class="line">            &#123;</span><br><span class="line">                if((nums[i]+nums[j])==target)</span><br><span class="line">                    return &#123;i,j&#125;;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return &#123;&#125;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre>
-
-<p>复杂度分析</p>
-<p>时间复杂度：$O(N^2)$，其中N是数组中的元素数量。最坏情况下数组中任意两个数都要被匹配一次。</p>
-<p>空间复杂度：$O(1)$。</p>
-<h2 id="方法二：哈希表"><a href="#方法二：哈希表" class="headerlink" title="方法二：哈希表"></a>方法二：哈希表</h2><p>思路及算法：</p>
-<p>注意到方法一的时间复杂度较高的原因是寻找 target - x 的时间复杂度过高。因此，我们需要一种更优秀的方法，能够快速寻找数组中是否存在目标元素。如果存在，我们需要找出它的索引。</p>
-<p>使用哈希表，可以将寻找 target - x 的时间复杂度降低到从$O(N)$降低到$O(1)$。</p>
-<p>这样我们创建一个哈希表，对于每一个 x，我们首先查询哈希表中是否存在 target - x，然后将 x 插入到哈希表中，即可保证不会让 x 和自己匹配。</p>
-<pre class="highlight"><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    vector&lt;int&gt; twoSum(vector&lt;int&gt;&amp; nums, int target) &#123;</span><br><span class="line">        unordered_map&lt;int,int&gt; hashtable;</span><br><span class="line">        for(int i=0;i&lt;nums.size();i++)&#123;</span><br><span class="line">            auto it=hashtable.find(target-nums[i]);</span><br><span class="line">            if(it!=hashtable.end())&#123;</span><br><span class="line">                return &#123;it-&gt;second,i&#125;;</span><br><span class="line">            &#125;</span><br><span class="line">            hashtable[nums[i]]=i;</span><br><span class="line">        &#125;</span><br><span class="line">        return &#123;&#125;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre>
-
-<p>注意：这里用到了C++中的容器：<a href="https://blog.csdn.net/hk2291976/article/details/51037095">unordered_map</a>。</p>
-]]></content>
-      <categories>
-        <category>LeetCode热题100</category>
-      </categories>
-      <tags>
-        <tag>c++</tag>
-        <tag>LeetCode热题100</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>LeetCode热题2</title>
-    <url>/2023/11/26/11%EF%BC%9ALeetCode%E7%83%AD%E9%A2%982/</url>
-    <content><![CDATA[<h1 id="字母异位词分组"><a href="#字母异位词分组" class="headerlink" title="字母异位词分组"></a><a href="https://leetcode.cn/problems/group-anagrams/?envType=study-plan-v2&envId=top-100-liked">字母异位词分组</a></h1><p>前言<br>两个字符串互为字母异位词，当且仅当两个字符串包含的字母相同。同一组字母异位词中的字符串具备相同点，可以使用相同点作为一组字母异位词的标志，使用哈希表存储每一组字母异位词，哈希表的键为一组字母异位词的标志，哈希表的值为一组字母异位词列表。</p>
-<p>遍历每个字符串，对于每个字符串，得到该字符串所在的一组字母异位词的标志，将当前字符串加入该组字母异位词的列表中。遍历全部字符串之后，哈希表中的每个键值对即为一组字母异位词。</p>
-<p>以下的两种方法分别使用排序和计数作为哈希表的键。</p>
-<h2 id="方法一：排序"><a href="#方法一：排序" class="headerlink" title="方法一：排序"></a>方法一：排序</h2><p>思路及算法：</p>
-<p>由于互为字母异位词的两个字符串包含的字母相同，因此对两个字符串分别进行排序之后得到的字符串一定是相同的，故可以将排序之后的字符串作为哈希表的键。</p>
-<pre class="highlight"><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    vector&lt;vector&lt;string&gt;&gt; groupAnagrams(vector&lt;string&gt;&amp; strs) &#123;</span><br><span class="line">        unordered_map&lt;string,vector&lt;string&gt;&gt; mp;</span><br><span class="line">        for(string&amp; str:strs)&#123;</span><br><span class="line">            string key=str;</span><br><span class="line">            sort(key.begin(),key.end());</span><br><span class="line">            mp[key].push_back(str);</span><br><span class="line">        &#125;</span><br><span class="line">        vector&lt;vector&lt;string&gt;&gt; res;</span><br><span class="line">        for(auto it=mp.begin();it!=mp.end();it++)&#123;</span><br><span class="line">            res.push_back(it-&gt;second);</span><br><span class="line">        &#125;</span><br><span class="line">        return res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre>
-
-<p>复杂度分析</p>
-<p>时间复杂度：$O(nk\log⁡k)$，其中 n 是 strs 中的字符串的数量，k是 strs 中的字符串的的最大长度。需要遍历 n 个字符串，对于每个字符串，需要 $O(k \log k)$ 的时间进行排序以及 $O(1)$ 的时间更新哈希表，因此总时间复杂度是 $O(nk \log k)$。</p>
-<p>空间复杂度：$O(nk)$，其中 n 是 strs 中的字符串的数量，k 是 strs 中的字符串的的最大长度。需要用哈希表存储全部字符串。</p>
-<p>注意：向vector添加元素有两种方法：push_back()和emplace_back()，要了解<a href="https://c.biancheng.net/view/6826.html">它们的区别</a>。</p>
-<h2 id="方法二：计数"><a href="#方法二：计数" class="headerlink" title="方法二：计数"></a>方法二：计数</h2><p>没有第一种方法好，因此不详述，想了解可以去查看官方题解。</p>
-]]></content>
-      <categories>
-        <category>LeetCode热题100</category>
-      </categories>
-      <tags>
-        <tag>c++</tag>
-        <tag>LeetCode热题100</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Git版本回退</title>
     <url>/2023/11/27/12%EF%BC%9Agit-%E7%89%88%E6%9C%AC%E5%9B%9E%E9%80%80/</url>
     <content><![CDATA[<h1 id="Git版本回退"><a href="#Git版本回退" class="headerlink" title="Git版本回退"></a>Git版本回退</h1><p><code>git log</code>命令显示从最近到最远的提交日志</p>
@@ -113,18 +62,20 @@
       </tags>
   </entry>
   <entry>
-    <title>LeetCode热题3</title>
-    <url>/2023/12/02/14%EF%BC%9ALeetCode%E7%83%AD%E9%A2%983/</url>
-    <content><![CDATA[<h1 id="最长连续序列"><a href="#最长连续序列" class="headerlink" title="最长连续序列"></a><a href="https://leetcode.cn/problems/longest-consecutive-sequence/?envType=study-plan-v2&envId=top-100-liked">最长连续序列</a></h1><p>首先介绍一开始我自己的想的方法，然后再介绍官方题解。</p>
-<h2 id="方法一：我的方法"><a href="#方法一：我的方法" class="headerlink" title="方法一：我的方法"></a>方法一：我的方法</h2><p>思路及算法：</p>
-<p>首先对数组进行排序，并去重，然后从第一个元素向后匹配，注意：每个数仅遍历1次，下一次匹配的起点为当前匹配的终点的后一个元素。如果不算排序加去重的时间复杂度，那么这个方法的时间复杂度刚好为$O(N)$。</p>
-<pre class="highlight"><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int longestConsecutive(vector&lt;int&gt;&amp; nums) &#123;</span><br><span class="line">        if(nums.size()==0)</span><br><span class="line">            return 0;</span><br><span class="line">        sort(nums.begin(),nums.end());</span><br><span class="line">        unique(nums.begin(),nums.end());</span><br><span class="line">        int res=1;</span><br><span class="line">        int temp=1;</span><br><span class="line">        for(int i=0;i&lt;nums.size()-1;i++)&#123;</span><br><span class="line">            while(i&lt;(nums.size()-1)&amp;&amp;(nums[i+1]==(nums[i]+1)))&#123;</span><br><span class="line">                temp++;</span><br><span class="line">                i++;</span><br><span class="line">            &#125;</span><br><span class="line">            if(temp&gt;res)</span><br><span class="line">                res=temp;</span><br><span class="line">            temp=1;</span><br><span class="line">        &#125;</span><br><span class="line">        return res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre>
+    <title>LeetCode热题2</title>
+    <url>/2023/11/26/11%EF%BC%9ALeetCode%E7%83%AD%E9%A2%982/</url>
+    <content><![CDATA[<h1 id="字母异位词分组"><a href="#字母异位词分组" class="headerlink" title="字母异位词分组"></a><a href="https://leetcode.cn/problems/group-anagrams/?envType=study-plan-v2&envId=top-100-liked">字母异位词分组</a></h1><p>前言<br>两个字符串互为字母异位词，当且仅当两个字符串包含的字母相同。同一组字母异位词中的字符串具备相同点，可以使用相同点作为一组字母异位词的标志，使用哈希表存储每一组字母异位词，哈希表的键为一组字母异位词的标志，哈希表的值为一组字母异位词列表。</p>
+<p>遍历每个字符串，对于每个字符串，得到该字符串所在的一组字母异位词的标志，将当前字符串加入该组字母异位词的列表中。遍历全部字符串之后，哈希表中的每个键值对即为一组字母异位词。</p>
+<p>以下的两种方法分别使用排序和计数作为哈希表的键。</p>
+<h2 id="方法一：排序"><a href="#方法一：排序" class="headerlink" title="方法一：排序"></a>方法一：排序</h2><p>思路及算法：</p>
+<p>由于互为字母异位词的两个字符串包含的字母相同，因此对两个字符串分别进行排序之后得到的字符串一定是相同的，故可以将排序之后的字符串作为哈希表的键。</p>
+<pre class="highlight"><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    vector&lt;vector&lt;string&gt;&gt; groupAnagrams(vector&lt;string&gt;&amp; strs) &#123;</span><br><span class="line">        unordered_map&lt;string,vector&lt;string&gt;&gt; mp;</span><br><span class="line">        for(string&amp; str:strs)&#123;</span><br><span class="line">            string key=str;</span><br><span class="line">            sort(key.begin(),key.end());</span><br><span class="line">            mp[key].push_back(str);</span><br><span class="line">        &#125;</span><br><span class="line">        vector&lt;vector&lt;string&gt;&gt; res;</span><br><span class="line">        for(auto it=mp.begin();it!=mp.end();it++)&#123;</span><br><span class="line">            res.push_back(it-&gt;second);</span><br><span class="line">        &#125;</span><br><span class="line">        return res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre>
 
-<h2 id="方法二：哈希表"><a href="#方法二：哈希表" class="headerlink" title="方法二：哈希表"></a>方法二：哈希表</h2><p>由于我们要枚举的数 x 一定是在数组中不存在前驱数 x−1 的，不然按照上面的分析我们会从 x−1 开始尝试匹配，因此我们每次在哈希表中检查是否存在 x−1 即能判断是否需要跳过了。</p>
-<pre class="highlight"><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int longestConsecutive(vector&lt;int&gt;&amp; nums) &#123;</span><br><span class="line">        unordered_set&lt;int&gt; num_set;</span><br><span class="line">        for(int num:nums)&#123;</span><br><span class="line">            num_set.insert(num);</span><br><span class="line">        &#125;</span><br><span class="line">        int res=0;</span><br><span class="line">        for(int num:num_set)&#123;</span><br><span class="line">            if(!num_set.count(num-1))&#123;</span><br><span class="line">                int cur_num=num;</span><br><span class="line">                int temp=1;</span><br><span class="line">                while(num_set.count(cur_num+1))&#123;</span><br><span class="line">                    cur_num++;</span><br><span class="line">                    temp++;</span><br><span class="line">                &#125;</span><br><span class="line">                if(temp&gt;res)</span><br><span class="line">                    res=temp;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre>
-
-<p>这个方法的运行时间为128ms，而我的方法运行时间只有80ms。</p>
-<p>注意：在leetcode中提交带有数组下标是否越界判断的语句时，要先判断arr[i] &lt; arr[i+1]，再判断(i+1)&lt;&#x3D;len，这里i+1可能已经越界了，会导致此错误。<br>参考链接： <a href="https://blog.csdn.net/adoge_/article/details/129072054">https://blog.csdn.net/adoge_/article/details/129072054</a></p>
+<p>复杂度分析</p>
+<p>时间复杂度：$O(nk\log⁡k)$，其中 n 是 strs 中的字符串的数量，k是 strs 中的字符串的的最大长度。需要遍历 n 个字符串，对于每个字符串，需要 $O(k \log k)$ 的时间进行排序以及 $O(1)$ 的时间更新哈希表，因此总时间复杂度是 $O(nk \log k)$。</p>
+<p>空间复杂度：$O(nk)$，其中 n 是 strs 中的字符串的数量，k 是 strs 中的字符串的的最大长度。需要用哈希表存储全部字符串。</p>
+<p>注意：向vector添加元素有两种方法：push_back()和emplace_back()，要了解<a href="https://c.biancheng.net/view/6826.html">它们的区别</a>。</p>
+<h2 id="方法二：计数"><a href="#方法二：计数" class="headerlink" title="方法二：计数"></a>方法二：计数</h2><p>没有第一种方法好，因此不详述，想了解可以去查看官方题解。</p>
 ]]></content>
       <categories>
         <category>LeetCode热题100</category>
@@ -144,6 +95,109 @@
       </categories>
       <tags>
         <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>LeetCode热题3</title>
+    <url>/2023/12/02/14%EF%BC%9ALeetCode%E7%83%AD%E9%A2%983/</url>
+    <content><![CDATA[<h1 id="最长连续序列"><a href="#最长连续序列" class="headerlink" title="最长连续序列"></a><a href="https://leetcode.cn/problems/longest-consecutive-sequence/?envType=study-plan-v2&envId=top-100-liked">最长连续序列</a></h1><p>首先介绍一开始我自己的想的方法，然后再介绍官方题解。</p>
+<h2 id="方法一：我的方法"><a href="#方法一：我的方法" class="headerlink" title="方法一：我的方法"></a>方法一：我的方法</h2><p>思路及算法：</p>
+<p>首先对数组进行排序，并去重，然后从第一个元素向后匹配，注意：每个数仅遍历1次，下一次匹配的起点为当前匹配的终点的后一个元素。如果不算排序加去重的时间复杂度，那么这个方法的时间复杂度刚好为$O(N)$。</p>
+<pre class="highlight"><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int longestConsecutive(vector&lt;int&gt;&amp; nums) &#123;</span><br><span class="line">        if(nums.size()==0)</span><br><span class="line">            return 0;</span><br><span class="line">        sort(nums.begin(),nums.end());</span><br><span class="line">        unique(nums.begin(),nums.end());</span><br><span class="line">        int res=1;</span><br><span class="line">        int temp=1;</span><br><span class="line">        for(int i=0;i&lt;nums.size()-1;i++)&#123;</span><br><span class="line">            while(i&lt;(nums.size()-1)&amp;&amp;(nums[i+1]==(nums[i]+1)))&#123;</span><br><span class="line">                temp++;</span><br><span class="line">                i++;</span><br><span class="line">            &#125;</span><br><span class="line">            if(temp&gt;res)</span><br><span class="line">                res=temp;</span><br><span class="line">            temp=1;</span><br><span class="line">        &#125;</span><br><span class="line">        return res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre>
+
+<h2 id="方法二：哈希表"><a href="#方法二：哈希表" class="headerlink" title="方法二：哈希表"></a>方法二：哈希表</h2><p>由于我们要枚举的数 x 一定是在数组中不存在前驱数 x−1 的，不然按照上面的分析我们会从 x−1 开始尝试匹配，因此我们每次在哈希表中检查是否存在 x−1 即能判断是否需要跳过了。</p>
+<pre class="highlight"><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int longestConsecutive(vector&lt;int&gt;&amp; nums) &#123;</span><br><span class="line">        unordered_set&lt;int&gt; num_set;</span><br><span class="line">        for(int num:nums)&#123;</span><br><span class="line">            num_set.insert(num);</span><br><span class="line">        &#125;</span><br><span class="line">        int res=0;</span><br><span class="line">        for(int num:num_set)&#123;</span><br><span class="line">            if(!num_set.count(num-1))&#123;</span><br><span class="line">                int cur_num=num;</span><br><span class="line">                int temp=1;</span><br><span class="line">                while(num_set.count(cur_num+1))&#123;</span><br><span class="line">                    cur_num++;</span><br><span class="line">                    temp++;</span><br><span class="line">                &#125;</span><br><span class="line">                if(temp&gt;res)</span><br><span class="line">                    res=temp;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre>
+
+<p>这个方法的运行时间为128ms，而我的方法运行时间只有80ms。</p>
+<p>注意：在leetcode中提交带有数组下标是否越界判断的语句时，如果先判断arr[i] &lt; arr[i+1]，再判断(i+1)&lt;&#x3D;len，这里i+1可能已经越界了，会导致此错误，需要改为先判断(i+1)&lt;&#x3D;len，再判断arr[i] &lt; arr[i+1]。<br>参考链接： <a href="https://blog.csdn.net/adoge_/article/details/129072054">https://blog.csdn.net/adoge_/article/details/129072054</a></p>
+]]></content>
+      <categories>
+        <category>LeetCode热题100</category>
+      </categories>
+      <tags>
+        <tag>c++</tag>
+        <tag>LeetCode热题100</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Git管理与撤销修改</title>
+    <url>/2023/12/05/16%EF%BC%9Agit-%E7%AE%A1%E7%90%86%E4%B8%8E%E6%92%A4%E9%94%80%E4%BF%AE%E6%94%B9/</url>
+    <content><![CDATA[<h1 id="Git管理与撤销修改"><a href="#Git管理与撤销修改" class="headerlink" title="Git管理与撤销修改"></a>Git管理与撤销修改</h1><h2 id="管理修改"><a href="#管理修改" class="headerlink" title="管理修改"></a>管理修改</h2><p>为什么Git比其他版本控制系统设计得优秀，因为Git跟踪并管理的是修改，而非文件。</p>
+<p>你会问，什么是修改？比如你新增了一行，这就是一个修改，删除了一行，也是一个修改，更改了某些字符，也是一个修改，删了一些又加了一些，也是一个修改，甚至创建一个新文件，也算一个修改。</p>
+<p>进行实验验证git管理的是修改：</p>
+<p>第一次修改 -&gt; git add -&gt; 第二次修改 -&gt; git commit</p>
+<p>按照上述过程操作，你会发现第二次的修改并没有被提交，这是因为Git管理的是修改，当你用git add命令后，在工作区的第一次修改被放入暂存区，准备提交，但是，在工作区的第二次修改并没有放入暂存区，所以，git commit只负责把暂存区的修改提交了，也就是第一次的修改被提交了，第二次的修改不会被提交。</p>
+<p>那怎么提交第二次修改呢？你可以继续git add再git commit，也可以别着急提交第一次修改，先git add第二次修改，再git commit，就相当于把两次修改合并后一块提交了：</p>
+<p>第一次修改 -&gt; git add -&gt; 第二次修改 -&gt; git add -&gt; git commit</p>
+<h2 id="撤销修改"><a href="#撤销修改" class="headerlink" title="撤销修改"></a>撤销修改</h2><p>场景1：当你改乱了工作区某个文件的内容，想直接丢弃工作区的修改时（没有进行git add 和 git commit），用命令git checkout – file。</p>
+<p>场景2：当你不但改乱了工作区某个文件的内容，还添加到了暂存区时（仅使用了git add），想丢弃修改，分两步，第一步用命令git reset HEAD &lt;file&gt;，就回到了场景1，第二步按场景1操作。</p>
+<p>场景3：已经提交了不合适的修改到版本库时（已经使用了git add 和 git commit），想要撤销本次提交，参考版本回退一节，不过前提是没有推送到远程库。</p>
+<p>注意：</p>
+<ul>
+<li>当使用git status查看git状态时，如果提示Changes not staged for commit，这表示没有使用git add，如果提示Changes to be committed，这表明已经使用git add将修改添加到了暂存取但没有使用git commit提交修改。</li>
+<li>先手动删除文件，然后使用git rm &lt;file&gt;和git add &lt;file&gt;效果是一样的。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>git</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Git删除文件</title>
+    <url>/2023/12/05/17%EF%BC%9Agit-%E5%88%A0%E9%99%A4%E6%96%87%E4%BB%B6/</url>
+    <content><![CDATA[<h1 id="Git删除文件"><a href="#Git删除文件" class="headerlink" title="Git删除文件"></a>Git删除文件</h1><p>在Git中，删除也是一个修改操作，我们实战一下，先添加一个新文件test.txt到Git并且提交：</p>
+<pre class="highlight"><span class="line">$ git add test.txt</span><br><span class="line"></span><br><span class="line">$ git commit -m &quot;add test.txt&quot;</span><br><span class="line">[master b84166e] add test.txt</span><br><span class="line"> 1 file changed, 1 insertion(+)</span><br><span class="line"> create mode 100644 test.txt</span><br></pre>
+
+<p>一般情况下，你通常直接在文件管理器中把没用的文件删了，或者用rm命令删了：</p>
+<pre class="highlight"><span class="line">$ rm test.txt</span><br></pre>
+
+<p>这个时候，Git知道你删除了文件，因此，工作区和版本库就不一致了，git status命令会立刻告诉你哪些文件被删除了：</p>
+<pre class="highlight"><span class="line">$ git status</span><br><span class="line">On branch master</span><br><span class="line">Changes not staged for commit:</span><br><span class="line">  (use &quot;git add/rm &lt;file&gt;...&quot; to update what will be committed)</span><br><span class="line">  (use &quot;git checkout -- &lt;file&gt;...&quot; to discard changes in working directory)</span><br><span class="line"></span><br><span class="line">	deleted:    test.txt</span><br><span class="line"></span><br><span class="line">no changes added to commit (use &quot;git add&quot; and/or &quot;git commit -a&quot;)</span><br></pre>
+
+<p>现在你有两个选择，一是确实要从版本库中删除该文件，那就用命令git rm删掉，并且git commit：</p>
+<pre class="highlight"><span class="line">$ git rm test.txt</span><br><span class="line">rm &#x27;test.txt&#x27;</span><br><span class="line"></span><br><span class="line">$ git commit -m &quot;remove test.txt&quot;</span><br><span class="line">[master d46f35e] remove test.txt</span><br><span class="line"> 1 file changed, 1 deletion(-)</span><br><span class="line"> delete mode 100644 test.txt</span><br></pre>
+
+<p>现在，文件就从版本库中被删除了。</p>
+<p>另一种情况是删错了，因为版本库里还有呢，所以可以很轻松地把误删的文件恢复到最新版本：</p>
+<pre class="highlight"><span class="line">$ git checkout -- test.txt</span><br></pre>
+<p>git checkout其实是用版本库里的版本替换工作区的版本，无论工作区是修改还是删除，都可以“一键还原”。</p>
+<p> 注意：从来没有被添加（git add）到版本库就被删除的文件，是无法恢复的！</p>
+]]></content>
+      <categories>
+        <category>git</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>LeetCode热题1</title>
+    <url>/2023/11/26/10%EF%BC%9ALeetCode%E7%83%AD%E9%A2%981/</url>
+    <content><![CDATA[<h1 id="两数之和"><a href="#两数之和" class="headerlink" title="两数之和"></a><a href="https://leetcode.cn/problems/two-sum/description/?envType=study-plan-v2&envId=top-100-liked">两数之和</a></h1><h2 id="方法一：暴力枚举"><a href="#方法一：暴力枚举" class="headerlink" title="方法一：暴力枚举"></a>方法一：暴力枚举</h2><p>思路及算法：</p>
+<p>最容易想到的方法是枚举数组中的每一个数 x，寻找数组中是否存在 target - x。</p>
+<p>当我们使用遍历整个数组的方式寻找 target - x 时，需要注意到每一个位于 x 之前的元素都已经和 x 匹配过，因此不需要再进行匹配。而每一个元素不能被使用两次，所以我们只需要在 x 后面的元素中寻找 target - x。</p>
+<pre class="highlight"><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    vector&lt;int&gt; twoSum(vector&lt;int&gt;&amp; nums, int target) &#123;</span><br><span class="line">        for(int i=0;i&lt;nums.size()-1;i++)</span><br><span class="line">        &#123;</span><br><span class="line">            for(int j=i+1;j&lt;nums.size();j++)</span><br><span class="line">            &#123;</span><br><span class="line">                if((nums[i]+nums[j])==target)</span><br><span class="line">                    return &#123;i,j&#125;;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return &#123;&#125;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre>
+
+<p>复杂度分析</p>
+<p>时间复杂度：$O(N^2)$，其中N是数组中的元素数量。最坏情况下数组中任意两个数都要被匹配一次。</p>
+<p>空间复杂度：$O(1)$。</p>
+<h2 id="方法二：哈希表"><a href="#方法二：哈希表" class="headerlink" title="方法二：哈希表"></a>方法二：哈希表</h2><p>思路及算法：</p>
+<p>注意到方法一的时间复杂度较高的原因是寻找 target - x 的时间复杂度过高。因此，我们需要一种更优秀的方法，能够快速寻找数组中是否存在目标元素。如果存在，我们需要找出它的索引。</p>
+<p>使用哈希表，可以将寻找 target - x 的时间复杂度降低到从$O(N)$降低到$O(1)$。</p>
+<p>这样我们创建一个哈希表，对于每一个 x，我们首先查询哈希表中是否存在 target - x，然后将 x 插入到哈希表中，即可保证不会让 x 和自己匹配。</p>
+<pre class="highlight"><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    vector&lt;int&gt; twoSum(vector&lt;int&gt;&amp; nums, int target) &#123;</span><br><span class="line">        unordered_map&lt;int,int&gt; hashtable;</span><br><span class="line">        for(int i=0;i&lt;nums.size();i++)&#123;</span><br><span class="line">            auto it=hashtable.find(target-nums[i]);</span><br><span class="line">            if(it!=hashtable.end())&#123;</span><br><span class="line">                return &#123;it-&gt;second,i&#125;;</span><br><span class="line">            &#125;</span><br><span class="line">            hashtable[nums[i]]=i;</span><br><span class="line">        &#125;</span><br><span class="line">        return &#123;&#125;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre>
+
+<p>注意：这里用到了C++中的容器：<a href="https://blog.csdn.net/hk2291976/article/details/51037095">unordered_map</a>。</p>
+]]></content>
+      <categories>
+        <category>LeetCode热题100</category>
+      </categories>
+      <tags>
+        <tag>c++</tag>
+        <tag>LeetCode热题100</tag>
       </tags>
   </entry>
   <entry>
@@ -172,7 +226,7 @@
 <p>下一步是用命令git clone克隆一个本地库：</p>
 <pre class="highlight"><span class="line">git clone git@github.com:CSTZZY/gitskills.git</span><br><span class="line">或者</span><br><span class="line">git clone https://github.com/CSTZZY/gitskills.git</span><br></pre>
 
-<p>GitHub给出的地址不止一个。实际上，Git支持多种协议，<a href="mailto:&#103;&#x69;&#116;&#x40;&#103;&#x69;&#116;&#x68;&#x75;&#98;&#46;&#99;&#111;&#109;">&#103;&#x69;&#116;&#x40;&#103;&#x69;&#116;&#x68;&#x75;&#98;&#46;&#99;&#111;&#109;</a>:CSTZZY&#x2F;gitskills.git使用ssh，但也可以使用https（如：<a href="https://github.com/CSTZZY/gitskills.git%EF%BC%89%E7%AD%89%E5%85%B6%E4%BB%96%E5%8D%8F%E8%AE%AE%E3%80%82">https://github.com/CSTZZY/gitskills.git）等其他协议。</a></p>
+<p>GitHub给出的地址不止一个。实际上，Git支持多种协议，<a href="mailto:&#103;&#x69;&#x74;&#x40;&#x67;&#x69;&#x74;&#104;&#x75;&#x62;&#x2e;&#x63;&#111;&#x6d;">&#103;&#x69;&#x74;&#x40;&#x67;&#x69;&#x74;&#104;&#x75;&#x62;&#x2e;&#x63;&#111;&#x6d;</a>:CSTZZY&#x2F;gitskills.git使用ssh，但也可以使用https（如：<a href="https://github.com/CSTZZY/gitskills.git%EF%BC%89%E7%AD%89%E5%85%B6%E4%BB%96%E5%8D%8F%E8%AE%AE%E3%80%82">https://github.com/CSTZZY/gitskills.git）等其他协议。</a></p>
 <p>使用https除了速度慢以外，还有个最大的麻烦是每次推送都必须输入口令，但是在某些只开放http端口的公司内部就无法使用ssh协议而只能用https。</p>
 <p>Git支持多种协议，包括https，但ssh协议速度最快。</p>
 <p>这里对git push的讲解不是很全面，可以参考：<a href="https://blog.csdn.net/qq_37049311/article/details/127932396">https://blog.csdn.net/qq_37049311&#x2F;article&#x2F;details&#x2F;127932396</a>。</p>
@@ -185,22 +239,62 @@
       </tags>
   </entry>
   <entry>
-    <title>Git管理与撤销修改</title>
-    <url>/2023/12/05/16%EF%BC%9Agit-%E7%AE%A1%E7%90%86%E4%B8%8E%E6%92%A4%E9%94%80%E4%BF%AE%E6%94%B9/</url>
-    <content><![CDATA[<h1 id="Git管理与撤销修改"><a href="#Git管理与撤销修改" class="headerlink" title="Git管理与撤销修改"></a>Git管理与撤销修改</h1><h2 id="管理修改"><a href="#管理修改" class="headerlink" title="管理修改"></a>管理修改</h2><p>为什么Git比其他版本控制系统设计得优秀，因为Git跟踪并管理的是修改，而非文件。</p>
-<p>你会问，什么是修改？比如你新增了一行，这就是一个修改，删除了一行，也是一个修改，更改了某些字符，也是一个修改，删了一些又加了一些，也是一个修改，甚至创建一个新文件，也算一个修改。</p>
-<p>进行实验验证git管理的是修改：</p>
-<p>第一次修改 -&gt; git add -&gt; 第二次修改 -&gt; git commit</p>
-<p>按照上述过程操作，你会发现第二次的修改并没有被提交，这是因为Git管理的是修改，当你用git add命令后，在工作区的第一次修改被放入暂存区，准备提交，但是，在工作区的第二次修改并没有放入暂存区，所以，git commit只负责把暂存区的修改提交了，也就是第一次的修改被提交了，第二次的修改不会被提交。</p>
-<p>那怎么提交第二次修改呢？你可以继续git add再git commit，也可以别着急提交第一次修改，先git add第二次修改，再git commit，就相当于把两次修改合并后一块提交了：</p>
-<p>第一次修改 -&gt; git add -&gt; 第二次修改 -&gt; git add -&gt; git commit</p>
-<h2 id="撤销修改"><a href="#撤销修改" class="headerlink" title="撤销修改"></a>撤销修改</h2><p>场景1：当你改乱了工作区某个文件的内容，想直接丢弃工作区的修改时（没有进行git add 和 git commit），用命令git checkout – file。</p>
-<p>场景2：当你不但改乱了工作区某个文件的内容，还添加到了暂存区时（仅使用了git add），想丢弃修改，分两步，第一步用命令git reset HEAD &lt;file&gt;，就回到了场景1，第二步按场景1操作。</p>
-<p>场景3：已经提交了不合适的修改到版本库时（已经使用了git add 和 git commit），想要撤销本次提交，参考版本回退一节，不过前提是没有推送到远程库。</p>
+    <title>Git分支管理</title>
+    <url>/2023/12/06/19%EF%BC%9Agit-%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/</url>
+    <content><![CDATA[<h1 id="Git分支管理"><a href="#Git分支管理" class="headerlink" title="Git分支管理"></a>Git分支管理</h1><p>分支在实际中有什么用呢？假设你准备开发一个新功能，但是需要两周才能完成，第一周你写了50%的代码，如果立刻提交，由于代码还没写完，不完整的代码库会导致别人不能干活了。如果等代码全部写完再一次提交，又存在丢失每天进度的巨大风险。</p>
+<p>现在有了分支，就不用怕了。你创建了一个属于你自己的分支，别人看不到，还继续在原来的分支上正常工作，而你在自己的分支上干活，想提交就提交，直到开发完毕后，再一次性合并到原来的分支上，这样，既安全，又不影响别人工作。</p>
+<p>创建与合并分支的示意图见：<a href="https://www.liaoxuefeng.com/wiki/896043488029600/900003767775424#0">创建与合并分支</a></p>
+<p>Git鼓励大量使用分支：</p>
+<p>查看分支：git branch</p>
+<p>创建分支：git branch <name></p>
+<p>切换分支：git checkout <name>或者git switch <name></p>
+<p>创建+切换分支：git checkout -b <name>或者git switch -c <name></p>
+<p>合并某分支到当前分支：git merge <name></p>
+<p>删除分支：git branch -d <name></p>
+<p>因为创建、合并和删除分支非常快，所以Git鼓励你使用分支完成某个任务，合并后再删掉分支，这和直接在master分支上工作效果是一样的，但过程更安全。</p>
+<p>当Git无法自动合并分支时，就必须首先解决冲突。解决冲突后，再提交，合并完成。</p>
+<p>解决冲突就是把Git合并失败的文件手动编辑为我们希望的内容，再提交。</p>
+<p>用git log –graph命令可以看到分支合并图。</p>
+<p>Git分支十分强大，在团队开发中应该充分应用。</p>
+<p>合并分支时，加上–no-ff参数就可以用普通模式合并，合并后的历史有分支，能看出来曾经做过合并，而fast forward合并就看不出来曾经做过合并。</p>
+<p><strong><a href="https://www.liaoxuefeng.com/wiki/896043488029600/900388704535136#0">Bug分支</a></strong></p>
+<p>修复bug时，我们会通过创建新的bug分支进行修复，然后合并，最后删除；</p>
+<p>当手头工作没有完成时，先把工作现场git stash一下，然后去修复bug，修复后，再git stash pop，回到工作现场；</p>
+<p>在master分支上修复的bug，想要合并到当前dev分支，可以用git cherry-pick <commit>命令，把bug提交的修改“复制”到当前分支，避免重复劳动。</p>
+<p><a href="https://www.liaoxuefeng.com/wiki/896043488029600/900394246995648">Feature分支</a></p>
+<p>开发一个新feature，最好新建一个分支；</p>
+<p>如果要丢弃一个没有被合并过的分支，可以通过git branch -D <name>强行删除。</p>
+<p><a href="https://www.liaoxuefeng.com/wiki/896043488029600/900375748016320">多人协作</a></p>
+<p>多人协作的工作模式通常是这样：</p>
+<p>首先，可以试图用git push origin <branch-name>推送自己的修改；</p>
+<p>如果推送失败，则因为远程分支比你的本地更新，需要先用git pull试图合并；</p>
+<p>如果合并有冲突，则解决冲突，并在本地提交；</p>
+<p>没有冲突或者解决掉冲突后，再用git push origin <branch-name>推送就能成功！</p>
+<p>如果git pull提示no tracking information，则说明本地分支和远程分支的链接关系没有创建，用命令git branch –set-upstream-to <branch-name> origin&#x2F;<branch-name>。</p>
+<p>这就是多人协作的工作模式，一旦熟悉了，就非常简单。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>查看远程库信息，使用git remote -v；</p>
+<p>本地新建的分支如果不推送到远程，对其他人就是不可见的；</p>
+<p>从本地推送分支，使用git push origin branch-name，如果推送失败，先用git pull抓取远程的新提交；</p>
+<p>在本地创建和远程分支对应的分支，使用git checkout -b branch-name origin&#x2F;branch-name，本地和远程分支的名称最好一致；</p>
+<p>建立本地分支和远程分支的关联，使用git branch –set-upstream branch-name origin&#x2F;branch-name；</p>
+<p>从远程抓取分支，使用git pull，如果有冲突，要先处理冲突。</p>
 <p>注意：</p>
 <ul>
-<li>当使用git status查看git状态时，如果提示Changes not staged for commit，这表示没有使用git add，如果提示Changes to be committed，这表明已经使用git add将修改添加到了暂存取但没有使用git commit提交修改。</li>
-<li>先手动删除文件，然后使用git rm &lt;file&gt;和git add &lt;file&gt;效果是一样的。</li>
+<li><p>在进行<code>git pull</code>时可能会出现error: insufficient permission for adding an object to repository database .git&#x2F;objects，可参考<a href="https://blog.csdn.net/menglishuigui/article/details/123548275">此链接</a>解决。</p>
+</li>
+<li><p>进行<code>git pull</code>时会输出以下提示：</p>
+<pre class="highlight"><span class="line">hint: You have divergent branches and need to specify how to reconcile them.</span><br><span class="line">hint: You can do so by running one of the following commands sometime before</span><br><span class="line">hint: your next pull:</span><br><span class="line">hint: </span><br><span class="line">hint:   git config pull.rebase false  # merge</span><br><span class="line">hint:   git config pull.rebase true   # rebase</span><br><span class="line">hint:   git config pull.ff only       # fast-forward only</span><br><span class="line">hint: </span><br><span class="line">hint: You can replace &quot;git config&quot; with &quot;git config --global&quot; to set a default</span><br><span class="line">hint: preference for all repositories. You can also pass --rebase, --no-rebase,</span><br><span class="line">hint: or --ff-only on the command line to override the configured default per</span><br><span class="line">hint: invocation.</span><br></pre>
+<p>改为使用<code>git config pull.rebase false</code>，再<code>git pull</code>即可。</p>
+</li>
+<li><p>在进行git checkout -b branch-name origin&#x2F;branch-name时可能会报错：fatal: ‘origin&#x2F;dev’ is not a commit and a branch ‘dev’ cannot be created from it，可参考<a href="https://blog.csdn.net/leyangjun/article/details/130282665">此链接</a>解决。</p>
+</li>
+</ul>
+<p><a href="https://www.liaoxuefeng.com/wiki/896043488029600/1216289527823648">Rebase</a>没太看懂举的例子，但是知道rebase操作的作用。</p>
+<ul>
+<li><p>rebase操作可以把本地未push的分叉提交历史整理成直线；</p>
+</li>
+<li><p>rebase的目的是使得我们在查看历史提交的变化时更容易，因为分叉的提交需要三方对比。</p>
+</li>
 </ul>
 ]]></content>
       <categories>
@@ -333,34 +427,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Git删除文件</title>
-    <url>/2023/12/05/17%EF%BC%9Agit-%E5%88%A0%E9%99%A4%E6%96%87%E4%BB%B6/</url>
-    <content><![CDATA[<h1 id="Git删除文件"><a href="#Git删除文件" class="headerlink" title="Git删除文件"></a>Git删除文件</h1><p>在Git中，删除也是一个修改操作，我们实战一下，先添加一个新文件test.txt到Git并且提交：</p>
-<pre class="highlight"><span class="line">$ git add test.txt</span><br><span class="line"></span><br><span class="line">$ git commit -m &quot;add test.txt&quot;</span><br><span class="line">[master b84166e] add test.txt</span><br><span class="line"> 1 file changed, 1 insertion(+)</span><br><span class="line"> create mode 100644 test.txt</span><br></pre>
-
-<p>一般情况下，你通常直接在文件管理器中把没用的文件删了，或者用rm命令删了：</p>
-<pre class="highlight"><span class="line">$ rm test.txt</span><br></pre>
-
-<p>这个时候，Git知道你删除了文件，因此，工作区和版本库就不一致了，git status命令会立刻告诉你哪些文件被删除了：</p>
-<pre class="highlight"><span class="line">$ git status</span><br><span class="line">On branch master</span><br><span class="line">Changes not staged for commit:</span><br><span class="line">  (use &quot;git add/rm &lt;file&gt;...&quot; to update what will be committed)</span><br><span class="line">  (use &quot;git checkout -- &lt;file&gt;...&quot; to discard changes in working directory)</span><br><span class="line"></span><br><span class="line">	deleted:    test.txt</span><br><span class="line"></span><br><span class="line">no changes added to commit (use &quot;git add&quot; and/or &quot;git commit -a&quot;)</span><br></pre>
-
-<p>现在你有两个选择，一是确实要从版本库中删除该文件，那就用命令git rm删掉，并且git commit：</p>
-<pre class="highlight"><span class="line">$ git rm test.txt</span><br><span class="line">rm &#x27;test.txt&#x27;</span><br><span class="line"></span><br><span class="line">$ git commit -m &quot;remove test.txt&quot;</span><br><span class="line">[master d46f35e] remove test.txt</span><br><span class="line"> 1 file changed, 1 deletion(-)</span><br><span class="line"> delete mode 100644 test.txt</span><br></pre>
-
-<p>现在，文件就从版本库中被删除了。</p>
-<p>另一种情况是删错了，因为版本库里还有呢，所以可以很轻松地把误删的文件恢复到最新版本：</p>
-<pre class="highlight"><span class="line">$ git checkout -- test.txt</span><br></pre>
-<p>git checkout其实是用版本库里的版本替换工作区的版本，无论工作区是修改还是删除，都可以“一键还原”。</p>
-<p> 注意：从来没有被添加（git add）到版本库就被删除的文件，是无法恢复的！</p>
-]]></content>
-      <categories>
-        <category>git</category>
-      </categories>
-      <tags>
-        <tag>git</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Git标签管理</title>
     <url>/2023/12/08/20%EF%BC%9Agit-%E6%A0%87%E7%AD%BE%E7%AE%A1%E7%90%86/</url>
     <content><![CDATA[<h1 id="Git标签管理"><a href="#Git标签管理" class="headerlink" title="Git标签管理"></a>Git标签管理</h1><p>发布一个版本时，我们通常先在版本库中打一个标签（tag），这样，就唯一确定了打标签时刻的版本。将来无论什么时候，取某个标签的版本，就是把那个打标签的时刻的历史版本取出来。所以，标签也是版本库的一个快照。</p>
@@ -409,72 +475,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Git分支管理</title>
-    <url>/2023/12/06/19%EF%BC%9Agit-%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/</url>
-    <content><![CDATA[<h1 id="Git分支管理"><a href="#Git分支管理" class="headerlink" title="Git分支管理"></a>Git分支管理</h1><p>分支在实际中有什么用呢？假设你准备开发一个新功能，但是需要两周才能完成，第一周你写了50%的代码，如果立刻提交，由于代码还没写完，不完整的代码库会导致别人不能干活了。如果等代码全部写完再一次提交，又存在丢失每天进度的巨大风险。</p>
-<p>现在有了分支，就不用怕了。你创建了一个属于你自己的分支，别人看不到，还继续在原来的分支上正常工作，而你在自己的分支上干活，想提交就提交，直到开发完毕后，再一次性合并到原来的分支上，这样，既安全，又不影响别人工作。</p>
-<p>创建与合并分支的示意图见：<a href="https://www.liaoxuefeng.com/wiki/896043488029600/900003767775424#0">创建与合并分支</a></p>
-<p>Git鼓励大量使用分支：</p>
-<p>查看分支：git branch</p>
-<p>创建分支：git branch <name></p>
-<p>切换分支：git checkout <name>或者git switch <name></p>
-<p>创建+切换分支：git checkout -b <name>或者git switch -c <name></p>
-<p>合并某分支到当前分支：git merge <name></p>
-<p>删除分支：git branch -d <name></p>
-<p>因为创建、合并和删除分支非常快，所以Git鼓励你使用分支完成某个任务，合并后再删掉分支，这和直接在master分支上工作效果是一样的，但过程更安全。</p>
-<p>当Git无法自动合并分支时，就必须首先解决冲突。解决冲突后，再提交，合并完成。</p>
-<p>解决冲突就是把Git合并失败的文件手动编辑为我们希望的内容，再提交。</p>
-<p>用git log –graph命令可以看到分支合并图。</p>
-<p>Git分支十分强大，在团队开发中应该充分应用。</p>
-<p>合并分支时，加上–no-ff参数就可以用普通模式合并，合并后的历史有分支，能看出来曾经做过合并，而fast forward合并就看不出来曾经做过合并。</p>
-<p><strong><a href="https://www.liaoxuefeng.com/wiki/896043488029600/900388704535136#0">Bug分支</a></strong></p>
-<p>修复bug时，我们会通过创建新的bug分支进行修复，然后合并，最后删除；</p>
-<p>当手头工作没有完成时，先把工作现场git stash一下，然后去修复bug，修复后，再git stash pop，回到工作现场；</p>
-<p>在master分支上修复的bug，想要合并到当前dev分支，可以用git cherry-pick <commit>命令，把bug提交的修改“复制”到当前分支，避免重复劳动。</p>
-<p><a href="https://www.liaoxuefeng.com/wiki/896043488029600/900394246995648">Feature分支</a></p>
-<p>开发一个新feature，最好新建一个分支；</p>
-<p>如果要丢弃一个没有被合并过的分支，可以通过git branch -D <name>强行删除。</p>
-<p><a href="https://www.liaoxuefeng.com/wiki/896043488029600/900375748016320">多人协作</a></p>
-<p>多人协作的工作模式通常是这样：</p>
-<p>首先，可以试图用git push origin <branch-name>推送自己的修改；</p>
-<p>如果推送失败，则因为远程分支比你的本地更新，需要先用git pull试图合并；</p>
-<p>如果合并有冲突，则解决冲突，并在本地提交；</p>
-<p>没有冲突或者解决掉冲突后，再用git push origin <branch-name>推送就能成功！</p>
-<p>如果git pull提示no tracking information，则说明本地分支和远程分支的链接关系没有创建，用命令git branch –set-upstream-to <branch-name> origin&#x2F;<branch-name>。</p>
-<p>这就是多人协作的工作模式，一旦熟悉了，就非常简单。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>查看远程库信息，使用git remote -v；</p>
-<p>本地新建的分支如果不推送到远程，对其他人就是不可见的；</p>
-<p>从本地推送分支，使用git push origin branch-name，如果推送失败，先用git pull抓取远程的新提交；</p>
-<p>在本地创建和远程分支对应的分支，使用git checkout -b branch-name origin&#x2F;branch-name，本地和远程分支的名称最好一致；</p>
-<p>建立本地分支和远程分支的关联，使用git branch –set-upstream branch-name origin&#x2F;branch-name；</p>
-<p>从远程抓取分支，使用git pull，如果有冲突，要先处理冲突。</p>
-<p>注意：</p>
-<ul>
-<li><p>在进行<code>git pull</code>时可能会出现error: insufficient permission for adding an object to repository database .git&#x2F;objects，可参考<a href="https://blog.csdn.net/menglishuigui/article/details/123548275">此链接</a>解决。</p>
-</li>
-<li><p>进行<code>git pull</code>时会输出以下提示：</p>
-<pre class="highlight"><span class="line">hint: You have divergent branches and need to specify how to reconcile them.</span><br><span class="line">hint: You can do so by running one of the following commands sometime before</span><br><span class="line">hint: your next pull:</span><br><span class="line">hint: </span><br><span class="line">hint:   git config pull.rebase false  # merge</span><br><span class="line">hint:   git config pull.rebase true   # rebase</span><br><span class="line">hint:   git config pull.ff only       # fast-forward only</span><br><span class="line">hint: </span><br><span class="line">hint: You can replace &quot;git config&quot; with &quot;git config --global&quot; to set a default</span><br><span class="line">hint: preference for all repositories. You can also pass --rebase, --no-rebase,</span><br><span class="line">hint: or --ff-only on the command line to override the configured default per</span><br><span class="line">hint: invocation.</span><br></pre>
-<p>改为使用<code>git config pull.rebase false</code>，再<code>git pull</code>即可。</p>
-</li>
-<li><p>在进行git checkout -b branch-name origin&#x2F;branch-name时可能会报错：fatal: ‘origin&#x2F;dev’ is not a commit and a branch ‘dev’ cannot be created from it，可参考<a href="https://blog.csdn.net/leyangjun/article/details/130282665">此链接</a>解决。</p>
-</li>
-</ul>
-<p><a href="https://www.liaoxuefeng.com/wiki/896043488029600/1216289527823648">Rebase</a>没太看懂举的例子，但是直到rebase操作的作用。</p>
-<ul>
-<li><p>rebase操作可以把本地未push的分叉提交历史整理成直线；</p>
-</li>
-<li><p>rebase的目的是使得我们在查看历史提交的变化时更容易，因为分叉的提交需要三方对比。</p>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>git</category>
-      </categories>
-      <tags>
-        <tag>git</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Git自定义git</title>
     <url>/2023/12/08/22%EF%BC%9Agit-%E8%87%AA%E5%AE%9A%E4%B9%89git/</url>
     <content><![CDATA[<h1 id="Git自定义git"><a href="#Git自定义git" class="headerlink" title="Git自定义git"></a>Git自定义git</h1><h2 id="忽略特殊文件"><a href="#忽略特殊文件" class="headerlink" title="忽略特殊文件"></a>忽略特殊文件</h2><p><a href="https://www.liaoxuefeng.com/wiki/896043488029600/900004590234208">更详细的说明</a></p>
@@ -497,6 +497,156 @@
       </tags>
   </entry>
   <entry>
+    <title>Git使用SourceTree</title>
+    <url>/2023/12/08/23%EF%BC%9Agit-%E4%BD%BF%E7%94%A8SourceTree/</url>
+    <content><![CDATA[<h1 id="Git使用SourceTree"><a href="#Git使用SourceTree" class="headerlink" title="Git使用SourceTree"></a><a href="https://www.liaoxuefeng.com/wiki/896043488029600/1317161920364578">Git使用SourceTree</a></h1><p>使用SourceTree可以以图形界面操作Git，省去了敲命令的过程，对于常用的提交、分支、推送等操作来说非常方便。</p>
+<p>SourceTree使用Git命令执行操作，出错时，仍然需要阅读Git命令返回的错误信息。</p>
+]]></content>
+      <categories>
+        <category>git</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>LeetCode热题4</title>
+    <url>/2023/12/10/24%EF%BC%9ALeetCode%E7%83%AD%E9%A2%984/</url>
+    <content><![CDATA[<h1 id="接雨水"><a href="#接雨水" class="headerlink" title="接雨水"></a><a href="https://leetcode.cn/problems/trapping-rain-water/description/?envType=study-plan-v2&envId=top-100-liked">接雨水</a></h1><h2 id="方法一：动态规划"><a href="#方法一：动态规划" class="headerlink" title="方法一：动态规划"></a>方法一：动态规划</h2><p>思路及算法：</p>
+<p>对于下标 i，下雨后水能到达的最大高度等于下标 i 两边的最大高度的最小值，下标 i 处能接的雨水量等于下标 i 处的水能到达的最大高度减去 height[i]。</p>
+<p>如果针对每一个元素都分别向左&#x2F;右扫描数组寻找左侧和右侧的最大值，则时间复杂度为$O(N^2)$。<br>在已获得各个元素左右两侧最大高度的前提下，计算接雨水的总量的时间复杂度将变为$O(N)$，而使用动态规划的方法可以在时间复杂度为$O(N)$的前提下找到各个元素左右两侧的最大值，思路如下：</p>
+<ul>
+<li>创建两个长度为n的数组：leftmax和rightmax用来存储各个元素左右两侧的最大值；</li>
+<li>leftMax[0]&#x3D;height[0]，对于剩余的元素leftMax[i]&#x3D;max(leftMax[i−1],height[i])；</li>
+<li>rightMax[n−1]&#x3D;height[n−1]，对于剩余的元素rightMax[i]&#x3D;max(rightMax[i+1],height[i])；</li>
+<li>在得到leftmax和rightmax后，下标i所对应的接雨水量&#x3D;min(leftMax[i],rightMax[i])−height[i]。</li>
+</ul>
+<pre class="highlight"><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int trap(vector&lt;int&gt;&amp; height) &#123;</span><br><span class="line">        int n=height.size();</span><br><span class="line">        vector&lt;int&gt; leftmax(n);</span><br><span class="line">        leftmax[0]=height[0];</span><br><span class="line">        for(int i=1;i&lt;n;i++)&#123;</span><br><span class="line">            leftmax[i]=max(height[i],leftmax[i-1]);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        vector&lt;int&gt; rightmax(n);</span><br><span class="line">        rightmax[n-1]=height[n-1];</span><br><span class="line">        for(int i=n-2;i&gt;=0;i--)&#123;</span><br><span class="line">            rightmax[i]=max(height[i],rightmax[i+1]);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        int res=0;</span><br><span class="line">        for(int i=0;i&lt;n;i++)&#123;</span><br><span class="line">            res=res+max(0,min(leftmax[i],rightmax[i])-height[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        return res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre>
+<p>其实上面的代码中的res&#x3D;res+max(0,min(leftmax[i],rightmax[i])-height[i]);没有必要写max(0,…)，因为min(leftmax[i],rightmax[i])的最小值为height[i]，即：min(leftmax[i],rightmax[i])-height[i]肯定为非负数。</p>
+<h2 id="方法二：单调栈"><a href="#方法二：单调栈" class="headerlink" title="方法二：单调栈"></a>方法二：单调栈</h2><p>思路及算法：</p>
+<p>维护一个存储height数组下标的单调栈stack，其中从栈底到栈顶的下标对应的数组 height 中的元素递减。<br>从头遍历height数组，若height[i]&lt;&#x3D;stack[stack.top()]或stack为空，则将i入栈；<br>否则，int top&#x3D;stk.top(); stk.pop(); 若此时stack为空，则将i入栈，<br>否则，此时得到一个可以接雨水的区域，left&#x3D;stk.top(); cur_width&#x3D;i-left-1; cur_height&#x3D;min(height[left],height[i])-height[top]; res+&#x3D;(cur_width*cur_height);<br>重复上述过程，直到stack为空，或height[i]&lt;&#x3D;height[stk.top()]。</p>
+<pre class="highlight"><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int trap(vector&lt;int&gt;&amp; height) &#123;</span><br><span class="line">        int res=0;</span><br><span class="line">        stack&lt;int&gt; stk;</span><br><span class="line">        int n=height.size();</span><br><span class="line">        for(int i=0;i&lt;n;i++)&#123;</span><br><span class="line">            while(!stk.empty()&amp;&amp;height[i]&gt;height[stk.top()])&#123;</span><br><span class="line">                int top=stk.top();</span><br><span class="line">                stk.pop();</span><br><span class="line">                if(stk.empty())</span><br><span class="line">                    break;</span><br><span class="line">                int left=stk.top();</span><br><span class="line">                int cur_width=i-left-1;</span><br><span class="line">                int cur_height=min(height[left],height[i])-height[top];</span><br><span class="line">                res+=(cur_width*cur_height);</span><br><span class="line">            &#125;</span><br><span class="line">            stk.push(i);</span><br><span class="line">        &#125;</span><br><span class="line">        return res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre>
+
+<h2 id="方法三：双指针"><a href="#方法三：双指针" class="headerlink" title="方法三：双指针"></a>方法三：双指针</h2><p>上述两种方法的空间复杂度都为$O(N)$，下面要介绍的双指针方法的空间复杂度为$O(1)$。</p>
+<p>下标 i 处能接的雨水量由 leftMax[i] 和 rightMax[i] 中的最小值决定。由于数组 leftMax 是从左往右计算，数组 rightMax 是从右往左计算，因此可以使用双指针和两个变量代替两个数组。<br><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://pic.imgdb.cn/item/6575828bc458853aefcd01ef.jpg" class="lozad post-image"src="https://pic.imgdb.cn/item/6575828bc458853aefcd01ef.jpg"></p>
+<pre class="highlight"><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int trap(vector&lt;int&gt;&amp; height) &#123;</span><br><span class="line">        int n=height.size();</span><br><span class="line">        int l=0;</span><br><span class="line">        int r=n-1;</span><br><span class="line">        int lmax=height[0];</span><br><span class="line">        int rmax=height[n-1];</span><br><span class="line">        int res=0;</span><br><span class="line">        while(l!=r)&#123;</span><br><span class="line">            if(height[l]&gt;=lmax)&#123;</span><br><span class="line">                lmax=height[l];</span><br><span class="line">            &#125;</span><br><span class="line">            if(height[r]&gt;=rmax)&#123;</span><br><span class="line">                rmax=height[r];</span><br><span class="line">            &#125;</span><br><span class="line">            if(height[l]&lt;height[r])&#123;</span><br><span class="line">                res+=(lmax-height[l++]);</span><br><span class="line">            &#125;</span><br><span class="line">            else&#123;</span><br><span class="line">                res+=(rmax-height[r--]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre>
+]]></content>
+      <categories>
+        <category>LeetCode热题100</category>
+      </categories>
+      <tags>
+        <tag>c++</tag>
+        <tag>LeetCode热题100</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>搭建个人 hexo 博客（2）</title>
+    <url>/2023/11/18/2%EF%BC%9Ahexo%E7%9A%84%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE%E3%80%81%E6%9B%B4%E6%8D%A2%E4%B8%BB%E9%A2%98/</url>
+    <content><![CDATA[<p>将 hexo 部署到 github 后就要进入下一步部分了：hexo 配置与主题个性化。</p>
+<h2 id="1：hexo-基本配置"><a href="#1：hexo-基本配置" class="headerlink" title="1：hexo 基本配置"></a><strong>1：hexo 基本配置</strong></h2><p>在文件根目录下的<code>_config.yml</code>，就是整个 hexo 框架的配置文件了。可以在里面修改大部分的配置。详细可参考<a href="https://link.zhihu.com/?target=https://hexo.io/zh-cn/docs/configuration">官方的配置</a>描述。</p>
+<h3 id="网站"><a href="#网站" class="headerlink" title="网站"></a><strong>网站</strong></h3><p><strong>参数描述：</strong><code>title</code>网站标题<code>subtitle</code>网站副标题<code>description</code>网站描述<code>author</code>您的名字<code>language</code>网站使用的语言<code>timezone</code>网站时区。Hexo 默认使用您电脑的时区。<a href="https://link.zhihu.com/?target=https://en.wikipedia.org/wiki/List_of_tz_database_time_zones">时区列表</a>。比如说：<code>America/New_York</code>, <code>Japan</code>, 和 <code>UTC</code> 。</p>
+<p>其中，<code>description</code>主要用于 SEO，告诉搜索引擎一个关于您站点的简单描述，通常建议在其中包含您网站的关键词。<code>author</code>参数用于主题显示文章的作者。</p>
+<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://pic.imgdb.cn/item/65589273c458853aef928c3a.jpg" class="lozad post-image"src="https://pic.imgdb.cn/item/65589273c458853aef928c3a.jpg"></p>
+<h3 id="网址"><a href="#网址" class="headerlink" title="网址"></a><strong>网址</strong></h3><p><strong>参数描：</strong><code>url</code>网址<code>root</code>网站根目录<code>permalink</code>文章的 <a href="https://hexo.io/zh-cn/docs/permalinks">永久链接</a> 格式<code>permalink_defaults</code>永久链接中各部分的默认值</p>
+<p>在这里，你需要把<code>url</code>改成你的网站域名。</p>
+<p>permalink，也就是你生成某个文章时的那个链接格式。</p>
+<p>比如我新建一个文章叫 temp.md，那么这个时候他自动生成的地址就是<code>http://yoursite.com/2018/09/05/temp</code>。</p>
+<p>以下是官方给出的示例，关于链接的变量还有很多，需要的可以去官网上查找 <a href="https://hexo.io/zh-cn/docs/permalinks">永久链接</a> 。</p>
+<p><strong>参数结果：</strong><code>year/:month/:day/:title/</code>2013&#x2F;07&#x2F;14&#x2F;hello-world<code>:year-:month-:day-:title.html</code>2013-07-14-hello-world.html<code>:category/:title</code>foo&#x2F;bar&#x2F;hello-world</p>
+<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://pic.imgdb.cn/item/655892b3c458853aef9370aa.jpg" class="lozad post-image"src="https://pic.imgdb.cn/item/655892b3c458853aef9370aa.jpg"></p>
+<p>再往下翻，中间这些都默认就好了。</p>
+<pre class="highlight"><span class="line">theme: landscape</span><br><span class="line">​</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Deployment</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="comment"># Docs: https://hexo.io/docs/deployment.html</span></span></span><br><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: &lt;repository url&gt;</span><br><span class="line">  branch: [branch]</span><br></pre>
+
+<p><code>theme</code>就是选择什么主题，也就是在<code>theme</code>这个文件夹下，在官网上有很多个主题，默认给你安装的是<a href="https://www.zhihu.com/search?q=lanscape&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra=%7B%22sourceType%22:%22answer%22,%22sourceId%22:489125915%7D">lanscape</a>这个主题。当你需要更换主题时，在官网上下载，把主题的文件放在<code>theme</code>文件夹下，再修改这个参数就可以了。</p>
+<p>接下来这个<code>deploy</code>就是网站的部署的，<code>repo</code>就是仓库(<code>Repository</code>)的简写。<code>branch</code>选择仓库的哪个分支。这个在之前进行 github page 部署的时候已经修改过了，不再赘述。而这个在后面进行双平台部署的时候会再次用到。</p>
+<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://pic.imgdb.cn/item/655892e7c458853aef940e75.jpg" class="lozad post-image"src="https://pic.imgdb.cn/item/655892e7c458853aef940e75.jpg"></p>
+<h3 id="Front-matter"><a href="#Front-matter" class="headerlink" title="Front-matter"></a><strong>Front-matter</strong></h3><p>Front-matter 是 md 文件最上方以 <code>---</code> 分隔的区域，用于指定个别文件的变量，举例来说：</p>
+<pre class="highlight"><span class="line">---</span><br><span class="line">title: Hello World</span><br><span class="line">date: 2013/7/13 20:46:25</span><br><span class="line">---</span><br></pre>
+
+<p>下是预先定义的参数，您可在模板中使用这些参数值并加以利用。</p>
+<p><strong>参数描述：</strong><code>layout</code>布局<code>title</code>标题<code>date</code>建立日期<code>updated</code>更新日期<code>comments</code>开启文章的评论功能<code>tags</code>标签（不适用于分页）<code>categories</code>分类（不适用于分页）<code>permalink</code>覆盖文章网址</p>
+<p>其中，分类和标签需要区别一下，分类具有顺序性和层次性，也就是说 <code>Foo, Bar</code> 不等于 <code>Bar, Foo</code>；而标签没有顺序和层次。</p>
+<pre class="highlight"><span class="line">categories:</span><br><span class="line">- Diary</span><br><span class="line">tags:</span><br><span class="line">- PS3</span><br><span class="line">- Games</span><br></pre>
+
+<h3 id="layout（布局）"><a href="#layout（布局）" class="headerlink" title="layout（布局）"></a><strong>layout（布局）</strong></h3><p>当你每一次使用代码：</p>
+<pre class="highlight"><span class="line">hexo new paper</span><br></pre>
+
+<p>它其实默认使用的是<code>post</code>这个布局，也就是在<code>source</code>文件夹下的<code>_post</code>里面。</p>
+<p>Hexo 有三种默认布局：<code>post</code>、<code>page</code> 和 <code>draft</code>，它们分别对应不同的路径，而您自定义的其他布局和 <code>post</code> 相同，都将储存到 <code>source/_posts</code> 文件夹。</p>
+<p><strong>布局路径</strong><code>postsource/_postspagesourcedraftsource/_drafts</code></p>
+<p>而 new 这个命令其实是：</p>
+<pre class="highlight"><span class="line">hexo new [layout] &lt;title&gt;</span><br></pre>
+
+<p>只不过这个 layout 默认是 post 罢了。</p>
+<h4 id="page"><a href="#page" class="headerlink" title="page"></a><strong>page</strong></h4><p>如果你想另起一页，那么可以使用</p>
+<pre class="highlight"><span class="line">hexo new page board</span><br></pre>
+
+<p>系统会自动给你在 source 文件夹下创建一个 board 文件夹，以及 board 文件夹中的 index.md，这样你访问的 board 对应的链接就是<code>http://xxx.xxx/board</code></p>
+<h4 id="draft"><a href="#draft" class="headerlink" title="draft"></a><strong>draft</strong></h4><p>draft 是草稿的意思，也就是你如果想写文章，又不希望被看到，那么可以</p>
+<pre class="highlight"><span class="line">hexo new draft newpage</span><br></pre>
+
+<p>这样会在 source&#x2F;_draft 中新建一个 newpage.md 文件，如果你的草稿文件写的过程中，想要预览一下，那么可以使用</p>
+<pre class="highlight"><span class="line">hexo server --draft</span><br></pre>
+
+<p>在本地端口中开启服务预览。</p>
+<p>如果你的草稿文件写完了，想要发表到 post 中，</p>
+<pre class="highlight"><span class="line">hexo publish draft newpage</span><br></pre>
+
+<p>就会自动把 newpage.md 发送到 post 中。</p>
+<h2 id="2：更换主题"><a href="#2：更换主题" class="headerlink" title="2：更换主题"></a><strong>2：更换主题</strong></h2><p><a href="https://hexo.io/themes/">官网的主题中</a>，选择喜欢的主题进行修改，我选的是<a href="https://github.com/theme-kaze/hexo-theme-Kaze">Kaze </a>。</p>
+<p>去 github 上下载主题：</p>
+<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://pic.imgdb.cn/item/6558acfec458853aeffb9dd0.jpg" class="lozad post-image"src="https://pic.imgdb.cn/item/6558acfec458853aeffb9dd0.jpg"></p>
+<p>然后把下载的文件解压后放到：</p>
+<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://pic.imgdb.cn/item/6558ad27c458853aeffc4e33.jpg" class="lozad post-image"src="https://pic.imgdb.cn/item/6558ad27c458853aeffc4e33.jpg"></p>
+<p>kaze 文件中也有一个<code>_config.yml</code>文件，这个文件用于配制主题，比如：</p>
+<h3 id="menu（菜单栏）"><a href="#menu（菜单栏）" class="headerlink" title="menu（菜单栏）"></a><strong>menu（菜单栏）</strong></h3><p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://picx.zhimg.com/80/v2-f7759c435dcc46d877312b0b2c8b8e7d_1440w.webp?source=2c26e567" class="lozad post-image"src="https://picx.zhimg.com/80/v2-f7759c435dcc46d877312b0b2c8b8e7d_1440w.webp?source=2c26e567"></p>
+<p>其中，About 这个是找不到网页的，因为文章中没有 about 这个东西。如果想要的话，可以执行命令</p>
+<pre class="highlight"><span class="line">hexo new page about</span><br></pre>
+
+<p>它就会在根目录下<code>source</code>文件夹中新建了一个<code>about</code>文件夹，以及 index.md，在 index.md 中写上想要写的东西，就可以在网站上展示出来了。</p>
+<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://pic.imgdb.cn/item/6558addbc458853aefff7ef0.jpg" class="lozad post-image"src="https://pic.imgdb.cn/item/6558addbc458853aefff7ef0.jpg"></p>
+<p>如果想要自己再自定义一个菜单栏的选项，那么就</p>
+<pre class="highlight"><span class="line">hexo new page yourdiy</span><br></pre>
+
+<p>然后在主题配置文件的 menu 菜单栏添加一个 <code>Yourdiy : /yourdiy</code>，注意冒号后面要有空格，以及前面的空格要和 menu 中默认的保持整齐。然后在<code>languages</code>文件夹中，找到<code>zh-CN.yml</code>，在 index 中添加<code>yourdiy: &#39;中文意思&#39;</code>就可以显示中文了。</p>
+]]></content>
+      <categories>
+        <category>搭建个人hexo博客</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>搭建个人hexo博客（3）</title>
+    <url>/2023/11/18/3%EF%BC%9A%E7%BB%99%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0RSS/</url>
+    <content><![CDATA[<h2 id="1：什么是-RSS？"><a href="#1：什么是-RSS？" class="headerlink" title="1：什么是 RSS？"></a><strong>1：什么是 RSS？</strong></h2><p>RSS 也就是订阅功能，你可以理解为类似与订阅公众号的功能，来订阅各种博客，杂志等等。</p>
+<h2 id="2：为什么要用-RSS？"><a href="#2：为什么要用-RSS？" class="headerlink" title="2：为什么要用 RSS？"></a><strong>2：为什么要用 RSS？</strong></h2><p>就如同订阅公众号一样，你对某个公众号感兴趣，你总不可能一直时不时搜索这个公众号来看它的文章吧。博客也是一样，如果你喜欢某个博主，或者某个平台的内容，你可以通过 RSS 订阅它们，然后在 RSS 阅读器上可以实时推送这些消息。现在网上的垃圾消息太多了，如果你每一天都在看这些消息中度过，漫无目的的浏览，只会让你的时间一点一点的流逝，太不值得了。如果你关注的博主每次都发的消息都是精华，而且不是每一天十几条几十条的轰炸你，那么这个博主就值得你的关注，你就可以通过 RSS 订阅他。</p>
+<p>在我的理解中，如果你不想每天都被那些没有质量的消息轰炸，只想安安静静的关注几个博主，每天看一些有质量的内容也不用太多，那么 RSS 订阅值得你的拥有。</p>
+<h2 id="3：添加-RSS-功能"><a href="#3：添加-RSS-功能" class="headerlink" title="3：添加 RSS 功能"></a><strong>3：添加 RSS 功能</strong></h2><p>先安装 RSS 插件</p>
+<pre class="highlight"><span class="line">npm i hexo-generator-feed</span><br></pre>
+
+<p>而后在你整个项目的<code>_config.yml</code>中找到 Extensions，添加：</p>
+<pre class="highlight"><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Extensions</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="comment"># Plugins: https://hexo.io/plugins/</span></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">RSS订阅</span></span><br><span class="line">plugin:</span><br><span class="line">- hexo-generator-feed</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">Feed Atom</span></span><br><span class="line">feed:</span><br><span class="line">  type: atom</span><br><span class="line">  path: atom.xml</span><br><span class="line">  limit: 20</span><br></pre>
+
+<p>这个时候你的 RSS 链接就是 域名<code>/atom.xml</code>了。</p>
+<p>所以，在主题配置文件中的这个<code>social links</code>，开启 RSS 的页面功能，这样你网站上就有那个像 wifi 一样符号的 RSS logo 了，注意空格。</p>
+<pre class="highlight"><span class="line">rss: /atom.xml</span><br></pre>
+
+<h2 id="4：如何关注-RSS？"><a href="#4：如何关注-RSS？" class="headerlink" title="4：如何关注 RSS？"></a><strong>4：如何关注 RSS？</strong></h2><p>首先，你需要一个 RSS 阅读器，在这里我推荐<code>inoreader</code>，宇宙第一 RSS 阅读器，而且中文支持的挺好。不过它没有 PC 端的程序，只有网页版，chrome 上有插件。在官网上用 google 账号或者自己注册账号登录，就可以开始你的关注之旅了。</p>
+<p>每次需要关注某个博主时，就点开他的 RSS 链接，把链接复制到<code>inoreader</code>上，就能关注了，当然，如果是比较大众化的很厉害的博主，你直接搜名字也可以的，比如每个人都非常佩服的阮一峰大师，直接在阅读器上搜索<code>阮一峰</code>，应该就能出来了。</p>
+<p>在安卓端，inoreader 也有下载，不过因为国内 google 是登录不了的，你需要在 inoreader 官网上把你的密码修改了，然后就可以用账户名和密码登录了。</p>
+<p>在 IOS 端，没用过，好像是 reader 3 可以支持 inoreader 账户，还有个 readon 也不错，可以去试试。</p>
+<p>⚠️：按照上述步骤配置后网站打不开了，最后也没找到原因。</p>
+]]></content>
+      <categories>
+        <category>搭建个人hexo博客</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>搭建个人 hexo 博客（4）</title>
     <url>/2023/11/18/4%EF%BC%9A%E7%BB%99%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F/</url>
     <content><![CDATA[<h2 id="参考链接：https-zhuanlan-zhihu-com-p-350704151"><a href="#参考链接：https-zhuanlan-zhihu-com-p-350704151" class="headerlink" title="参考链接：https://zhuanlan.zhihu.com/p/350704151"></a>参考链接：<a href="https://zhuanlan.zhihu.com/p/350704151">https://zhuanlan.zhihu.com/p/350704151</a></h2><p>这里使用 valine 实现评论，官方网  <a href="https://link.zhihu.com/?target=https://leancloud.cn/">https://leancloud.cn/</a></p>
@@ -512,19 +662,6 @@
       </categories>
       <tags>
         <tag>hexo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Git使用SourceTree</title>
-    <url>/2023/12/08/23%EF%BC%9Agit-%E4%BD%BF%E7%94%A8SourceTree/</url>
-    <content><![CDATA[<h1 id="Git使用SourceTree"><a href="#Git使用SourceTree" class="headerlink" title="Git使用SourceTree"></a><a href="https://www.liaoxuefeng.com/wiki/896043488029600/1317161920364578">Git使用SourceTree</a></h1><p>使用SourceTree可以以图形界面操作Git，省去了敲命令的过程，对于常用的提交、分支、推送等操作来说非常方便。</p>
-<p>SourceTree使用Git命令执行操作，出错时，仍然需要阅读Git命令返回的错误信息。</p>
-]]></content>
-      <categories>
-        <category>git</category>
-      </categories>
-      <tags>
-        <tag>git</tag>
       </tags>
   </entry>
   <entry>
@@ -625,84 +762,6 @@
       </tags>
   </entry>
   <entry>
-    <title>搭建个人 hexo 博客（2）</title>
-    <url>/2023/11/18/2%EF%BC%9Ahexo%E7%9A%84%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE%E3%80%81%E6%9B%B4%E6%8D%A2%E4%B8%BB%E9%A2%98/</url>
-    <content><![CDATA[<p>将 hexo 部署到 github 后就要进入下一步部分了：hexo 配置与主题个性化。</p>
-<h2 id="1：hexo-基本配置"><a href="#1：hexo-基本配置" class="headerlink" title="1：hexo 基本配置"></a><strong>1：hexo 基本配置</strong></h2><p>在文件根目录下的<code>_config.yml</code>，就是整个 hexo 框架的配置文件了。可以在里面修改大部分的配置。详细可参考<a href="https://link.zhihu.com/?target=https://hexo.io/zh-cn/docs/configuration">官方的配置</a>描述。</p>
-<h3 id="网站"><a href="#网站" class="headerlink" title="网站"></a><strong>网站</strong></h3><p><strong>参数描述：</strong><code>title</code>网站标题<code>subtitle</code>网站副标题<code>description</code>网站描述<code>author</code>您的名字<code>language</code>网站使用的语言<code>timezone</code>网站时区。Hexo 默认使用您电脑的时区。<a href="https://link.zhihu.com/?target=https://en.wikipedia.org/wiki/List_of_tz_database_time_zones">时区列表</a>。比如说：<code>America/New_York</code>, <code>Japan</code>, 和 <code>UTC</code> 。</p>
-<p>其中，<code>description</code>主要用于 SEO，告诉搜索引擎一个关于您站点的简单描述，通常建议在其中包含您网站的关键词。<code>author</code>参数用于主题显示文章的作者。</p>
-<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://pic.imgdb.cn/item/65589273c458853aef928c3a.jpg" class="lozad post-image"src="https://pic.imgdb.cn/item/65589273c458853aef928c3a.jpg"></p>
-<h3 id="网址"><a href="#网址" class="headerlink" title="网址"></a><strong>网址</strong></h3><p><strong>参数描：</strong><code>url</code>网址<code>root</code>网站根目录<code>permalink</code>文章的 <a href="https://hexo.io/zh-cn/docs/permalinks">永久链接</a> 格式<code>permalink_defaults</code>永久链接中各部分的默认值</p>
-<p>在这里，你需要把<code>url</code>改成你的网站域名。</p>
-<p>permalink，也就是你生成某个文章时的那个链接格式。</p>
-<p>比如我新建一个文章叫 temp.md，那么这个时候他自动生成的地址就是<code>http://yoursite.com/2018/09/05/temp</code>。</p>
-<p>以下是官方给出的示例，关于链接的变量还有很多，需要的可以去官网上查找 <a href="https://hexo.io/zh-cn/docs/permalinks">永久链接</a> 。</p>
-<p><strong>参数结果：</strong><code>year/:month/:day/:title/</code>2013&#x2F;07&#x2F;14&#x2F;hello-world<code>:year-:month-:day-:title.html</code>2013-07-14-hello-world.html<code>:category/:title</code>foo&#x2F;bar&#x2F;hello-world</p>
-<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://pic.imgdb.cn/item/655892b3c458853aef9370aa.jpg" class="lozad post-image"src="https://pic.imgdb.cn/item/655892b3c458853aef9370aa.jpg"></p>
-<p>再往下翻，中间这些都默认就好了。</p>
-<pre class="highlight"><span class="line">theme: landscape</span><br><span class="line">​</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Deployment</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="comment"># Docs: https://hexo.io/docs/deployment.html</span></span></span><br><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: &lt;repository url&gt;</span><br><span class="line">  branch: [branch]</span><br></pre>
-
-<p><code>theme</code>就是选择什么主题，也就是在<code>theme</code>这个文件夹下，在官网上有很多个主题，默认给你安装的是<a href="https://www.zhihu.com/search?q=lanscape&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra=%7B%22sourceType%22:%22answer%22,%22sourceId%22:489125915%7D">lanscape</a>这个主题。当你需要更换主题时，在官网上下载，把主题的文件放在<code>theme</code>文件夹下，再修改这个参数就可以了。</p>
-<p>接下来这个<code>deploy</code>就是网站的部署的，<code>repo</code>就是仓库(<code>Repository</code>)的简写。<code>branch</code>选择仓库的哪个分支。这个在之前进行 github page 部署的时候已经修改过了，不再赘述。而这个在后面进行双平台部署的时候会再次用到。</p>
-<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://pic.imgdb.cn/item/655892e7c458853aef940e75.jpg" class="lozad post-image"src="https://pic.imgdb.cn/item/655892e7c458853aef940e75.jpg"></p>
-<h3 id="Front-matter"><a href="#Front-matter" class="headerlink" title="Front-matter"></a><strong>Front-matter</strong></h3><p>Front-matter 是 md 文件最上方以 <code>---</code> 分隔的区域，用于指定个别文件的变量，举例来说：</p>
-<pre class="highlight"><span class="line">---</span><br><span class="line">title: Hello World</span><br><span class="line">date: 2013/7/13 20:46:25</span><br><span class="line">---</span><br></pre>
-
-<p>下是预先定义的参数，您可在模板中使用这些参数值并加以利用。</p>
-<p><strong>参数描述：</strong><code>layout</code>布局<code>title</code>标题<code>date</code>建立日期<code>updated</code>更新日期<code>comments</code>开启文章的评论功能<code>tags</code>标签（不适用于分页）<code>categories</code>分类（不适用于分页）<code>permalink</code>覆盖文章网址</p>
-<p>其中，分类和标签需要区别一下，分类具有顺序性和层次性，也就是说 <code>Foo, Bar</code> 不等于 <code>Bar, Foo</code>；而标签没有顺序和层次。</p>
-<pre class="highlight"><span class="line">categories:</span><br><span class="line">- Diary</span><br><span class="line">tags:</span><br><span class="line">- PS3</span><br><span class="line">- Games</span><br></pre>
-
-<h3 id="layout（布局）"><a href="#layout（布局）" class="headerlink" title="layout（布局）"></a><strong>layout（布局）</strong></h3><p>当你每一次使用代码：</p>
-<pre class="highlight"><span class="line">hexo new paper</span><br></pre>
-
-<p>它其实默认使用的是<code>post</code>这个布局，也就是在<code>source</code>文件夹下的<code>_post</code>里面。</p>
-<p>Hexo 有三种默认布局：<code>post</code>、<code>page</code> 和 <code>draft</code>，它们分别对应不同的路径，而您自定义的其他布局和 <code>post</code> 相同，都将储存到 <code>source/_posts</code> 文件夹。</p>
-<p><strong>布局路径</strong><code>postsource/_postspagesourcedraftsource/_drafts</code></p>
-<p>而 new 这个命令其实是：</p>
-<pre class="highlight"><span class="line">hexo new [layout] &lt;title&gt;</span><br></pre>
-
-<p>只不过这个 layout 默认是 post 罢了。</p>
-<h4 id="page"><a href="#page" class="headerlink" title="page"></a><strong>page</strong></h4><p>如果你想另起一页，那么可以使用</p>
-<pre class="highlight"><span class="line">hexo new page board</span><br></pre>
-
-<p>系统会自动给你在 source 文件夹下创建一个 board 文件夹，以及 board 文件夹中的 index.md，这样你访问的 board 对应的链接就是<code>http://xxx.xxx/board</code></p>
-<h4 id="draft"><a href="#draft" class="headerlink" title="draft"></a><strong>draft</strong></h4><p>draft 是草稿的意思，也就是你如果想写文章，又不希望被看到，那么可以</p>
-<pre class="highlight"><span class="line">hexo new draft newpage</span><br></pre>
-
-<p>这样会在 source&#x2F;_draft 中新建一个 newpage.md 文件，如果你的草稿文件写的过程中，想要预览一下，那么可以使用</p>
-<pre class="highlight"><span class="line">hexo server --draft</span><br></pre>
-
-<p>在本地端口中开启服务预览。</p>
-<p>如果你的草稿文件写完了，想要发表到 post 中，</p>
-<pre class="highlight"><span class="line">hexo publish draft newpage</span><br></pre>
-
-<p>就会自动把 newpage.md 发送到 post 中。</p>
-<h2 id="2：更换主题"><a href="#2：更换主题" class="headerlink" title="2：更换主题"></a><strong>2：更换主题</strong></h2><p><a href="https://hexo.io/themes/">官网的主题中</a>，选择喜欢的主题进行修改，我选的是<a href="https://github.com/theme-kaze/hexo-theme-Kaze">Kaze </a>。</p>
-<p>去 github 上下载主题：</p>
-<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://pic.imgdb.cn/item/6558acfec458853aeffb9dd0.jpg" class="lozad post-image"src="https://pic.imgdb.cn/item/6558acfec458853aeffb9dd0.jpg"></p>
-<p>然后把下载的文件解压后放到：</p>
-<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://pic.imgdb.cn/item/6558ad27c458853aeffc4e33.jpg" class="lozad post-image"src="https://pic.imgdb.cn/item/6558ad27c458853aeffc4e33.jpg"></p>
-<p>kaze 文件中也有一个<code>_config.yml</code>文件，这个文件用于配制主题，比如：</p>
-<h3 id="menu（菜单栏）"><a href="#menu（菜单栏）" class="headerlink" title="menu（菜单栏）"></a><strong>menu（菜单栏）</strong></h3><p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://picx.zhimg.com/80/v2-f7759c435dcc46d877312b0b2c8b8e7d_1440w.webp?source=2c26e567" class="lozad post-image"src="https://picx.zhimg.com/80/v2-f7759c435dcc46d877312b0b2c8b8e7d_1440w.webp?source=2c26e567"></p>
-<p>其中，About 这个是找不到网页的，因为文章中没有 about 这个东西。如果想要的话，可以执行命令</p>
-<pre class="highlight"><span class="line">hexo new page about</span><br></pre>
-
-<p>它就会在根目录下<code>source</code>文件夹中新建了一个<code>about</code>文件夹，以及 index.md，在 index.md 中写上想要写的东西，就可以在网站上展示出来了。</p>
-<p><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://pic.imgdb.cn/item/6558addbc458853aefff7ef0.jpg" class="lozad post-image"src="https://pic.imgdb.cn/item/6558addbc458853aefff7ef0.jpg"></p>
-<p>如果想要自己再自定义一个菜单栏的选项，那么就</p>
-<pre class="highlight"><span class="line">hexo new page yourdiy</span><br></pre>
-
-<p>然后在主题配置文件的 menu 菜单栏添加一个 <code>Yourdiy : /yourdiy</code>，注意冒号后面要有空格，以及前面的空格要和 menu 中默认的保持整齐。然后在<code>languages</code>文件夹中，找到<code>zh-CN.yml</code>，在 index 中添加<code>yourdiy: &#39;中文意思&#39;</code>就可以显示中文了。</p>
-]]></content>
-      <categories>
-        <category>搭建个人hexo博客</category>
-      </categories>
-      <tags>
-        <tag>hexo</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Git创建版本库</title>
     <url>/2023/11/23/8%EF%BC%9Agit-%E5%88%9B%E5%BB%BA%E7%89%88%E6%9C%AC%E5%BA%93/</url>
     <content><![CDATA[<h1 id="Git创建版本库"><a href="#Git创建版本库" class="headerlink" title="Git创建版本库"></a>Git创建版本库</h1><p>版本库又名仓库，英文名repository，你可以简单理解成一个目录，这个目录里面的所有文件都可以被Git管理起来，每个文件的修改、删除，Git都能跟踪，以便任何时刻都可以追踪历史，或者在将来某个时刻可以“还原”。<br>创建一个版本库非常简单，首先，选择一个合适的地方，创建一个空目录：</p>
@@ -794,13 +853,13 @@
   </entry>
   <entry>
     <title></title>
-    <url>/2023/11/23/vx_notebook/vx_notebook/</url>
-    <content><![CDATA[{"attachment_folder":"vx_attachments","config_mgr":"vx.vnotex","created_time":"2023-11-23T11:55:09Z","description":"myblog","extra_configs":{},"history":[],"image_folder":"vx_images","name":"_posts","tag_graph":"","version":3,"version_controller":"dummy.vnotex"}]]></content>
+    <url>/2023/11/23/vx/</url>
+    <content><![CDATA[{"created_time":"2023-11-23T11:55:09Z","files":[{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"2","modified_time":"2023-11-23T12:01:59Z","name":"1：hexo初级搭建、github page部署及个人域名绑定.md","signature":"784285914990853533","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"3","modified_time":"2023-11-23T11:55:09Z","name":"2：hexo的基本配置、更换主题.md","signature":"5546498803292388765","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"4","modified_time":"2023-11-23T11:55:09Z","name":"3：给个人博客添加RSS.md","signature":"8223662518592028061","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"5","modified_time":"2023-11-23T11:55:09Z","name":"4：给个人博客添加评论系统.md","signature":"8927815552003423645","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"6","modified_time":"2023-11-23T11:55:09Z","name":"5：c++中的int*, int *&.md","signature":"1749579338025483677","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"7","modified_time":"2023-11-26T10:37:43Z","name":"6：排序算法总结.md","signature":"4749813615771467165","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T12:25:17Z","id":"12","modified_time":"2023-11-23T12:56:14Z","name":"7：git-简介.md","signature":"207324067087533","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T12:25:17Z","id":"11","modified_time":"2023-11-28T13:45:39Z","name":"8：git-创建版本库.md","signature":"8223662518592031744","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T12:25:17Z","id":"14","modified_time":"2023-11-23T14:20:53Z","name":"9：git-查看修改内容与仓库状态.md","signature":"8927815552003429748","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"17","modified_time":"2023-11-27T05:12:58Z","name":"10：LeetCode热题1.md","signature":"207324067343228","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"19","modified_time":"2023-11-26T12:38:00Z","name":"11：LeetCode热题2.md","signature":"784285914991114496","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T12:25:17Z","id":"21","modified_time":"2023-12-01T12:15:29Z","name":"12：git-版本回退.md","signature":"207324067418869","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"24","modified_time":"2023-12-02T03:15:41Z","name":"13：在本地部署Overleaf.md","signature":"207324067778492","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"26","modified_time":"2024-01-03T11:19:37Z","name":"14：LeetCode热题3.md","signature":"207324067854486","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T12:25:17Z","id":"28","modified_time":"2023-12-02T12:30:16Z","name":"15：git-工作区和暂存区.md","signature":"784285914991630751","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T12:25:17Z","id":"30","modified_time":"2023-12-06T01:03:27Z","name":"16：git-管理与撤销修改.md","signature":"207324068127003","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T12:25:17Z","id":"32","modified_time":"2023-12-05T13:43:31Z","name":"17：git-删除文件.md","signature":"784285914991896562","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T12:25:17Z","id":"34","modified_time":"2023-12-06T11:50:59Z","name":"18：git-远程仓库.md","signature":"207324068199273","tags":[]},{"attachment_folder":"238732412626092","created_time":"2023-11-23T12:25:17Z","id":"36","modified_time":"2023-12-09T03:43:56Z","name":"19：git-分支管理.md","signature":"784285914991976579","tags":[]},{"attachment_folder":"238732412626092_1","created_time":"2023-11-23T12:25:17Z","id":"38","modified_time":"2023-12-08T08:45:45Z","name":"20：git-标签管理.md","signature":"207324068369132","tags":[]},{"attachment_folder":"238732412626092_1_1","created_time":"2023-11-23T12:25:17Z","id":"41","modified_time":"2023-12-08T09:35:44Z","name":"21：git-github和Gitee的使用.md","signature":"784285914992138967","tags":[]},{"attachment_folder":"238732412626092_1_2","created_time":"2023-11-23T12:25:17Z","id":"43","modified_time":"2023-12-08T11:20:59Z","name":"22：git-自定义git.md","signature":"784285914992145164","tags":[]},{"attachment_folder":"238732412626092_1_2_1","created_time":"2023-11-23T12:25:17Z","id":"45","modified_time":"2023-12-08T11:25:05Z","name":"23：git-使用SourceTree.md","signature":"5546498803293682881","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"47","modified_time":"2023-12-10T09:28:45Z","name":"24：LeetCode热题4.md","signature":"207324068521812","tags":[]}],"folders":[],"id":"1","modified_time":"2023-11-23T11:55:09Z","signature":"207324067085725","version":3}]]></content>
   </entry>
   <entry>
     <title></title>
-    <url>/2023/11/23/vx/</url>
-    <content><![CDATA[{"created_time":"2023-11-23T11:55:09Z","files":[{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"2","modified_time":"2023-11-23T12:01:59Z","name":"1：hexo初级搭建、github page部署及个人域名绑定.md","signature":"784285914990853533","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"3","modified_time":"2023-11-23T11:55:09Z","name":"2：hexo的基本配置、更换主题.md","signature":"5546498803292388765","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"4","modified_time":"2023-11-23T11:55:09Z","name":"3：给个人博客添加RSS.md","signature":"8223662518592028061","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"5","modified_time":"2023-11-23T11:55:09Z","name":"4：给个人博客添加评论系统.md","signature":"8927815552003423645","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"6","modified_time":"2023-11-23T11:55:09Z","name":"5：c++中的int*, int *&.md","signature":"1749579338025483677","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"7","modified_time":"2023-11-26T10:37:43Z","name":"6：排序算法总结.md","signature":"4749813615771467165","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T12:25:17Z","id":"12","modified_time":"2023-11-23T12:56:14Z","name":"7：git-简介.md","signature":"207324067087533","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T12:25:17Z","id":"11","modified_time":"2023-11-28T13:45:39Z","name":"8：git-创建版本库.md","signature":"8223662518592031744","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T12:25:17Z","id":"14","modified_time":"2023-11-23T14:20:53Z","name":"9：git-查看修改内容与仓库状态.md","signature":"8927815552003429748","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"17","modified_time":"2023-11-27T05:12:58Z","name":"10：LeetCode热题1.md","signature":"207324067343228","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"19","modified_time":"2023-11-26T12:38:00Z","name":"11：LeetCode热题2.md","signature":"784285914991114496","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T12:25:17Z","id":"21","modified_time":"2023-12-01T12:15:29Z","name":"12：git-版本回退.md","signature":"207324067418869","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"24","modified_time":"2023-12-02T03:15:41Z","name":"13：在本地部署Overleaf.md","signature":"207324067778492","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T11:55:09Z","id":"26","modified_time":"2023-12-02T10:06:58Z","name":"14：LeetCode热题3.md","signature":"207324067854486","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T12:25:17Z","id":"28","modified_time":"2023-12-02T12:30:16Z","name":"15：git-工作区和暂存区.md","signature":"784285914991630751","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T12:25:17Z","id":"30","modified_time":"2023-12-06T01:03:27Z","name":"16：git-管理与撤销修改.md","signature":"207324068127003","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T12:25:17Z","id":"32","modified_time":"2023-12-05T13:43:31Z","name":"17：git-删除文件.md","signature":"784285914991896562","tags":[]},{"attachment_folder":"","created_time":"2023-11-23T12:25:17Z","id":"34","modified_time":"2023-12-06T11:50:59Z","name":"18：git-远程仓库.md","signature":"207324068199273","tags":[]},{"attachment_folder":"238732412626092","created_time":"2023-11-23T12:25:17Z","id":"36","modified_time":"2023-12-08T08:02:29Z","name":"19：git-分支管理.md","signature":"784285914991976579","tags":[]},{"attachment_folder":"238732412626092_1","created_time":"2023-11-23T12:25:17Z","id":"38","modified_time":"2023-12-08T08:45:45Z","name":"20：git-标签管理.md","signature":"207324068369132","tags":[]},{"attachment_folder":"238732412626092_1_1","created_time":"2023-11-23T12:25:17Z","id":"41","modified_time":"2023-12-08T09:35:44Z","name":"21：git-github和Gitee的使用.md","signature":"784285914992138967","tags":[]},{"attachment_folder":"238732412626092_1_2","created_time":"2023-11-23T12:25:17Z","id":"43","modified_time":"2023-12-08T11:20:59Z","name":"22：git-自定义git.md","signature":"784285914992145164","tags":[]},{"attachment_folder":"238732412626092_1_2_1","created_time":"2023-11-23T12:25:17Z","id":"45","modified_time":"2023-12-08T11:25:05Z","name":"23：git-使用SourceTree.md","signature":"5546498803293682881","tags":[]}],"folders":[],"id":"1","modified_time":"2023-11-23T11:55:09Z","signature":"207324067085725","version":3}]]></content>
+    <url>/2023/11/23/vx_notebook/vx_notebook/</url>
+    <content><![CDATA[{"attachment_folder":"vx_attachments","config_mgr":"vx.vnotex","created_time":"2023-11-23T11:55:09Z","description":"myblog","extra_configs":{},"history":[],"image_folder":"vx_images","name":"_posts","tag_graph":"","version":3,"version_controller":"dummy.vnotex"}]]></content>
   </entry>
   <entry>
     <title>GitGitub和Gitee的使用</title>
@@ -813,35 +872,6 @@
       </categories>
       <tags>
         <tag>git</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>搭建个人hexo博客（3）</title>
-    <url>/2023/11/18/3%EF%BC%9A%E7%BB%99%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0RSS/</url>
-    <content><![CDATA[<h2 id="1：什么是-RSS？"><a href="#1：什么是-RSS？" class="headerlink" title="1：什么是 RSS？"></a><strong>1：什么是 RSS？</strong></h2><p>RSS 也就是订阅功能，你可以理解为类似与订阅公众号的功能，来订阅各种博客，杂志等等。</p>
-<h2 id="2：为什么要用-RSS？"><a href="#2：为什么要用-RSS？" class="headerlink" title="2：为什么要用 RSS？"></a><strong>2：为什么要用 RSS？</strong></h2><p>就如同订阅公众号一样，你对某个公众号感兴趣，你总不可能一直时不时搜索这个公众号来看它的文章吧。博客也是一样，如果你喜欢某个博主，或者某个平台的内容，你可以通过 RSS 订阅它们，然后在 RSS 阅读器上可以实时推送这些消息。现在网上的垃圾消息太多了，如果你每一天都在看这些消息中度过，漫无目的的浏览，只会让你的时间一点一点的流逝，太不值得了。如果你关注的博主每次都发的消息都是精华，而且不是每一天十几条几十条的轰炸你，那么这个博主就值得你的关注，你就可以通过 RSS 订阅他。</p>
-<p>在我的理解中，如果你不想每天都被那些没有质量的消息轰炸，只想安安静静的关注几个博主，每天看一些有质量的内容也不用太多，那么 RSS 订阅值得你的拥有。</p>
-<h2 id="3：添加-RSS-功能"><a href="#3：添加-RSS-功能" class="headerlink" title="3：添加 RSS 功能"></a><strong>3：添加 RSS 功能</strong></h2><p>先安装 RSS 插件</p>
-<pre class="highlight"><span class="line">npm i hexo-generator-feed</span><br></pre>
-
-<p>而后在你整个项目的<code>_config.yml</code>中找到 Extensions，添加：</p>
-<pre class="highlight"><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Extensions</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="comment"># Plugins: https://hexo.io/plugins/</span></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">RSS订阅</span></span><br><span class="line">plugin:</span><br><span class="line">- hexo-generator-feed</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">Feed Atom</span></span><br><span class="line">feed:</span><br><span class="line">  type: atom</span><br><span class="line">  path: atom.xml</span><br><span class="line">  limit: 20</span><br></pre>
-
-<p>这个时候你的 RSS 链接就是 域名<code>/atom.xml</code>了。</p>
-<p>所以，在主题配置文件中的这个<code>social links</code>，开启 RSS 的页面功能，这样你网站上就有那个像 wifi 一样符号的 RSS logo 了，注意空格。</p>
-<pre class="highlight"><span class="line">rss: /atom.xml</span><br></pre>
-
-<h2 id="4：如何关注-RSS？"><a href="#4：如何关注-RSS？" class="headerlink" title="4：如何关注 RSS？"></a><strong>4：如何关注 RSS？</strong></h2><p>首先，你需要一个 RSS 阅读器，在这里我推荐<code>inoreader</code>，宇宙第一 RSS 阅读器，而且中文支持的挺好。不过它没有 PC 端的程序，只有网页版，chrome 上有插件。在官网上用 google 账号或者自己注册账号登录，就可以开始你的关注之旅了。</p>
-<p>每次需要关注某个博主时，就点开他的 RSS 链接，把链接复制到<code>inoreader</code>上，就能关注了，当然，如果是比较大众化的很厉害的博主，你直接搜名字也可以的，比如每个人都非常佩服的阮一峰大师，直接在阅读器上搜索<code>阮一峰</code>，应该就能出来了。</p>
-<p>在安卓端，inoreader 也有下载，不过因为国内 google 是登录不了的，你需要在 inoreader 官网上把你的密码修改了，然后就可以用账户名和密码登录了。</p>
-<p>在 IOS 端，没用过，好像是 reader 3 可以支持 inoreader 账户，还有个 readon 也不错，可以去试试。</p>
-<p>⚠️：按照上述步骤配置后网站打不开了，最后也没找到原因。</p>
-]]></content>
-      <categories>
-        <category>搭建个人hexo博客</category>
-      </categories>
-      <tags>
-        <tag>hexo</tag>
       </tags>
   </entry>
 </search>

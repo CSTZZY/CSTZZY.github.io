@@ -49,7 +49,7 @@
         content="2023-12-02">
       <meta 
         property="og:article:modified_time" 
-        content="2023-12-02">
+        content="2024-01-03">
       <meta 
         property="og:article:author" 
         content="CSTZZY">
@@ -305,7 +305,7 @@
   <a 
     class="author-posts-count" 
     href="/archives">
-    <span>26</span>
+    <span>27</span>
     <span>文章</span>
   </a>
   <a 
@@ -349,13 +349,6 @@
   </div>
   <div class="categories-list">
     
-      <a href="/categories/LeetCode%E7%83%AD%E9%A2%98100/">
-        <div class="categories-list-item">
-          LeetCode热题100
-          <span class="categories-list-item-badge">3</span>
-        </div>
-      </a>
-    
       <a href="/categories/git/">
         <div class="categories-list-item">
           git
@@ -367,6 +360,13 @@
         <div class="categories-list-item">
           Overleaf
           <span class="categories-list-item-badge">1</span>
+        </div>
+      </a>
+    
+      <a href="/categories/LeetCode%E7%83%AD%E9%A2%98100/">
+        <div class="categories-list-item">
+          LeetCode热题100
+          <span class="categories-list-item-badge">4</span>
         </div>
       </a>
     
@@ -482,7 +482,7 @@
     
     
       <span class="dot"></span>
-      <span>451 字</span>
+      <span>473 字</span>
     
   </div>
   
@@ -527,7 +527,7 @@
 <pre class="highlight"><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int longestConsecutive(vector&lt;int&gt;&amp; nums) &#123;</span><br><span class="line">        unordered_set&lt;int&gt; num_set;</span><br><span class="line">        for(int num:nums)&#123;</span><br><span class="line">            num_set.insert(num);</span><br><span class="line">        &#125;</span><br><span class="line">        int res=0;</span><br><span class="line">        for(int num:num_set)&#123;</span><br><span class="line">            if(!num_set.count(num-1))&#123;</span><br><span class="line">                int cur_num=num;</span><br><span class="line">                int temp=1;</span><br><span class="line">                while(num_set.count(cur_num+1))&#123;</span><br><span class="line">                    cur_num++;</span><br><span class="line">                    temp++;</span><br><span class="line">                &#125;</span><br><span class="line">                if(temp&gt;res)</span><br><span class="line">                    res=temp;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre>
 
 <p>这个方法的运行时间为128ms，而我的方法运行时间只有80ms。</p>
-<p>注意：在leetcode中提交带有数组下标是否越界判断的语句时，要先判断arr[i] &lt; arr[i+1]，再判断(i+1)&lt;&#x3D;len，这里i+1可能已经越界了，会导致此错误。<br>参考链接： <a target="_blank" rel="noopener" href="https://blog.csdn.net/adoge_/article/details/129072054">https://blog.csdn.net/adoge_/article/details/129072054</a></p>
+<p>注意：在leetcode中提交带有数组下标是否越界判断的语句时，如果先判断arr[i] &lt; arr[i+1]，再判断(i+1)&lt;&#x3D;len，这里i+1可能已经越界了，会导致此错误，需要改为先判断(i+1)&lt;&#x3D;len，再判断arr[i] &lt; arr[i+1]。<br>参考链接： <a target="_blank" rel="noopener" href="https://blog.csdn.net/adoge_/article/details/129072054">https://blog.csdn.net/adoge_/article/details/129072054</a></p>
 
   </div>
   <div>
@@ -663,6 +663,11 @@
   <div class="recent-posts-list">
     
       <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2023-12-10</div>
+        <a href="/2023/12/10/24%EF%BC%9ALeetCode%E7%83%AD%E9%A2%984/"><div class="recent-posts-item-content">LeetCode热题4</div></a>
+      </div>
+    
+      <div class="recent-posts-item">
         <div class="recent-posts-item-title">2023-12-08</div>
         <a href="/2023/12/08/23%EF%BC%9Agit-%E4%BD%BF%E7%94%A8SourceTree/"><div class="recent-posts-item-content">Git使用SourceTree</div></a>
       </div>
@@ -675,11 +680,6 @@
       <div class="recent-posts-item">
         <div class="recent-posts-item-title">2023-12-08</div>
         <a href="/2023/12/08/21%EF%BC%9Agit-github%E5%92%8CGitee%E7%9A%84%E4%BD%BF%E7%94%A8/"><div class="recent-posts-item-content">GitGitub和Gitee的使用</div></a>
-      </div>
-    
-      <div class="recent-posts-item">
-        <div class="recent-posts-item-title">2023-12-08</div>
-        <a href="/2023/12/08/vx_recycle_bin/20231208/21%EF%BC%9Agit-github%E5%92%8CGitee%E7%9A%84%E4%BD%BF%E7%94%A8_1.md/21%EF%BC%9Agit-github%E5%92%8CGitee%E7%9A%84%E4%BD%BF%E7%94%A8_1/"><div class="recent-posts-item-content">GitGitub和Gitee的使用</div></a>
       </div>
     
   </div>
@@ -703,6 +703,9 @@
           
             2023
           
+          
+                - 
+                2024
           
         </span>
         &nbsp;

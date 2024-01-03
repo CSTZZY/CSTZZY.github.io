@@ -18,17 +18,17 @@
   <link 
     rel="icon" 
     href="https://pic.imgdb.cn/item/65571aabc458853aefbb0c4f.png">
-  <title>Git创建版本库</title>
+  <title>LeetCode热题4</title>
   
     
       <meta 
         property="og:title" 
-        content="Git创建版本库">
+        content="LeetCode热题4">
     
     
       <meta 
         property="og:url" 
-        content="http://cstzzy.top/2023/11/23/8%EF%BC%9Agit-%E5%88%9B%E5%BB%BA%E7%89%88%E6%9C%AC%E5%BA%93/index.html">
+        content="http://cstzzy.top/2023/12/10/24%EF%BC%9ALeetCode%E7%83%AD%E9%A2%984/index.html">
     
     
       <meta 
@@ -46,10 +46,10 @@
         content="article">
       <meta 
         property="og:article:published_time" 
-        content="2023-11-23">
+        content="2023-12-10">
       <meta 
         property="og:article:modified_time" 
-        content="2023-11-28">
+        content="2023-12-10">
       <meta 
         property="og:article:author" 
         content="CSTZZY">
@@ -57,7 +57,11 @@
         
           <meta 
             property="og:article:tag" 
-            content="git">
+            content="c++">
+        
+          <meta 
+            property="og:article:tag" 
+            content="LeetCode热题100">
         
       
     
@@ -330,7 +334,7 @@
     style="padding-right: 2px;">
   </i>目录
 </div>
-<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Git%E5%88%9B%E5%BB%BA%E7%89%88%E6%9C%AC%E5%BA%93"><span class="toc-text">Git创建版本库</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%8A%E6%96%87%E4%BB%B6%E6%B7%BB%E5%8A%A0%E5%88%B0%E7%89%88%E6%9C%AC%E5%BA%93"><span class="toc-text">把文件添加到版本库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%8F%E7%BB%93"><span class="toc-text">小结</span></a></li></ol></li></ol>
+<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8E%A5%E9%9B%A8%E6%B0%B4"><span class="toc-text">接雨水</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%B8%80%EF%BC%9A%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92"><span class="toc-text">方法一：动态规划</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%BA%8C%EF%BC%9A%E5%8D%95%E8%B0%83%E6%A0%88"><span class="toc-text">方法二：单调栈</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%B8%89%EF%BC%9A%E5%8F%8C%E6%8C%87%E9%92%88"><span class="toc-text">方法三：双指针</span></a></li></ol></li></ol>
       </div>
     </article>
   
@@ -455,30 +459,30 @@
 <article class="card card-content">
   <header>
     <h1 class="post-title">
-      Git创建版本库
+      LeetCode热题4
     </h1>
   </header>
   <div class="post-meta post-show-meta">
-    <time datetime="2023-11-23T13:04:00.000Z">
+    <time datetime="2023-12-10T02:50:00.000Z">
       <i 
         class="iconfont icon-calendar" 
         style="margin-right: 2px;">
       </i>
-      <span>2023-11-23</span>
+      <span>2023-12-10</span>
     </time>
     
       <span class="dot"></span>
       
         <a 
-          href="/categories/git/" 
+          href="/categories/LeetCode%E7%83%AD%E9%A2%98100/" 
           class="post-meta-link">
-          git
+          LeetCode热题100
         </a>
       
     
     
       <span class="dot"></span>
-      <span>989 字</span>
+      <span>886 字</span>
     
   </div>
   
@@ -493,9 +497,18 @@
         
           
           <a 
-            href="/tags/git/" 
+            href="/tags/c/" 
             class="post-meta-link">
-            git
+            c++
+          </a>
+        
+          
+            <span class="dot"></span>
+          
+          <a 
+            href="/tags/LeetCode%E7%83%AD%E9%A2%98100/" 
+            class="post-meta-link">
+            LeetCode热题100
           </a>
         
       </div>
@@ -505,34 +518,24 @@
   <div 
     id="section" 
     class="post-content">
-    <h1 id="Git创建版本库"><a href="#Git创建版本库" class="headerlink" title="Git创建版本库"></a>Git创建版本库</h1><p>版本库又名仓库，英文名repository，你可以简单理解成一个目录，这个目录里面的所有文件都可以被Git管理起来，每个文件的修改、删除，Git都能跟踪，以便任何时刻都可以追踪历史，或者在将来某个时刻可以“还原”。<br>创建一个版本库非常简单，首先，选择一个合适的地方，创建一个空目录：</p>
-<pre class="highlight"><span class="line">mkdir learngit</span><br><span class="line">cd learngit</span><br></pre>
-<p>第二步，通过git init命令把这个目录变成Git可以管理的仓库：</p>
-<pre class="highlight"><span class="line">git init</span><br></pre>
+    <h1 id="接雨水"><a href="#接雨水" class="headerlink" title="接雨水"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/trapping-rain-water/description/?envType=study-plan-v2&envId=top-100-liked">接雨水</a></h1><h2 id="方法一：动态规划"><a href="#方法一：动态规划" class="headerlink" title="方法一：动态规划"></a>方法一：动态规划</h2><p>思路及算法：</p>
+<p>对于下标 i，下雨后水能到达的最大高度等于下标 i 两边的最大高度的最小值，下标 i 处能接的雨水量等于下标 i 处的水能到达的最大高度减去 height[i]。</p>
+<p>如果针对每一个元素都分别向左&#x2F;右扫描数组寻找左侧和右侧的最大值，则时间复杂度为$O(N^2)$。<br>在已获得各个元素左右两侧最大高度的前提下，计算接雨水的总量的时间复杂度将变为$O(N)$，而使用动态规划的方法可以在时间复杂度为$O(N)$的前提下找到各个元素左右两侧的最大值，思路如下：</p>
+<ul>
+<li>创建两个长度为n的数组：leftmax和rightmax用来存储各个元素左右两侧的最大值；</li>
+<li>leftMax[0]&#x3D;height[0]，对于剩余的元素leftMax[i]&#x3D;max(leftMax[i−1],height[i])；</li>
+<li>rightMax[n−1]&#x3D;height[n−1]，对于剩余的元素rightMax[i]&#x3D;max(rightMax[i+1],height[i])；</li>
+<li>在得到leftmax和rightmax后，下标i所对应的接雨水量&#x3D;min(leftMax[i],rightMax[i])−height[i]。</li>
+</ul>
+<pre class="highlight"><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int trap(vector&lt;int&gt;&amp; height) &#123;</span><br><span class="line">        int n=height.size();</span><br><span class="line">        vector&lt;int&gt; leftmax(n);</span><br><span class="line">        leftmax[0]=height[0];</span><br><span class="line">        for(int i=1;i&lt;n;i++)&#123;</span><br><span class="line">            leftmax[i]=max(height[i],leftmax[i-1]);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        vector&lt;int&gt; rightmax(n);</span><br><span class="line">        rightmax[n-1]=height[n-1];</span><br><span class="line">        for(int i=n-2;i&gt;=0;i--)&#123;</span><br><span class="line">            rightmax[i]=max(height[i],rightmax[i+1]);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        int res=0;</span><br><span class="line">        for(int i=0;i&lt;n;i++)&#123;</span><br><span class="line">            res=res+max(0,min(leftmax[i],rightmax[i])-height[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        return res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre>
+<p>其实上面的代码中的res&#x3D;res+max(0,min(leftmax[i],rightmax[i])-height[i]);没有必要写max(0,…)，因为min(leftmax[i],rightmax[i])的最小值为height[i]，即：min(leftmax[i],rightmax[i])-height[i]肯定为非负数。</p>
+<h2 id="方法二：单调栈"><a href="#方法二：单调栈" class="headerlink" title="方法二：单调栈"></a>方法二：单调栈</h2><p>思路及算法：</p>
+<p>维护一个存储height数组下标的单调栈stack，其中从栈底到栈顶的下标对应的数组 height 中的元素递减。<br>从头遍历height数组，若height[i]&lt;&#x3D;stack[stack.top()]或stack为空，则将i入栈；<br>否则，int top&#x3D;stk.top(); stk.pop(); 若此时stack为空，则将i入栈，<br>否则，此时得到一个可以接雨水的区域，left&#x3D;stk.top(); cur_width&#x3D;i-left-1; cur_height&#x3D;min(height[left],height[i])-height[top]; res+&#x3D;(cur_width*cur_height);<br>重复上述过程，直到stack为空，或height[i]&lt;&#x3D;height[stk.top()]。</p>
+<pre class="highlight"><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int trap(vector&lt;int&gt;&amp; height) &#123;</span><br><span class="line">        int res=0;</span><br><span class="line">        stack&lt;int&gt; stk;</span><br><span class="line">        int n=height.size();</span><br><span class="line">        for(int i=0;i&lt;n;i++)&#123;</span><br><span class="line">            while(!stk.empty()&amp;&amp;height[i]&gt;height[stk.top()])&#123;</span><br><span class="line">                int top=stk.top();</span><br><span class="line">                stk.pop();</span><br><span class="line">                if(stk.empty())</span><br><span class="line">                    break;</span><br><span class="line">                int left=stk.top();</span><br><span class="line">                int cur_width=i-left-1;</span><br><span class="line">                int cur_height=min(height[left],height[i])-height[top];</span><br><span class="line">                res+=(cur_width*cur_height);</span><br><span class="line">            &#125;</span><br><span class="line">            stk.push(i);</span><br><span class="line">        &#125;</span><br><span class="line">        return res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre>
 
-<p>瞬间Git就把仓库建好了，而且告诉你是一个空的仓库（empty Git repository），细心的读者可以发现当前目录下多了一个.git的目录，这个目录是Git来跟踪管理版本库的，没事千万不要手动修改这个目录里面的文件，不然改乱了，就把Git仓库给破坏了。<br>如果你没有看到.git目录，那是因为这个目录默认是隐藏的，用ls -ah命令就可以看见。</p>
-<h2 id="把文件添加到版本库"><a href="#把文件添加到版本库" class="headerlink" title="把文件添加到版本库"></a>把文件添加到版本库</h2><p>首先这里再明确一下，所有的版本控制系统，其实只能跟踪文本文件的改动，比如TXT文件，网页，所有的程序代码等等，Git也不例外。版本控制系统可以告诉你每次的改动，比如在第5行加了一个单词“Linux”，在第8行删了一个单词“Windows”。而图片、视频这些二进制文件，虽然也能由版本控制系统管理，但没法跟踪文件的变化，只能把二进制文件每次改动串起来，也就是只知道图片从100KB改成了120KB，但到底改了啥，版本控制系统不知道，也没法知道。</p>
-<p>不幸的是，Microsoft的Word格式是二进制格式，因此，版本控制系统是没法跟踪Word文件的改动的，前面我们举的例子只是为了演示，如果要真正使用版本控制系统，就要以纯文本方式编写文件。</p>
-<p>因为文本是有编码的，比如中文有常用的GBK编码，日文有Shift_JIS编码，如果没有历史遗留问题，强烈建议使用标准的UTF-8编码，所有语言使用同一种编码，既没有冲突，又被所有平台所支持。</p>
-<p>编写一个readme.txt文件，内容如下：</p>
-<pre class="highlight"><span class="line">Git is a version control system.</span><br><span class="line">Git is free software.</span><br></pre>
-
-<p>和把大象放到冰箱需要3步相比，把一个文件放到Git仓库只需要两步。</p>
-<p>第一步，用命令git add告诉Git，把文件添加到仓库：</p>
-<pre class="highlight"><span class="line">git add readme.txt</span><br></pre>
-
-<p>使用<code>git add .</code>可以一次性添加所有修改。</p>
-<p>执行上面的命令，没有任何显示，这就对了，Unix的哲学是“没有消息就是好消息”，说明添加成功。</p>
-<p>第二步，用命令git commit告诉Git，把文件提交到仓库：</p>
-<pre class="highlight"><span class="line">git commit -m &quot;wrote a readme file&quot;</span><br></pre>
-<p>简单解释一下git commit命令，-m后面输入的是本次提交的说明，可以输入任意内容，当然最好是有意义的，这样你就能从历史记录里方便地找到改动记录。</p>
-<p>git commit命令执行成功后会告诉你，1 file changed：1个文件被改动（我们新添加的readme.txt文件）；2 insertions：插入了两行内容（readme.txt有两行内容）。</p>
-<p>为什么Git添加文件需要add，commit一共两步呢？因为commit可以一次提交很多文件，所以你可以多次add不同的文件（到暂存区），比如：</p>
-<pre class="highlight"><span class="line">git add file1.txt</span><br><span class="line">git add file2.txt file3.txt</span><br><span class="line">git commit -m &quot;add 3 files.&quot;</span><br></pre>
-
-<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>初始化一个Git仓库，使用git init命令。</p>
-<p>添加文件到Git仓库，分两步：</p>
-<p>使用命令git add <file>，注意，可反复多次使用，添加多个文件；<br>使用命令git commit -m <message>，完成。</p>
+<h2 id="方法三：双指针"><a href="#方法三：双指针" class="headerlink" title="方法三：双指针"></a>方法三：双指针</h2><p>上述两种方法的空间复杂度都为$O(N)$，下面要介绍的双指针方法的空间复杂度为$O(1)$。</p>
+<p>下标 i 处能接的雨水量由 leftMax[i] 和 rightMax[i] 中的最小值决定。由于数组 leftMax 是从左往右计算，数组 rightMax 是从右往左计算，因此可以使用双指针和两个变量代替两个数组。<br><img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://pic.imgdb.cn/item/6575828bc458853aefcd01ef.jpg" class="lozad post-image"src="https://pic.imgdb.cn/item/6575828bc458853aefcd01ef.jpg"></p>
+<pre class="highlight"><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int trap(vector&lt;int&gt;&amp; height) &#123;</span><br><span class="line">        int n=height.size();</span><br><span class="line">        int l=0;</span><br><span class="line">        int r=n-1;</span><br><span class="line">        int lmax=height[0];</span><br><span class="line">        int rmax=height[n-1];</span><br><span class="line">        int res=0;</span><br><span class="line">        while(l!=r)&#123;</span><br><span class="line">            if(height[l]&gt;=lmax)&#123;</span><br><span class="line">                lmax=height[l];</span><br><span class="line">            &#125;</span><br><span class="line">            if(height[r]&gt;=rmax)&#123;</span><br><span class="line">                rmax=height[r];</span><br><span class="line">            &#125;</span><br><span class="line">            if(height[l]&lt;height[r])&#123;</span><br><span class="line">                res+=(lmax-height[l++]);</span><br><span class="line">            &#125;</span><br><span class="line">            else&#123;</span><br><span class="line">                res+=(rmax-height[r--]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre>
 
   </div>
   <div>
@@ -552,8 +555,8 @@
           <span style="font-weight: bold;">文章链接：</span><a 
             target="_blank" 
             rel="nofollow noopener noreferrer" 
-            href="http://cstzzy.top/2023/11/23/8%EF%BC%9Agit-%E5%88%9B%E5%BB%BA%E7%89%88%E6%9C%AC%E5%BA%93/">
-            http://cstzzy.top/2023/11/23/8%EF%BC%9Agit-%E5%88%9B%E5%BB%BA%E7%89%88%E6%9C%AC%E5%BA%93/
+            href="http://cstzzy.top/2023/12/10/24%EF%BC%9ALeetCode%E7%83%AD%E9%A2%984/">
+            http://cstzzy.top/2023/12/10/24%EF%BC%9ALeetCode%E7%83%AD%E9%A2%984/
           </a>
         </p>
         <p><span style="font-weight: bold;">版权声明：</span>本博客所有文章除特别声明外，均采用<a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0 协议</a>。转载请注明出处！</p>
@@ -563,29 +566,15 @@
 </article>
 <div class="nav">
   
-    <div class="nav-item-prev">
-      <a 
-        href="/2023/11/23/9%EF%BC%9Agit-%E6%9F%A5%E7%9C%8B%E4%BF%AE%E6%94%B9%E5%86%85%E5%AE%B9%E4%B8%8E%E4%BB%93%E5%BA%93%E7%8A%B6%E6%80%81/" 
-        class="nav-link">
-        <i class="iconfont icon-left nav-prev-icon"></i>
-        <div>
-          <div class="nav-label">上一篇</div>
-          
-            <div class="nav-title">Git查看修改内容与仓库状态 </div>
-          
-        </div>
-      </a>
-    </div>
-  
   
     <div class="nav-item-next">
       <a 
-        href="/2023/11/23/7%EF%BC%9Agit-%E7%AE%80%E4%BB%8B/" 
+        href="/2023/12/08/23%EF%BC%9Agit-%E4%BD%BF%E7%94%A8SourceTree/" 
         class="nav-link">
         <div>
           <div class="nav-label">下一篇</div>
           
-            <div class="nav-title">Git简介 </div>
+            <div class="nav-title">Git使用SourceTree </div>
           
         </div>
         <i class="iconfont icon-right nav-next-icon"></i>
@@ -639,7 +628,7 @@
     style="padding-right: 2px;">
   </i>目录
 </div>
-<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Git%E5%88%9B%E5%BB%BA%E7%89%88%E6%9C%AC%E5%BA%93"><span class="toc-text">Git创建版本库</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%8A%E6%96%87%E4%BB%B6%E6%B7%BB%E5%8A%A0%E5%88%B0%E7%89%88%E6%9C%AC%E5%BA%93"><span class="toc-text">把文件添加到版本库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%8F%E7%BB%93"><span class="toc-text">小结</span></a></li></ol></li></ol>
+<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8E%A5%E9%9B%A8%E6%B0%B4"><span class="toc-text">接雨水</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%B8%80%EF%BC%9A%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92"><span class="toc-text">方法一：动态规划</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%BA%8C%EF%BC%9A%E5%8D%95%E8%B0%83%E6%A0%88"><span class="toc-text">方法二：单调栈</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%B8%89%EF%BC%9A%E5%8F%8C%E6%8C%87%E9%92%88"><span class="toc-text">方法三：双指针</span></a></li></ol></li></ol>
 </div>
             </main>
             <aside class="right-column">
@@ -653,7 +642,7 @@
     style="padding-right: 2px;">
   </i>目录
 </div>
-<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Git%E5%88%9B%E5%BB%BA%E7%89%88%E6%9C%AC%E5%BA%93"><span class="toc-text">Git创建版本库</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%8A%E6%96%87%E4%BB%B6%E6%B7%BB%E5%8A%A0%E5%88%B0%E7%89%88%E6%9C%AC%E5%BA%93"><span class="toc-text">把文件添加到版本库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%8F%E7%BB%93"><span class="toc-text">小结</span></a></li></ol></li></ol>
+<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8E%A5%E9%9B%A8%E6%B0%B4"><span class="toc-text">接雨水</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%B8%80%EF%BC%9A%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92"><span class="toc-text">方法一：动态规划</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%BA%8C%EF%BC%9A%E5%8D%95%E8%B0%83%E6%A0%88"><span class="toc-text">方法二：单调栈</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%B8%89%EF%BC%9A%E5%8F%8C%E6%8C%87%E9%92%88"><span class="toc-text">方法三：双指针</span></a></li></ol></li></ol>
     </article>
   
   
